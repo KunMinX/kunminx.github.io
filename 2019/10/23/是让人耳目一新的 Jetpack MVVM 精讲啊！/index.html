@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>是让人耳目一新的 Jetpack MVVM 精讲啊！ - Hexo</title><meta description=""><meta property="og:type" content="blog"><meta property="og:title" content="是让人耳目一新的 Jetpack MVVM 精讲啊！"><meta property="og:url" content="https://www.kunminx.com/2019/10/23/%E6%98%AF%E8%AE%A9%E4%BA%BA%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%E7%9A%84%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2%E5%95%8A%EF%BC%81/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/10/23/16df6981ce774d01?w=1038&amp;h=736&amp;f=png&amp;s=66525"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/10/23/16df6981cbdf4475?w=1033&amp;h=739&amp;f=png&amp;s=62517"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/10/23/16df6981cb629feb?w=550&amp;h=366&amp;f=jpeg&amp;s=205712"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/6/5/17282685f131e706?w=1008&amp;h=735&amp;f=jpeg&amp;s=130317"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/6/5/17282685efcc11e0?w=1394&amp;h=920&amp;f=jpeg&amp;s=191176"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/6/5/17282685f0d8e5b3?w=1514&amp;h=970&amp;f=jpeg&amp;s=188565"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/5/22/1723c10d41f87699?w=88&amp;h=31&amp;f=png&amp;s=1566"><meta property="article:published_time" content="2019-10-23T06:00:00.000Z"><meta property="article:modified_time" content="2020-06-06T19:24:54.199Z"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kunminx.com/2019/10/23/%E6%98%AF%E8%AE%A9%E4%BA%BA%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%E7%9A%84%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2%E5%95%8A%EF%BC%81/"},"headline":"Hexo","image":["https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png"],"datePublished":"2019-10-23T06:00:00.000Z","dateModified":"2020-06-06T19:24:54.199Z","author":{"@type":"Person","name":"John Doe"},"description":""}</script><link rel="canonical" href="https://www.kunminx.com/2019/10/23/%E6%98%AF%E8%AE%A9%E4%BA%BA%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%E7%9A%84%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2%E5%95%8A%EF%BC%81/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="https://juejin.im/user/58ab0de9ac502e006975d757/pins">Categories</a><a class="navbar-item" href="https://juejin.im/post/5ecb4950518825431a669897">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2019-10-23T06:00:00.000Z" title="2019-10-23T06:00:00.000Z">2019-10-23</time><span class="level-item">32 minutes read (About 4759 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">是让人耳目一新的 Jetpack MVVM 精讲啊！</h1><div class="content"><p><img src="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png" alt=""></p>
+<a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很高兴见到你！</p>
+<p>最近在后台 时有收到 读者的留言，说能不能出一期 Jetpack MVVM 精讲，以及配套一份简练的案例，好 把玩把玩、感受感受、加深对 MVVM 的印象。</p>
+<p>答案当然是肯定的。😉</p>
+<h2 id="面向标准化开发已成现实"><a href="#面向标准化开发已成现实" class="headerlink" title="面向标准化开发已成现实"></a>面向标准化开发已成现实</h2><p>金九银十，相信有不少读者在抓紧机会面试。</p>
+<p>Android 市场已今非昔比。在过去，迫于招人的压力，应试者只需了解四大组件、视图、网络请求，即可谋得一份满意的工作。</p>
+<p>现如今，Jetpack 架构组件 及 标准化开发模式 的确立，意味着 Android 开发已步入成熟阶段：</p>
+<blockquote>
+<p>许多 样板代码 不再需要开发者手写，而是可以通过模版工具 自动生成，在取缔繁杂耗时的重复工作的同时，<strong>避免因人工操作的疏忽，而造成难以排查、不可预期的错误</strong>。</p>
+</blockquote>
+<p>这十分符合企业的利益，因而面试官在招人的时候，也更加看重应试者对 架构组件 —— 至少是 MVVM 的理解程度。🧐</p>
+<p>像“解耦”等 含糊其辞的说法，已经不能够被面试官所认可，稍微对 MVVM 有一点经验的面试官都会请你举例说明，好证明你确实对 MVVM 有着正确、深入的理解，能够自然而然地写出标准化、规范化的代码，能够迅速适应 各家公司自制的 自动化模版工具。</p>
+<h2 id="本文的目标"><a href="#本文的目标" class="headerlink" title="本文的目标"></a>本文的目标</h2><p>本人拥有 3 年的 移动端架构 践行和设计经验，领导团队重构的中大型项目多达十数个，对 Jetpack MVVM 架构在确立规范化、标准化 开发模式 以减少不可预期的错误 所作的努力，有着深入的理解。</p>
+<p>因而本文的目标，就是结合前几期我们分别 深入浅出 介绍过的 Lifecycle、LiveData、ViewModel、DataBinding，来融汇贯通地演绎一下：</p>
+<p><strong>作为 应用开发骨架 的 标准化状态管理框架</strong>，究竟为 快速开发过程中 减少不可预期的错误 做了哪些努力。</p>
+<p>不同于 东拼西凑、人云亦云、徒添困扰 的网文，愿意将 标准化开发模式的 <strong>深度思考知识</strong> 和 <strong>实战反思经验</strong> 无保留地分享，全网仅此一家。<strong>这样的文章可以说是 看一篇、少一篇</strong>，因此，就算不去 hold 住面试官，也请务必跟随本文的脚步，无障碍地将 Jetpack MVVM 过一遍！😉</p>
+<h2 id="文章目录一览"><a href="#文章目录一览" class="headerlink" title="文章目录一览"></a>文章目录一览</h2><ul>
+<li>前言</li>
+<li>面向标准化开发已成现实</li>
+<li>本文的目标</li>
+<li>Jetpack Lifecycle<ul>
+<li>Lifecycle 存在前的混沌世界</li>
+<li>Lifecycle 为什么能解决上述这些问题？</li>
+</ul>
+</li>
+<li>Jetpack LiveData <ul>
+<li>LiveData 存在前的混沌世界</li>
+<li>LiveData 为什么能解决上述这些问题？</li>
+<li><strong>LiveData 有个坑需要注意</strong></li>
+</ul>
+</li>
+<li>Jetpack ViewModel<ul>
+<li>ViewModel 存在前的混沌世界</li>
+<li>ViewModel 为什么能做到这几点？</li>
+</ul>
+</li>
+<li>Jetpack DataBinding <ul>
+<li>DataBinding 存在前的混沌世界</li>
+<li>DataBinding 就是来解决这些问题</li>
+</ul>
+</li>
+<li>综上</li>
+</ul>
+<h2 id="Jetpack-Lifecycle"><a href="#Jetpack-Lifecycle" class="headerlink" title="Jetpack Lifecycle"></a>Jetpack Lifecycle</h2><blockquote>
+<p><strong>Lifecycle 的存在，主要是为了解决 生命周期管理 的一致性问题</strong></p>
+</blockquote>
+<h3 id="Lifecycle-存在前的混沌世界"><a href="#Lifecycle-存在前的混沌世界" class="headerlink" title="Lifecycle 存在前的混沌世界"></a>Lifecycle 存在前的混沌世界</h3><p>在 Lifecycle 面市前，生命周期管理 纯靠手工维持，这样就容易滋生大量的一致性问题。</p>
+<p>例如跨页面共享的 GpsManager 组件，在每个依赖它的 Activity 的 onResume 和 onPause 中都需要 <strong>手工 激活、解绑 和 叫停</strong>。</p>
+<p>那么 <strong>随着 Activity 的增多，这种手工操作 埋下的一致性隐患 就会指数级增长</strong>：</p>
+<blockquote>
+<p>一方面，凡是手工维持的，开发者容易疏忽，特别是工作交接给其他同事时，同事并不能及时注意到这些细节。</p>
+</blockquote>
+<blockquote>
+<p>另一方面，分散的代码不利于修改，日后除了激活、叫停，若有其他操作需要补充（例如状态监听），那么每个 Activity 都需要额外书写一遍。</p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/23/16df6981ce774d01?w=1038&h=736&f=png&s=66525" alt=""></p>
+<h3 id="Lifecycle-为什么能解决上述这些问题？"><a href="#Lifecycle-为什么能解决上述这些问题？" class="headerlink" title="Lifecycle 为什么能解决上述这些问题？"></a>Lifecycle 为什么能解决上述这些问题？</h3><p>Lifecycle 通过 模板方法模式 和 观察者模式，将生命周期管理的复杂操作，全部在作为 LifecycleOwner 的基类中（例如视图控制器的基类）封装好，默默地在背后为开发者运筹帷幄，</p>
+<p>开发者因而得以在视图控制器（子类）中只需一句 <code>getLifecycle().addObserver(GpsManager.getInstance)</code> ，优雅地完成 第三方组件在自己内部 对 LifecycleOwner 生命周期的感知。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/23/16df6981cbdf4475?w=1033&h=739&f=png&s=62517" alt=""></p>
+<p>除了解决一致性问题，这样做还 <strong>顺带地提供了其他 2 个好处</strong>：</p>
+<blockquote>
+<p><strong>1.规避 为监听状态 而 注入视图控制器 的做法</strong></p>
+</blockquote>
+<p>当需要监听状态时，以往我们的做法是 通过方法手工注入 Activity 等参数，这埋下了内存泄漏的隐患 —— 因为团队中的新手容易因这是个 Activity，而在日后误将其依赖给组件中的其他成员。</p>
+<p>现如今，我们可以直接在组件内部 点到为止 地监听 LifecycleOwner 的状态，从而规避这种不恰当的使用。</p>
+<blockquote>
+<p><strong>2.规避 为追溯事故来源 而 注入视图控制器 的做法</strong></p>
+</blockquote>
+<p>当发生事故时，以往我们若想在组件中 <strong>追溯事故来源</strong>，同样不得不从方法中直接注入 Activity 等，这同样埋下了内存泄漏的隐患。现如今组件因实现了 DefaultLifecycleObserver，而得以通过生命周期回调方法中的 LifecycleOwner 参数，<strong>在方法作用域中 即可得知事故来源</strong>，无需更多带有隐患的操作。</p>
+<blockquote>
+<p>如果这么说还不理解的话，可具体参考我在 <a href="https://xiaozhuanlan.com/topic/3684721950">《为你还原一个真实的 Jetpack Lifecycle》</a> 中提供的 GpsManager 案例，本文不再累述。</p>
+</blockquote>
+<h2 id="Jetpack-LiveData"><a href="#Jetpack-LiveData" class="headerlink" title="Jetpack LiveData"></a>Jetpack LiveData</h2><blockquote>
+<p>LiveData 的存在，主要是为了帮助 <strong>新手老手 都能不假思索地遵循 通过唯一可信源分发状态 的标准化开发理念</strong>，从而使在快速开发过程中 难以追溯、难以排查、不可预期 的问题所发生的概率降低到最小。</p>
+</blockquote>
+<h3 id="LiveData-存在前的混沌世界"><a href="#LiveData-存在前的混沌世界" class="headerlink" title="LiveData 存在前的混沌世界"></a>LiveData 存在前的混沌世界</h3><p>在 LiveData 面市前，我们分发状态，多是通过 EventBus 或 Java Interface 来完成的。不管你是用于网络请求回调的情况，还是跨页面通信的情况。</p>
+<p>那这造成了什么问题呢？首先，EventBus 只是纯粹的 Bus，它 <strong>缺乏上述提到的 标准化开发理念 的约束，那么人们在使用这个框架时，容易因 去中心化 地滥用，而造成 诸如 毫无防备地收到 预期外的 不明来源的推送、拿到过时的数据 及 事件源追溯复杂度 为 n² 的局面</strong>。</p>
+<p>并且，<strong>EventBus 本身缺乏 Lifecycle 的加持，存在生命周期管理的一致性问题。这是 EventBus 的硬伤</strong>，也是我拒绝使用 EventBus 的最主要因素。</p>
+<blockquote>
+<p>对上述状况不理解的，可具体参考我在 <a href="https://xiaozhuanlan.com/topic/0168753249">《LiveData 鲜为人知的 身世背景 和 独特使命》</a> 中提供的 播放器状态全局通知 的案例</p>
+</blockquote>
+<h3 id="LiveData-为什么能解决上述这些问题？"><a href="#LiveData-为什么能解决上述这些问题？" class="headerlink" title="LiveData 为什么能解决上述这些问题？"></a>LiveData 为什么能解决上述这些问题？</h3><p>首先，<strong>LiveData 是在 Google 希望确立 标准化、规范化 的开发模式 —— 这样一种背景下诞生的</strong>，因而为了达成这个艰巨的 <strong>使命</strong>，Google 十分克制地将其设计为，仅支持状态的输入和监听，从而，它不得不 <strong>在单例的配合下，承上启下地完成 状态 从 唯一可信源 到 视图控制器 的输送</strong>。</p>
+<blockquote>
+<p>（ViewModel 姑且也算是一种单例，一种工厂模式实现的伪单例。<strong>唯一可信源是指 生命周期独立于 视图控制器的 数据组件</strong>，通常是 单例 或共享 ViewModel）</p>
+</blockquote>
+<p><strong>这使得任何一次状态推送，都可预期、都能方便地追溯来源，而不至于在 事件追溯复杂度为 n² 的迷宫中白费时间。</strong>（即，无论是从哪个视图控制器发起的 对某个共享状态改变的请求，状态最终的改变 都由 作为唯一可信源的 单例或 SharedViewModel 来一对多地通知改变）</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/23/16df6981cb629feb?w=550&h=366&f=jpeg&s=205712" alt=""></p>
+<p>并且，这种承上启下的方式，使得单向依赖成为可能：单例无需通过 Java Interface 回调通知视图控制器，从而规避了视图控制器 被生命周期更长的单例 依赖 所埋下的内存泄漏的隐患。</p>
+<h3 id="LiveData-有个坑需要注意"><a href="#LiveData-有个坑需要注意" class="headerlink" title="LiveData 有个坑需要注意"></a>LiveData 有个坑需要注意</h3><p>不过，LiveData 的设计有个坑，这里我顺带提一下。</p>
+<p>为了在视图控制器发生重建后，能够 自动倒灌 所观察的 LiveData 的最后一次数据，<strong>LiveData 被设计为粘性的事件</strong>。</p>
+<blockquote>
+<p>—— 我姑且认为这是个拓展性不佳的设计，甚至可以说是一个 bug，</p>
+</blockquote>
+<p>因为 Jetpack MVVM 是一个整体，既然 <strong>ViewModel 支持共享作用域，并且官方文档都承认了通过 共享 ViewModel 来实现跨页面通信的需求</strong>，</p>
+<p>那么基于 “开闭原则”，LiveData 理应提供一个与 MutableLiveData 平级的底层支持，专门用于非粘性的事件通信的情况，否则直接在跨页面通信中使用 MutableLiveData <strong>必造成 事件回调的一致性问题 及 难以预期的错误</strong>。</p>
+<p>关于非粘性 LiveData 的实现，<del>网上存在通过 “事件包装类”（只适合 kotlin 的情况） 和 “反射干预 LastVersion” （适用于 Java 的情况）两种</del>方式来解决：</p>
+<blockquote>
+<p>https://<del>juejin.im/post/5b2b1b2cf265da5952314b63</del></p>
+</blockquote>
+<blockquote>
+<p>https://<del>blog.csdn.net/geyuecang/article/details/89028283</del></p>
+</blockquote>
+<p>无论是使用哪一种实现，我都建议 遵循传统 LiveData 所遵循的开发理念，<strong>通过唯一可信源分发状态，来方便事件源头的追溯</strong>。对于 “去中心化” 的 Bus 方式，我拒绝在项目中这样使用。</p>
+<p><strong>Note 2020.5.31：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Event 包装器</th>
+<th align="center">重写底层</th>
+<th align="center">EventLiveData</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-gold-cdn.xitu.io/2020/6/5/17282685f131e706?w=1008&h=735&f=jpeg&s=130317" alt=""></td>
+<td align="center"><img src="https://user-gold-cdn.xitu.io/2020/6/5/17282685efcc11e0?w=1394&h=920&f=jpeg&s=191176" alt=""></td>
+<td align="center"><img src="https://user-gold-cdn.xitu.io/2020/6/5/17282685f0d8e5b3?w=1514&h=970&f=jpeg&s=188565" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>手写 Event 事件包装器，在 Java 中存在 null 安全的一致性问题；而反射干预 Version 的方式又存在延迟（无法用于对实时性有要求的场景）、并且数据会随着 SharedViewModel 长久滞留在内存中得不到释放。</p>
+<p>于是我重写并封装了专用于 “一次性的事件” 场景需求的 EventLiveData。<br>具体可参考 <a href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice">《最佳实践》</a> 项目最新源码。</p>
+</blockquote>
+<h2 id="Jetpack-ViewModel"><a href="#Jetpack-ViewModel" class="headerlink" title="Jetpack ViewModel"></a>Jetpack ViewModel</h2><blockquote>
+<p>ViewModel 的存在，主要是为了解决 状态管理 和 页面通信 的问题。</p>
+</blockquote>
+<h3 id="ViewModel-存在前的混沌世界"><a href="#ViewModel-存在前的混沌世界" class="headerlink" title="ViewModel 存在前的混沌世界"></a>ViewModel 存在前的混沌世界</h3><p>ViewModel 的本职工作是 <strong>状态托管</strong> 和 <strong>状态管理的分治</strong>，也即当视图控制器重建时，</p>
+<blockquote>
+<p>对于轻量的状态，可以通过视图控制器基类的 saveInstanceState 机制，以序列化的方式完成存储和恢复。</p>
+</blockquote>
+<blockquote>
+<p>对于重量级的状态，例如通过网络请求得到的 List，可以通过生命周期长于视图控制器的 ViewModel 持有，从而得以直接从 ViewModel 恢复，而不是以效率较低的序列化方式。</p>
+</blockquote>
+<p>在 Jetpack ViewModel 面市之前，MVP 的 Presenter 和 MVVM - Clean 的 ViewModel 都不具备状态管理分治的能力。</p>
+<p>Presenter 和 Clean ViewModel 的生命周期都与视图控制器同生共死，因而它们顶多是为 DataBinding 提供状态的托管，而无法实现状态的分治。</p>
+<p>到了 Jetpack 这一版，ViewModel 以精妙的设计，达成了状态管理，以及可共享的作用域。</p>
+<h3 id="ViewModel-为什么能做到这几点？"><a href="#ViewModel-为什么能做到这几点？" class="headerlink" title="ViewModel 为什么能做到这几点？"></a>ViewModel 为什么能做到这几点？</h3><p>其实这版主要是基于 <strong>工厂模式</strong>，使得 ViewModel <strong>被 LifecycleOwner 所持有、通过 ViewModelProvider 来引用</strong>，</p>
+<p>所以 <strong>它既类似于单例：</strong><br>—— 当被作为 LifecycleOwner 的 Activity 持有时，能够脱离 Activity 旗下 Fragment 的生命周期，从而实现作用域共享，</p>
+<p><strong>实际上又不是单例：</strong><br>—— 生命周期跟随 作为 LifecycleOwner 的视图控制器，当 Owner（Activity 或 Fragment）被销毁时，它也被 clear。</p>
+<blockquote>
+<p>此外，出于对视图控制器重建的考虑，Google 在视图控制器基类中通过 retain 机制对 ViewModel 进行了保留。</p>
+</blockquote>
+<blockquote>
+<p>因此，对于 作用域共享 和 视图重建 的情况，状态因完好地被保留，而得以被视图控制器在恢复时直接使用。</p>
+</blockquote>
+<p>再者，由于存在 共享作用域的考虑，所以 ViewModel 本身也承担了跨页面通信（例如事件回调）的职责。前面在介绍 LiveData 时，对于 LiveData 在事件通信时粘性设计的问题已经介绍过了，这里不再累述。</p>
+<blockquote>
+<p>截至 2020.2.1，ViewModel 在 Fragment 中的 retain 设计已发生剧变，具体缘由可参考我在 <a href="https://xiaozhuanlan.com/topic/6257931840">《有了 Jetpack ViewModel . . . 真的可以为所欲为！》</a> 文末及评论区的最新补充。</p>
+</blockquote>
+<h2 id="Jetpack-DataBinding"><a href="#Jetpack-DataBinding" class="headerlink" title="Jetpack DataBinding"></a>Jetpack DataBinding</h2><blockquote>
+<p>DataBinding 的存在，主要是为了解决 视图调用 的一致性问题。</p>
+</blockquote>
+<h3 id="DataBinding-存在前的混沌世界"><a href="#DataBinding-存在前的混沌世界" class="headerlink" title="DataBinding 存在前的混沌世界"></a>DataBinding 存在前的混沌世界</h3><p>在 DataBinding 面市前，我们若要改变视图的状态，首先就要引用该视图，例如 textView.setText()，</p>
+<p>这造成什么问题呢？</p>
+<blockquote>
+<p>当页面存在横、竖布局，且两种布局的控件存在差异，例如横屏存在 textView 控件，而竖屏没有，那么我们就不得不在视图控制器中为 textView 做判空处理，这就造成了一致性问题 —— 容易疏忽而忘记判空，毕竟页面多达数十个、每个页面的控件也无数。</p>
+</blockquote>
+<p>那怎么办呢？</p>
+<h3 id="DataBinding-就是来解决这些问题"><a href="#DataBinding-就是来解决这些问题" class="headerlink" title="DataBinding 就是来解决这些问题"></a>DataBinding 就是来解决这些问题</h3><p>通过在布局中与可观察的数据发生绑定，那么当该数据被 set 新的内容时，控件也将得到通知和刷新。</p>
+<p>换言之，在使用 DataBinding 后，唯一的改变是，你无需手工调用视图来 set 新状态，你只需 set 数据本身。</p>
+<p>因而，<strong>DataBinding 并非许多人不假思索认为的，将 UI 逻辑搬到 XML 中写 从而难以调试 —— 事实根本不是这样的：</strong></p>
+<p><strong>DataBinding 只负责绑定数据、负责作为 UI 逻辑末端的状态的改变</strong>（也即它是一个不可再分的原子操作，本来就不需要调试），原本在视图控制器中 UI 逻辑怎么写，现在还是怎么写，只不过不再需要 textView.setText(xxx)，而是直接 xxx.set()。</p>
+<p>所以在 DataBinding 的帮助下，好处总共有多少个呢？</p>
+<blockquote>
+<p>1.规避了视图状态的 一致性问题 —— 无需手工判空。</p>
+</blockquote>
+<blockquote>
+<p>2.规避了视图状态的 一致性问题，乃至无需视图调用，从而完全不用编写 findViewById。</p>
+</blockquote>
+<blockquote>
+<p>3.就算要调用视图，也不用 findViewById，而是直接通过 binding 来引用。</p>
+</blockquote>
+<blockquote>
+<p>4.先前的 UI 逻辑基本不用改动，改的只是作为末端的状态改变的方式。</p>
+</blockquote>
+<p>……</p>
+<p>此外，<strong>DataBinding 有个大杀器就是，能为控件提供自定义属性的 BindingAdapter</strong>，它不仅可以解决 圆角 Drawable 复用的问题（你懂得），还可以实现 imageView 直接绑定 url 等需求，总之，没有它办不到的，只有你想不到的，DataBinding 的好处等着你挖掘。😉</p>
+<p>关于 DataBinding 的注意事项，以及屡试不爽的排坑技巧，可具体参考 <a href="https://xiaozhuanlan.com/topic/9816742350">《从 被误解 到 真香 的 Jetpack DataBinding！》</a>，这里不做累述。</p>
+<h2 id="综上"><a href="#综上" class="headerlink" title="综上"></a>综上</h2><p>Lifecycle 的存在，主要是为了解决 <strong>生命周期管理 的一致性问题</strong>。</p>
+<p>LiveData 的存在，主要是为了帮助 新手老手 都能不假思索地 <strong>遵循 通过唯一可信源分发状态 的标准化开发理念</strong>，从而在快速开发过程中 规避一系列 <strong>难以追溯、难以排查、不可预期</strong> 的问题。</p>
+<p>ViewModel 的存在，主要是为了解决 <strong>状态管理 和 页面通信 的问题</strong>。</p>
+<p>DataBinding 的存在，主要是为了解决 <strong>视图调用 的一致性问题</strong>。</p>
+<p>它们的存在 大都是为了 在软件工程的背景下 解决一致性的问题、将容易出错的操作在后台封装好，<strong>方便使用者快速、稳定、不产生预期外错误地编码</strong>。</p>
+<p>这样说，你理解了吗？😉</p>
+<p><a href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice">GitHub : Jetpack-MVVM-Best-Practice</a></p>
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><p>本文以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">CC 署名-非商业性使用-禁止演绎 4.0 国际协议</a> 发行。</p>
+<p>Copyright © 2019-present KunMinX</p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/5/22/1723c10d41f87699?w=88&h=31&f=png&s=1566" alt=""></p>
+<p>文中提到的 “Jetpack MVVM 架构组件的存在，是为了<strong>在多人协作的软件工程的背景下，解决各种一致性的问题</strong>”，以及 “LiveData 在页面通信、事件回调的场景下发生 <strong>数据倒灌</strong>” 等多处 <strong>对特定现象及其本质的概括，均属于本人独立原创的成果</strong>，本人对此享有最终解释权。</p>
+<p>任何个人或组织在引用 “xxx 架构组件的存在，主要是为了解决 xxx 的一致性问题”、“数据倒灌” 这些概括性描述时，<strong>须注明原作者和出处</strong>。未经授权不得用于洗稿、广告包装等商业用途。</p>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/05/20/%E5%85%8D%E7%96%AB%E7%BD%91%E7%BB%9C%E6%9A%B4%E5%8A%9B%E5%92%8C%20%E8%81%8C%E5%9C%BA%20PUA%20%E7%9A%84%E7%BB%88%E6%9E%81%E8%AE%A4%E7%9F%A5%E8%A1%A5%E4%B8%81/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">免疫网络暴力和 职场 PUA 的终极认知补丁</span></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.png" alt="KunMinX"></figure><p class="title is-size-4 is-block line-height-inherit">KunMinX</p><p class="is-size-6 is-block">Jetpack MVVM 传道者</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>重学安卓</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/kunminx" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/kunminx"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile is-mobile" href="https://juejin.im/post/5ecb4950518825431a669897" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">偶遇《重学安卓》专栏</span></span><span class="level-right"><span class="level-item tag">juejin.im</span></span></a></li></ul></div></div></div><!--!--></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a><p class="size-small"><span>&copy; 2020 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'https://www.kunminx.com',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to Top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
