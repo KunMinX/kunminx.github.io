@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>KunMinX 博客 | 专注业务架构和深度思考分享</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">KunMinX 博客</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+    
+        <div class="post-main-title">
+            协程，协程
+        </div>
+        <div class="post-meta">
+            2020-05-20
+        </div>
+        <div class="post-md">
+            <a id="more"></a>
+
+
+
+<p>水一篇，不保证能看懂，能看懂都是缘分，</p>
+<p>关于并发，涉及的关键概念即 “阻塞、多线程、异步、非阻塞、挂起、系统内核、分时复用”，</p>
+<h2 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h2><p>如果只有单线程，那么代码执行到 IO 时，会干等着，直到 IO 结束，才再继续下一步，这种 “干等着” 的现象即阻塞，</p>
+<p>如果该线程主要用于 “客户端图形渲染” 或 “服务端接收请求响应”，在该线程中阻塞显然不合适，图形渲染和请求响应会被搁置，乃至给人 “无法响应” 的糟糕体验感受，</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>为此引入多线程技术，在需要 IO 时，新开一个工作线程，并在工作线程中阻塞，如此根据 “分时复用”，主线程的任务很快便能再度被分到 “时间片” 运行，乃至不再卡住，</p>
+<h2 id="操作系统与分时复用"><a href="#操作系统与分时复用" class="headerlink" title="操作系统与分时复用"></a>操作系统与分时复用</h2><p>分时复用是系统内核关于 CPU 资源分配的机制，</p>
+<p>操作系统的存在，是为了将有限硬件资源 “合理分配” 以实现效益最大化，</p>
+<p>分时复用即是将 CPU 算力以时间为单位进行划分，然后线程之间轮流享用时间片进行计算，</p>
+<p>假设 CPU 每秒运行一亿次，此时若有两个线程，则线程 A 分到 1 毫秒，足够 10 万次计算，然后轮到线程 B 分到 1 毫秒运行，再然后线程 A，线程 B … 如此往复，直到任务结束，</p>
+<h2 id="非阻塞"><a href="#非阻塞" class="headerlink" title="非阻塞"></a>非阻塞</h2><p>但是单单分时复用，也只是能实现资源的公平分配，让任务耗时均摊，并减少阻塞带来的浪费，但阻塞仍然存在，</p>
+<p>为此系统内核引入 “非阻塞” 机制，例如 js 这种单线程语言，运行时中包含事件循环模型（eventLoop，类似于 android 的 MessageQueen-Handler-Looper），</p>
+<p>遇到 IO 操作时，交给系统内核，这期间 js 不会干等，仍旧继续处理图形渲染或请求响应，然后内核会在结束时，发消息到事件循环模型的队列，通过回调函数告知程序可以继续下一步，</p>
+<p>也即 js 无需创建子线程，而是从根源将 IO 阻塞消除。</p>
+<h2 id="多线程的非阻塞"><a href="#多线程的非阻塞" class="headerlink" title="多线程的非阻塞"></a>多线程的非阻塞</h2><p>不过 js 单线程中的其他计算型任务，仍然只能同步执行，越往后的请求，用户等待响应的时间便越久，</p>
+<p>所以尽管 google v8 引擎加持的 nodejs 通过生成机器码能使 js 性能发生质的飞跃，使之适合承担 IO 密集型的 web 服务，如数据库读写、日志记录等，但 js 仍不适合计算密集型业务，例如加解密、甚至 AI 计算，</p>
+<p>那么此时需要多线程的非阻塞，</p>
+<p>也即每当线程接触 IO 操作，线程会被挂起，完全让出时间片给其他线程使用；或者计算型任务 A 需要等任务 B 完成再一起继续时，那么任务 A 所在线程可以先被挂起，直到收到任务 B 结束信号再继续，</p>
+<p>如此一来完全消除潜在的阻塞和浪费，将 CPU 资源最大程度利用，</p>
+<p>java 由于支持多线程，因而更适合 “计算密集型” 服务的承担，</p>
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>不过 java 提供的工具和语法比较繁琐，需大量手工操作，且多线程切换存在一定时间开销，</p>
+<p>对此不如使用 kotlin 协程，笔者认为 kotlin 协程即 “协作式的任务处理”，通过 “特制的关联结构” 协作完成各种任务，以达到 “便捷使用、杜绝浪费、效益最大化” 目标，也即 kotlin 协程</p>
+<p>一来支持简洁的方式同步书写，例如在顺序语句中，直接将上一行 IO 异步操作的结果用在下一行 Main 图形渲染等任务上；</p>
+<p>二来支持挂起函数，使触发 IO 操作的协程非阻塞；</p>
+<p>三来多协程计算型任务，之间并不涉及线程切换，节省了线程切换的时间开支，例如 web 服务中受理数千个耗时计算任务，java 需要开数千个线程轮流运转，但 kotlin 无需创建新线程，而是在单线程中通过某种 “特制的结构”，创建、挂起或恢复 “一段运行状态”，例如在一个线程中创建数千个协程，协程之间相互轮流和协作，免去切线程的开支，</p>
+<p>也即协程相比基于多线程的 “非阻塞”，更进一步减少线程切换带来的时间损耗，更快更好完成目标。</p>
+<h2 id="综上"><a href="#综上" class="headerlink" title="综上"></a>综上</h2><p>协程非常适合客户端和服务端开发，</p>
+<p>对于 IO 密集型，协程能确保非阻塞；对于计算密集型，协程能减少上下文切换的损耗，</p>
+<p>现代化语言基本都有协程，例如 kotlin、swift 都有 async/await 挂起函数。</p>
+<p>值得注意的是，js 中也存在 async/await，不过那本质上不具备挂起和恢复能力，不属于协程。</p>
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
+<p>Copyright © 2019-present KunMinX 原创版权所有。</p>
+</blockquote>
+<p>如需 <strong>转载本文，或引用、借鉴</strong> 本文 “引言、思路、结论、配图” 进行二次创作发行，<strong>须注明链接出处</strong>，否则我们保留追责权利。</p>
+
+        </div>
+
+    
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 KunMinX 博客</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>
