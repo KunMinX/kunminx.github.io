@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>KunMinX 博客 | 专注业务架构和深度思考分享</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">KunMinX 博客</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+    
+        <div class="post-main-title">
+            声明式 UI 解析
+        </div>
+        <div class="post-meta">
+            2020-03-06
+        </div>
+        <div class="post-md">
+            <a id="more"></a>
+
+
+
+<blockquote>
+<p>注：本文节选自<a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，</p>
+</blockquote>
+<p>上一期<a href="https://xiaozhuanlan.com/topic/2073915486" target="_blank" rel="noopener">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p>
+<h2 id="声明式-UI-由来"><a href="#声明式-UI-由来" class="headerlink" title="声明式 UI 由来"></a>声明式 UI 由来</h2><p>事实上，React、Flutter、SwiftUI、Jetpack Compose，这些 UI 框架有个共同鼻祖，即一个名为 elm（不是 “饿了么”）的 UI 框架，是它最早确立并推行 “声明式 UI” 设计理念。</p>
+<blockquote>
+<p>注：“声明式 UI” 这个名称，最初谁定义，暂未找到来源，目前各大官网都称其为 “声明式 UI”，基于我个人理解，其更精确表达是，“响应式 UI 框架的声明式编程分支”，当然，最终我们还是简称为 “声明式 UI”。</p>
+</blockquote>
+<p>—— 那么 “声明式 UI” 到底长啥样？为何要用 “声明式 UI”？相比传统 View 有何优势？本质、存在意义又是什么？</p>
+<p>—— React、Flutter、SwiftUI、Jetpack Compose，形态各异，如何透过表象看穿流程机制，从而自行领悟代码 该怎么写、往哪写、怎么改？</p>
+<p>所以今天我们就来统一解析 “声明式 UI” 背后本质，相信阅读后能让你醍醐灌顶。</p>
+<h2 id="文章目录一览"><a href="#文章目录一览" class="headerlink" title="文章目录一览"></a>文章目录一览</h2><ul>
+<li>前言</li>
+<li>声明式 UI 由来</li>
+<li>声明式 UI 本质是 “函数式 + 函数式编程”<ul>
+<li>“纯函数” 是 “函数式编程” 基石</li>
+<li>“函数式编程” 引入前的混沌世界</li>
+<li><strong>“函数式编程” 为何能 “彻底” 解决这类问题？</strong></li>
+<li>引入 “函数式编程” 后的世界</li>
+</ul>
+</li>
+<li>所以为什么会有 “声明式 UI 框架”？<ul>
+<li><strong>声明式 UI 运作流程是怎样</strong></li>
+<li><strong>声明式 UI 难以替代的好处</strong></li>
+</ul>
+</li>
+<li>函数式编程局限</li>
+<li><strong>Note 2020.07.27 加餐：</strong></li>
+<li>现有条件下 “View 实例 Null 安全一致性问题” 最优解<ul>
+<li>1.Java + DataBinding 严格模式</li>
+<li>2.Kotlin + ViewBinding</li>
+<li>3.Kotlin DSL 动态布局</li>
+<li><strong>Note 2022.06.06 加餐</strong></li>
+</ul>
+</li>
+<li>Note 2020.07.31 加餐：<ul>
+<li>通过 “函数式编程思想” 秒懂 “声明式 UI” 打开方式</li>
+</ul>
+</li>
+<li>综上</li>
+</ul>
+<h2 id="声明式-UI-本质是-“函数式-响应式编程”"><a href="#声明式-UI-本质是-“函数式-响应式编程”" class="headerlink" title="声明式 UI 本质是 “函数式 + 响应式编程”"></a>声明式 UI 本质是 “函数式 + 响应式编程”</h2><p>声明式 UI、Java8 Stream、RxJava 等，本质上皆是函数式编程 + 响应式编程。</p>
+<p>许多文章，从 RxJava 时代起，就照搬官网说法，说 RxJava 是一种 “响应式编程” 框架。</p>
+<p>事实上，“响应式编程” 是从 “整体流程数据走向” 的角度来看 —— “输入数据，响应结果”，单凭 “响应式编程” 无益于更好理解 “声明式 UI” 和其他 UI 框架的本质区别，</p>
+<p>所以，我们不妨重点关注另一个核心本质 —— 函数式编程。</p>
+<h3 id="“纯函数”-是-“函数式编程”-基石"><a href="#“纯函数”-是-“函数式编程”-基石" class="headerlink" title="“纯函数” 是 “函数式编程” 基石"></a>“纯函数” 是 “函数式编程” 基石</h3><p>老规矩，先讲结论：</p>
+<blockquote>
+<p><strong>声明式 UI 的内部实现是基于函数式编程，且函数式编程基石是纯函数</strong>，</p>
+<p>函数式编程的存在，主要是通过 “流程的原子化” 实现 “结果的一致性”，</p>
+<p>声明式 UI 框架可将多种一致性问题简化为只关注 “数据的一致性问题”，</p>
+</blockquote>
+<p>上述三点，如暂无体会，那接下来，请跟随我脚步铺垫 “声明式 UI” 来龙去脉。</p>
+<h3 id="“函数式编程”-引入前的混沌世界"><a href="#“函数式编程”-引入前的混沌世界" class="headerlink" title="“函数式编程” 引入前的混沌世界"></a>“函数式编程” 引入前的混沌世界</h3><p>以下是常见用法：</p>
+<p>通过 findViewById 拿到 TextView 实例，使其作为 Activity 内部共享成员变量，为多个方法所调用，来改变 TextView 状态。</p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2021/1889f3a3310af0351ba8fe2d1ed83a97.png" alt="img"></p>
+<p>这造成什么问题？</p>
+<p><strong>一旦 TextView 成为 Activity 类的成员变量，分散到各方法中，后续便不可控</strong>，因为执行方法 B 时，方法 A 无法知道 方法 B 中对成员变量做了什么，却无差别承受 “成员变量被修改” 所带来影响，</p>
+<p>例如当 方法 B 将 TextView 置空，那么 方法 A 调用 TextView 实例时 将面临 Null 安全问题。</p>
+<blockquote>
+<p>可能有人会问，这种问题通过 “手动判空” 不就可以？</p>
+</blockquote>
+<p>事实上，<strong>在软件工程背景下，任何微小隐患都可能被 “指数级” 放大</strong>。</p>
+<p>一个 App 页面可能有数十个，每个页面控件也可能多达十数个，而每个控件都可能分散在多个方法中，这种情况下，一味寄希望于 “手动判空”，是成本极高且存在 <strong>一致性风险</strong> —— 总会有疏忽时候，总会有 “方法 A 记得判空，而方法 B 忘记”。</p>
+<h3 id="“函数式编程”-为何能-“彻底”-解决这类问题？"><a href="#“函数式编程”-为何能-“彻底”-解决这类问题？" class="headerlink" title="“函数式编程” 为何能 “彻底” 解决这类问题？"></a>“函数式编程” 为何能 “彻底” 解决这类问题？</h3><p>因为函数式编程基于纯函数。</p>
+<p><strong>什么是纯函数？为何纯函数最终能解决该问题？</strong></p>
+<p>简单来说，纯函数相比普通函数特征是：</p>
+<p><strong>只有一个入口 &amp; 只有一个出口</strong>。</p>
+<p>也即</p>
+<blockquote>
+<p>函数只从 <strong>参数列表</strong> 这唯一入口 接收外来初值，</p>
+<p>并且只从 <strong>返回值</strong> 这唯一出口 返回结果数据。</p>
+</blockquote>
+<p>除此之外：</p>
+<blockquote>
+<p>不在函数内部执行与运算本身无关其他操作，</p>
+<p>不在函数内部调用外部变量、不修改从外部传入的变量，</p>
+</blockquote>
+<p>抛开上述 TextView 的案例，我们先来举个例子看看纯函数本身：</p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2021/5bdf1436e1d8bc1f7a8957aa509d774a.png" alt="img"></p>
+<p>如此一来，在调用该函数时，<strong>关注点就只有 “入口和出口” 这两处</strong>，不至于蔓延到整个程序，从而 “不可预期情况” 发生概率从 99.9% 骤减为 0 —— <strong>调用者无须了解细节即可放心调用</strong>。</p>
+<h3 id="引入-“函数式编程”-后的世界"><a href="#引入-“函数式编程”-后的世界" class="headerlink" title="引入 “函数式编程” 后的世界"></a>引入 “函数式编程” 后的世界</h3><p>函数式编程，除了单个纯函数，也可是多个纯函数链式编程，</p>
+<p>即，<strong>上一个函数输出 作为下一个函数输入</strong>，</p>
+<p>整个链同样只有 “开头入参” 这一入口，和 “末尾回调” 这一出口，</p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2021/4c203f52aa7310aaea86b9782fb926f2.png" alt="img"></p>
+<p>至此，我们得以顿悟：为何 RxJava 或 Java8 Stream 是这样写、为何会与常规 “侵入式” 思维发生 “别扭” …</p>
+<p>是的，正由于人们习惯了 “自由散漫” 的命令式编程，从未意识到还有 “集中管理” 式，乃至遇到 RxJava 链式编程第一感觉即是，“自由散漫” 在此行不通了，</p>
+<p>而这恰恰也是 “函数式编程” 存在意义：<strong>通过将过程原子化，来实现结果的一致性</strong> —— <strong>有怎样输入，就有且只有怎样输出</strong>，关注点只有这两处，因 “集中管理” 而从根本上杜绝不可预期结果。</p>
+<blockquote>
+<p>划重点 👆 👆 👆</p>
+<p>所谓原子化即 “像原子一样不可再分、内部结构稳定、不受外力影响发生改变”。这和 “一致性” 都是大学《软件工程》课提到的概念，读书时不理解没关系，工作多年后还不理解就不对了。</p>
+</blockquote>
+<h2 id="所以为何会有-“声明式-UI-框架”？"><a href="#所以为何会有-“声明式-UI-框架”？" class="headerlink" title="所以为何会有 “声明式 UI 框架”？"></a>所以为何会有 “声明式 UI 框架”？</h2><blockquote>
+<p>将 UI 系统设计为 “函数式”，反映源码设计者对 <strong>彻底解决软工安全问题</strong> 不懈追求。</p>
+<p>正是由于这锐意进取 <strong>“死磕精神”</strong>，使软件开发得以不断优化和改进。</p>
+</blockquote>
+<p>通过 “混沌世界” 一节分析，我们已确知，在 “自由散漫” 环境下，<strong>实例分散可使不可预期风险被大幅扩散</strong>，</p>
+<p>加上 <a href="https://xiaozhuanlan.com/topic/9816742350" target="_blank" rel="noopener">《从被误解到 “真香” Jetpack DataBinding》</a>“横竖屏布局控件存在差异” 这一经典案例，如采用 “自由散漫” 方式，同会埋下视图实例 Null 安全一致性问题，</p>
+<p>而如今，函数式、响应式，意味着多种一致性问题被简化为 “数据的一致性” 这一种，开发者只需确保数据的来源是唯一且可靠的，即可通过这唯一来源的数据去驱动声明式 UI，从而得到始终一致、符合预期的结果。</p>
+<h3 id="声明式-UI-运作流程是怎样"><a href="#声明式-UI-运作流程是怎样" class="headerlink" title="声明式 UI 运作流程是怎样"></a>声明式 UI 运作流程是怎样</h3><p>试读内容完。</p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a></p>
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
+<p>Copyright © 2019-present KunMinX 原创版权所有。</p>
+</blockquote>
+<p>如需 <strong>转载本文，或引用、借鉴</strong> 本文 “引言、思路、结论、配图” 进行二次创作发行，<strong>须注明链接出处</strong>，否则我们保留追责权利。</p>
+
+        </div>
+
+    
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 KunMinX 博客</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>
