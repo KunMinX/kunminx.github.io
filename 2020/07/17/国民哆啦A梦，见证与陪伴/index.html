@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="keywords" content="Jetpack,MVVM,Jetpack MVVM,Android">
+  
+  <meta name="author" content="KunMinX" />
+  <meta name="description" content="Jetpack MVVM" />
+  
+  
+  <title>
+    
+      国民哆啦A梦，见证与陪伴 
+      
+      
+      |
+    
+     KunMinX 博客
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">国民哆啦A梦，见证与陪伴</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2020-07-18 19:17:19
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h2 id="近期动态"><a href="#近期动态" class="headerlink" title="近期动态"></a>近期动态</h2><p><a href="https://juejin.im/post/5ecb4950518825431a669897" target="_blank" rel="noopener">《开源项目 被人拿去做课程卖了 1000 多万是什么体验》</a></p>
+<h2 id="《重学安卓》专栏"><a href="#《重学安卓》专栏" class="headerlink" title="《重学安卓》专栏"></a><a href="https://xiaozhuanlan.com/kunminx" target="_blank" rel="noopener">《重学安卓》</a>专栏</h2><blockquote>
+<p>提供 不定期回头翻新打磨的 <strong>体系化文章</strong>，和全网独家解析的 <strong>深度思考方法论</strong></p>
+<p>注：群坑位有限，考虑到对目标读者的负责，目前读者群仅对订阅读者开放。</p>
+</blockquote>
+<h4 id="1-视图控制-之-生命周期、状态管理、页面通信、路由导航（完结）"><a href="#1-视图控制-之-生命周期、状态管理、页面通信、路由导航（完结）" class="headerlink" title="1 视图控制 之 生命周期、状态管理、页面通信、路由导航（完结）"></a>1 视图控制 之 生命周期、状态管理、页面通信、路由导航（完结）</h4><p><a href="https://xiaozhuanlan.com/topic/4568971203" target="_blank" rel="noopener">重学安卓：Activity 的快乐你不懂！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0213584967" target="_blank" rel="noopener">重学安卓：Activity 生命周期的 3 个辟谣</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/7692814530" target="_blank" rel="noopener">重学安卓：绝不丢失状态的 Activity 重建机制！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/7812045693" target="_blank" rel="noopener">重学安卓：你丢了 offer，只因拎不清 Activity 任务和返回栈</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/2869301475" target="_blank" rel="noopener">重学安卓：Intent 就是你的择偶标准啊！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0937256481" target="_blank" rel="noopener">重学安卓：我的碎片很听话，你的 Fragment 有自己的想法</a></p>
+<h4 id="2-视图控制-之-标准化-开发模式-的-最佳实践（完结）"><a href="#2-视图控制-之-标准化-开发模式-的-最佳实践（完结）" class="headerlink" title="2 视图控制 之 标准化 开发模式 的 最佳实践（完结）"></a>2 视图控制 之 标准化 开发模式 的 最佳实践（完结）</h4><p><a href="https://xiaozhuanlan.com/topic/3684721950" target="_blank" rel="noopener">重学安卓：为你还原一个真实的 Jetpack Lifecycle</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0168753249" target="_blank" rel="noopener">重学安卓：LiveData 鲜为人知的 身世背景 和 独特使命</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/6257931840" target="_blank" rel="noopener">重学安卓：有了 Jetpack ViewModel . . . 真的可以为所欲为！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/9816742350" target="_blank" rel="noopener">重学安卓：从 被误解 到 真香 的 Jetpack DataBinding！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/5860149732" target="_blank" rel="noopener">重学安卓：就算不用 Jetpack Navigation，也请务必领略的声明式编程之美！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0129483567" target="_blank" rel="noopener">重学安卓：是让人耳目一新的 Jetpack MVVM 精讲啊！</a></p>
+<h4 id="3-视图系统-之-架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）"><a href="#3-视图系统-之-架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）" class="headerlink" title="3 视图系统 之 架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）"></a>3 视图系统 之 架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）</h4><p><a href="https://xiaozhuanlan.com/topic/9361075842" target="_blank" rel="noopener">重学安卓：才不会告诉你，自定义视图我这样学</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/8796215034" target="_blank" rel="noopener">重学安卓：滑动冲突 的快乐你不懂！</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0162375948" target="_blank" rel="noopener">重学安卓：不如我们 从零开始设计一套 视图系统</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/6420935178" target="_blank" rel="noopener">重学安卓：百闻不如一见的 视图系统 架构全貌</a></p>
+<p><strong><a href="https://xiaozhuanlan.com/topic/2073915486" target="_blank" rel="noopener">重学安卓：是让人过目难忘的 Android GUI 族谱解析啊！(墙裂推荐)</a></strong></p>
+<p><a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">重学安卓：是 事关软件工程安全 的 数据驱动 UI 框架 扫盲干货</a></p>
+<h4 id="4-软件工程高级实战-amp-经验"><a href="#4-软件工程高级实战-amp-经验" class="headerlink" title="4 软件工程高级实战 &amp; 经验"></a>4 软件工程高级实战 &amp; 经验</h4><p><a href="https://xiaozhuanlan.com/topic/5032186794" target="_blank" rel="noopener">重学安卓：是 难得一见 的 Jetpack MVVM 最佳实践！</a></p>
+<p><strong><a href="https://xiaozhuanlan.com/topic/6105792348" target="_blank" rel="noopener">重学安卓：是让人提神醒脑的 MVP、MVVM 关系精讲！</a></strong></p>
+<p><a href="https://xiaozhuanlan.com/topic/6719328450" target="_blank" rel="noopener">重学安卓：LiveData 数据倒灌 背景缘由全貌 独家解析</a></p>
+<h4 id="5-拾遗系列"><a href="#5-拾遗系列" class="headerlink" title="5 拾遗系列"></a>5 拾遗系列</h4><p><a href="https://xiaozhuanlan.com/topic/0378514692/" target="_blank" rel="noopener">重学安卓：是 持续增量更新 的 背景缘由甜点</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0378514692#service" target="_blank" rel="noopener">2020.03.25：Service 老矣，尚能饭否？</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0378514692#broadcast" target="_blank" rel="noopener">2020.04.15：你 Broadcast 还是你 Broadcast</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/0378514692#workmanager" target="_blank" rel="noopener">2020.06.20：出师未捷身先死的 WorkManager</a></p>
+<p>The One More Thing is</p>
+<h4 id="6-授人以鱼-不如授人以渔。全网独家提供-gt-gt-gt"><a href="#6-授人以鱼-不如授人以渔。全网独家提供-gt-gt-gt" class="headerlink" title="6 授人以鱼 不如授人以渔。全网独家提供 &gt;&gt;&gt;"></a>6 授人以鱼 不如授人以渔。全网独家提供 &gt;&gt;&gt;</h4><p><a href="https://xiaozhuanlan.com/topic/9837051426" target="_blank" rel="noopener">重学安卓 基本功：是随时随地可受用的 深度思考秘诀</a></p>
+<p><a href="https://xiaozhuanlan.com/topic/3475690128" target="_blank" rel="noopener">重学安卓 致创作者：免疫 网络暴力和打压 的 高频认知补丁</a></p>
+<h2 id="《免费：重学安卓-深度写作-团队专栏》"><a href="#《免费：重学安卓-深度写作-团队专栏》" class="headerlink" title="《免费：重学安卓 深度写作 团队专栏》"></a><a href="https://xiaozhuanlan.com/deep-thinking" target="_blank" rel="noopener">《免费：重学安卓 深度写作 团队专栏》</a></h2><h4 id="“深度写作专栏”-的由来："><a href="#“深度写作专栏”-的由来：" class="headerlink" title="“深度写作专栏” 的由来："></a>“深度写作专栏” 的由来：</h4><ol>
+<li><p>经过过去 1 年对<a href="https://xiaozhuanlan.com/kunminx" target="_blank" rel="noopener">《重学安卓》</a>专栏的阅读，小伙伴们多已见证了 深度文章带来的阅读体验。随着时间的推移，习惯思考的小伙伴们，渐渐将自己的身份 <strong>从读者转换为输出者</strong>。因而提供这样一个平台，专用于输出 深度思考文章。</p>
+</li>
+<li><p>技术文通常有 “干货” 和 “工具” 这两种，而我们所说的深度文章属于 “干货”，<strong>专注于为刚刚迈入新领域的读者做前置知识（或者说背景认知）的铺垫</strong>，让读者有机会理解 “原来是这么回事”，从而读者能够在后续自行选择某一方向自己到源码中探究。</p>
+</li>
+</ol>
+<h4 id="你可从中获得的收益包括："><a href="#你可从中获得的收益包括：" class="headerlink" title="你可从中获得的收益包括："></a>你可从中获得的收益包括：</h4><ol>
+<li><p>通过基于深度思考标准的输出，可训练写作者对背景缘由的深挖，从而 <strong>练就快速抓住本质的稀缺技能</strong>。</p>
+</li>
+<li><p>每有新文章可在群里沟通，我会基于深度思考标准给出建议，审核通过即发布至团队专栏，3 次以上达到标准便拉你成为专栏成员，无需经过审核（文章字数不限，但务必原创，不得基于官方文档或他人文章做二次创作）。</p>
+</li>
+<li><p>可通过深度思考文章为自己的主页或文章引流。</p>
+</li>
+</ol>
+<h4 id="7-写作技巧-和-简易示例"><a href="#7-写作技巧-和-简易示例" class="headerlink" title="7 写作技巧 和 简易示例"></a>7 写作技巧 和 简易示例</h4><p><a href="https://juejin.im/post/5efedf45e51d4534a67a80a0" target="_blank" rel="noopener">独家解析 | Android 深度写作技巧</a></p>
+<p><a href="https://mp.weixin.qq.com/s/1OOx1QwI5xvkVK4h7eZ_1g" target="_blank" rel="noopener">2020.07.02 深度思考解析微信拍一拍的本质</a></p>
+<h2 id="掘金技术专刊"><a href="#掘金技术专刊" class="headerlink" title="掘金技术专刊"></a>掘金技术专刊</h2><blockquote>
+<p>分享开源项目简介、软件工程 和 计算机科学 系列文章</p>
+</blockquote>
+<h4 id="8-开源项目系列简介"><a href="#8-开源项目系列简介" class="headerlink" title="8 开源项目系列简介"></a>8 开源项目系列简介</h4><p><a href="https://juejin.im/post/5cc698e3e51d456e845b428e" target="_blank" rel="noopener">《RxJava 魔法师：为声明式编程而生的 Android 开发者工具》</a></p>
+<p><a href="https://juejin.im/post/5cd4cec1f265da03b918337b" target="_blank" rel="noopener">《真香警告：即使不用饿了么订餐，也请务必收藏好该库！》</a></p>
+<p><a href="https://juejin.im/post/5dbf6881f265da4d171384a1" target="_blank" rel="noopener">《是 难得一见 的 Jetpack MVVM 最佳实践！》</a></p>
+<p><a href="https://juejin.im/post/5dd3a4156fb9a01fef0035bb" target="_blank" rel="noopener">《是软件工程安全的 Jetpack 音乐播放开源库！》</a></p>
+<p><a href="https://juejin.im/post/5edf3397e51d4578587769ca" target="_blank" rel="noopener">《Jetpack | 让人眼前一亮的 Java Kotlin 1:1 对照示例》</a></p>
+<p><a href="https://juejin.im/post/5f0e7932e51d4534c36d9c01" target="_blank" rel="noopener">《LiveData 数据倒灌：别问，问就是不可预期》</a></p>
+<h4 id="9-软件工程系列文章"><a href="#9-软件工程系列文章" class="headerlink" title="9 软件工程系列文章"></a>9 软件工程系列文章</h4><p><a href="https://juejin.im/post/5cb82a42e51d456e62545ac6" target="_blank" rel="noopener">《你用不惯 RxJava，只因缺了这把钥匙》</a></p>
+<p><a href="https://juejin.im/post/5dafc49b6fb9a04e17209922" target="_blank" rel="noopener">《是让人耳目一新的 Jetpack MVVM 精讲啊！》</a></p>
+<p><a href="https://juejin.im/post/5f03ef91f265da22df3ccc5a" target="_blank" rel="noopener">《是让人 提神醒脑 的 MVP、MVVM 关系精讲！》</a></p>
+<p><a href="https://juejin.im/post/5ef061d0e51d4573e71f3243" target="_blank" rel="noopener">《独家记忆 | Jetpack MVVM 高频提问和解答》</a></p>
+<h4 id="10-计算机科学系列文章"><a href="#10-计算机科学系列文章" class="headerlink" title="10 计算机科学系列文章"></a>10 计算机科学系列文章</h4><p><a href="https://juejin.im/post/5cc15a376fb9a0322279223f" target="_blank" rel="noopener">《这样理解，你也能在 30 秒内讲明白 TCP 三次握手》</a></p>
+<p><a href="https://juejin.im/post/5cf6a3845188253b2441287e" target="_blank" rel="noopener">《真香警告：即使不学 OS 进阶，也请务必收藏好该文！》</a></p>
+<h2 id="自我认知成长系列"><a href="#自我认知成长系列" class="headerlink" title="自我认知成长系列"></a>自我认知成长系列</h2><blockquote>
+<p>人的成熟，是从分得清 <strong>人格</strong> 和 <strong>身份</strong> 开始。</p>
+<p>忽视人格，遑论尊重。</p>
+<p>无意识地认同身份、把身份当作自己，才会和他人作价值比较，比不过，所以要 发牢骚、抱怨、指责、谩骂、找茬、干涉、毁谤、站队、攻击 ……</p>
+<p>这些人不知道自己在做什么，不过是无意识地、习以为常地这么做罢了。</p>
+<p>或许随着社会的发展 和群体意识的不断提升，他们终究会亦步亦趋地跟上，不过那也是很久很久以后的事儿了。</p>
+</blockquote>
+<p><a href="https://mp.weixin.qq.com/s/NmJtquvDEPa87vToFoukGg" target="_blank" rel="noopener">《高情商和内存抖动的关系》</a></p>
+<p><a href="https://mp.weixin.qq.com/s/ao0vTW74tj7iExqkiTENPg" target="_blank" rel="noopener">《不过是幸存者偏差》</a></p>
+<p><a href="https://mp.weixin.qq.com/s/9WGUK9B0erqWp6bj_iX3Cw" target="_blank" rel="noopener">《鲁迅出版《阿 Q 正传》没有闹着玩》</a></p>
+<p><a href="https://mp.weixin.qq.com/s/SHYfi9vvCYVvc9rKxV2oiQ" target="_blank" rel="noopener">《终于我也可以不再较真，一笑了之》</a></p>
+<p><a href="https://mp.weixin.qq.com/s/oLv3AUNpIcUpLcKZq2hhdg" target="_blank" rel="noopener">《阳光底下无新鲜事》</a></p>
+<p><a href="https://mp.weixin.qq.com/s/lF7cAf8X591Tsh-y2s0jKw" target="_blank" rel="noopener">《同时持有两种截然不同的观点 还能正常行事的，是拥有一流智慧的人》</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2020/05/20/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2020-07-18 19:17:19
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2022/06/06/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#近期动态"><span class="toc-text">近期动态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#《重学安卓》专栏"><span class="toc-text">《重学安卓》专栏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-视图控制-之-生命周期、状态管理、页面通信、路由导航（完结）"><span class="toc-text">1 视图控制 之 生命周期、状态管理、页面通信、路由导航（完结）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-视图控制-之-标准化-开发模式-的-最佳实践（完结）"><span class="toc-text">2 视图控制 之 标准化 开发模式 的 最佳实践（完结）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-视图系统-之-架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）"><span class="toc-text">3 视图系统 之 架构设计、坐标系统、排版渲染、滑动冲突、数据驱动（完结）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-软件工程高级实战-amp-经验"><span class="toc-text">4 软件工程高级实战 &amp; 经验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-拾遗系列"><span class="toc-text">5 拾遗系列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-授人以鱼-不如授人以渔。全网独家提供-gt-gt-gt"><span class="toc-text">6 授人以鱼 不如授人以渔。全网独家提供 &gt;&gt;&gt;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#《免费：重学安卓-深度写作-团队专栏》"><span class="toc-text">《免费：重学安卓 深度写作 团队专栏》</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#“深度写作专栏”-的由来："><span class="toc-text">“深度写作专栏” 的由来：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#你可从中获得的收益包括："><span class="toc-text">你可从中获得的收益包括：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-写作技巧-和-简易示例"><span class="toc-text">7 写作技巧 和 简易示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#掘金技术专刊"><span class="toc-text">掘金技术专刊</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-开源项目系列简介"><span class="toc-text">8 开源项目系列简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-软件工程系列文章"><span class="toc-text">9 软件工程系列文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-计算机科学系列文章"><span class="toc-text">10 计算机科学系列文章</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自我认知成长系列"><span class="toc-text">自我认知成长系列</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/zchengsite/hexo-theme-oranges" target="_blank" rel="noopener">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a href="https://github.com/zchengsite/hexo-theme-oranges" target="_blank" rel="noopener">Copyright © 2023 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a href="https://github.com/zchengsite/hexo-theme-oranges" target="_blank" rel="noopener">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%9B%BD%E6%B0%91%E5%93%86%E5%95%A6A%E6%A2%A6%EF%BC%8C%E8%A7%81%E8%AF%81%E4%B8%8E%E9%99%AA%E4%BC%B4 + '&url=' + https%3A%2F%2Fwww.kunminx.com%2F2020%2F07%2F17%2F%25E5%259B%25BD%25E6%25B0%2591%25E5%2593%2586%25E5%2595%25A6A%25E6%25A2%25A6%25EF%25BC%258C%25E8%25A7%2581%25E8%25AF%2581%25E4%25B8%258E%25E9%2599%25AA%25E4%25BC%25B4%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.kunminx.com/2020/07/17/%E5%9B%BD%E6%B0%91%E5%93%86%E5%95%A6A%E6%A2%A6%EF%BC%8C%E8%A7%81%E8%AF%81%E4%B8%8E%E9%99%AA%E4%BC%B4/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><meta name="color-scheme" content="dark light"><meta name="author" content="KunMinX"><meta name="description" content="Jetpack MVVM"><meta name="keywords" content="Jetpack,MVVM,Jetpack MVVM,Android"><title>MVI 的存在意义</title><link rel="icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="//at.alicdn.com/t/font_3242539_utq6ykfq7z.css"><link rel="stylesheet" light-src="https://cdn.staticfile.org/highlight.js/11.5.0/styles/default.min.css" dark-src="https://cdn.staticfile.org/highlight.js/11.5.0/styles/tokyo-night-dark.min.css"><link rel="stylesheet" href="https://fonts.font.im/css?family=Noto+Serif" as="font"><link href="/style/index.css" rel="stylesheet"><meta name="generator" content="Hexo 4.2.1"></head><body><header class="page-header"><nav><ul class="router-list"><li class="nav-item"> <a href="/">主页</a></li><li class="nav-item"> <a href="/archives/">归档</a></li><li class="nav-item"> <a href="/atom.xml">RSS</a></li></ul><div class="mode-switch"><span class="iconfont icon-DarkTheme"></span></div></nav></header><main><section class="main-content"><section class="post-page"><div class="title-bar"><h1>MVI 的存在意义</h1><div class="post-info"><span>2022-09-20 12:00:00</span><span class="tags"></span></div></div><article> <div class="content"><a id="more"></a>
+
+
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学技术要学本质。对 MVI 的有效理解，源于对 “响应式编程 作用和漏洞” 等关键细节的挖掘，</p>
+<p>故这期专为 MVI 打磨一篇 “通俗易懂、看完便理解来龙去脉、并能活学活用”，相信阅读后你会耳目一新。</p>
+<h2 id="文章目录一览"><a href="#文章目录一览" class="headerlink" title="文章目录一览"></a>文章目录一览</h2><ul>
+<li><p>前言</p>
+</li>
+<li><p>响应式编程</p>
+<ul>
+<li><p>响应式编程的好处</p>
+</li>
+<li><p>响应式编程的漏洞</p>
+</li>
+<li><p>响应式编程的困境</p>
+</li>
+</ul>
+</li>
+<li><p>MVI 的存在意义</p>
+</li>
+<li><p>MVI 的实现</p>
+<ul>
+<li>函数式编程思想</li>
+<li>MVI 怎样实现纯函数效果</li>
+<li>存在哪些副作用</li>
+<li>整体流程</li>
+</ul>
+</li>
+<li><p>当下开发现状的反思</p>
+<ul>
+<li>从源头把问题消灭</li>
+<li>什么是过度设计，如何避免</li>
+<li>平替方案的探索</li>
+</ul>
+</li>
+<li><p>综上</p>
+</li>
+</ul>
+<h2 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h2><p>谈到 MVI，首先要提的是 “响应式编程”，响应式是 Reactive 翻译成中文叫法，对应 Java 语言实现是 RxJava，</p>
+<p>ReactiveX 官方对 Rx 框架描述是：使用 “可观察流” 进行异步编程的 API，</p>
+<p>翻译成人话即，响应式编程暗示人们 <strong>应当总是向数据源请求数据，然后在指定的观察者中响应数据的变化</strong>，</p>
+<p>常见的 “响应式编程” 流程用伪代码表示如下：</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" 
+  class="img-loading" data-original="https://images.xiaozhuanlan.com/photo/2023/2050d3cfcc3d74a4fe4f357e8d624f1f.jpg"" alt=""></p>
+<h3 id="响应式编程的好处"><a href="#响应式编程的好处" class="headerlink" title="响应式编程的好处"></a>响应式编程的好处</h3><p>通过上述代码易得，在响应式编程下，业务逻辑在 ViewModel / Presenter 处集中管理，过程中向 UI 回推状态，且 UI 控件在指定的 “粘性观察者” 中响应，<strong>该模式下很容易做单元测试，有输入必有回响</strong>。</p>
+<p>反之如像往常一样，将控件渲染代码分散在观察者以外的各个方法中，便很难做到这一点。</p>
+<h3 id="响应式编程的漏洞"><a href="#响应式编程的漏洞" class="headerlink" title="响应式编程的漏洞"></a>响应式编程的漏洞</h3><p>随着业务发展，人们开始往 “粘性观察者” 回调中添加各种控件渲染，</p>
+<p>如果同一控件实例（比如 textView）出现在不同粘性观察者回调中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">livedata_A.observe(<span class="hljs-keyword">this</span>, dataA -&gt;<br>	textView.setText(dataA.b) <br>  ...<br>&#125;<br><br>livedata_B.observe(<span class="hljs-keyword">this</span>, dataB -&gt; <br>	textView.setText(dataB.b) ⚠️<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>假设用户操作使得 textView 先接收到 liveData_B 消息，再接收到 liveData_A 消息，</p>
+<p>那么旋屏重建后，由于 liveData_B 的注册晚于 liveData_A，textView 被回推的最后一次数据反而是来自 liveData_B，</p>
+<p>给用户的感觉是，旋屏后展示老数据，不符预期。</p>
+<h3 id="响应式编程的困境"><a href="#响应式编程的困境" class="headerlink" title="响应式编程的困境"></a>响应式编程的困境</h3><p>由此可得，响应式编程存在 1 个不显眼的关键细节：</p>
+<p><strong>一个控件应当只在同一个观察者中响应</strong>，也即同一控件实例不该出现在多个观察者中。</p>
+<p>但如果这么做，又会产生新的问题。由于页面控件往往多达十数个，如此观察者也需配上十数个。</p>
+<p>是否存在某种方式，既能杜绝 “一个控件在多个观察者中响应”，又能消除与日俱增的观察者？答案是有 —— 即接下来我们介绍的 MVI。</p>
+<h2 id="MVI-的存在意义"><a href="#MVI-的存在意义" class="headerlink" title="MVI 的存在意义"></a>MVI 的存在意义</h2><p>MVI 是 <strong>在响应式编程的前提下</strong>，通过 “将页面状态聚合” 来统一消除上述 2 个问题，</p>
+<p>也即原先分散在各个 LiveData 中的 String、Boolean 等状态，现全部聚合到一个 JavaBean / data class 中，由唯一的粘性观察者回推，所有控件都在该观察者中响应数据的变化。</p>
+<p>具体该如何实现？业界有个简单粗暴的解法 —— 遵循 “函数式编程思想”。</p>
+<h2 id="MVI-的实现"><a href="#MVI-的实现" class="headerlink" title="MVI 的实现"></a>MVI 的实现</h2><h3 id="函数式编程思想"><a href="#函数式编程思想" class="headerlink" title="函数式编程思想"></a>函数式编程思想</h3><p>函数式编程的核心主要是纯函数，这种函数只有 “参数列表” 这唯一入口来传入初值，只有 “返回值” 这唯一出口来返回结果，且 <strong>“运算过程中” 不调用和影响函数作用域外的变量</strong>（也即 “无副作用”），</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> a<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> b)</span></span>&#123; <span class="hljs-comment">//纯函数</span><br>	<span class="hljs-keyword">return</span> b + b<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">changeA</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//非纯函数，因运算过程中调用和影响到外界变量 a</span><br>  <span class="hljs-keyword">int</span> c = a = calculate(b) <br>  <span class="hljs-keyword">return</span> c<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">changeB</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">//纯函数</span><br>  <span class="hljs-keyword">int</span> b = calculate(<span class="hljs-number">2</span>)<br>  <span class="hljs-keyword">return</span> b + <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>显而易见，纯函数的好处是 <strong>“可以闭着眼使用”，有怎样的输入，必有怎样的输出</strong>，且过程中不会有预料外的影响发生。</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" 
+  class="img-loading" data-original="https://images.xiaozhuanlan.com/photo/2023/241c8150744ff760be6432e198c8e161.jpg"" alt=""></p>
+<p>这里贴一张网上盛传的图来说明 Model、View、Intent 三者关系，</p>
+<p>笔者认为，MVI 并非真的 “纯函数实现”，而只是 “纯函数思想” 的实现，</p>
+<p>也即我们实际上都是以 “面向对象” 方式在编程，从效果上达到 “纯函数” 即可，</p>
+<p>反之如钻牛角尖，看什么都 “有副作用、不纯”，则易陷入悲观，忽视本可改善的环节，有点得不偿失。</p>
+<h3 id="MVI-怎样实现纯函数效果"><a href="#MVI-怎样实现纯函数效果" class="headerlink" title="MVI 怎样实现纯函数效果"></a>MVI 怎样实现纯函数效果</h3><blockquote>
+<p>Model 通常是继承 Jetpack ViewModel 来实现，负责处理业务逻辑；</p>
+</blockquote>
+<blockquote>
+<p>Intent 是指发起本次请求的意图，告诉 Model 本次执行哪个业务。它可以携带或不带参数；</p>
+</blockquote>
+<blockquote>
+<p>View 通常对应 Activity/Fragment，根据 Model 返回的 UiStates 进行渲染。</p>
+</blockquote>
+<p>也即我们让 Model 只暴露一个入口，用于输入 intent；只暴露一个出口，用于回调 UiStates；业务执行过程中不影响 UiStates 以外的结果；且 UiStates 的字段都设置为不可变（final / val）确保线程安全，即可达成 Model 的 “纯”，</p>
+<p>Intent 达成 “纯” 比较简单，由于它只是个入参，字段都设置为不可变即可。</p>
+<p>View 同样不难，只要确保 View 的入口就是 Model 的出口，也即 <strong>View 的控件都集中放置在 Model 的回调中渲染</strong>，即可达成 “纯”。</p>
+<h3 id="存在哪些副作用"><a href="#存在哪些副作用" class="headerlink" title="存在哪些副作用"></a>存在哪些副作用</h3><h4 id="存在争议的副作用"><a href="#存在争议的副作用" class="headerlink" title="存在争议的副作用"></a>存在争议的副作用</h4><blockquote>
+<p>那有人可能会说，“不对啊，View 在入口中调用了控件实例，也即函数作用域外的成员变量，是副作用呀” …… 笔者认为这是误解，</p>
+</blockquote>
+<p>因为 MVI 的 View 事实上就不是一个函数，而是一个类。如上文所述，MVI 实际上是 <strong>通过面向对象编程的方式实现 “纯函数” 效果</strong>，而非真的纯函数，</p>
+<p>故我们可以站在类的角度重新审视 —— 控件是类成员，对应的是纯函数的自动变量，</p>
+<p>换言之，控件渲染并没有调用和影响到 View 作用域外的元素，故不算副作用。</p>
+<h4 id="公认的副作用"><a href="#公认的副作用" class="headerlink" title="公认的副作用"></a>公认的副作用</h4><p>与此同时，UiEvents 属于副作用，也即那些弹窗、页面跳转等 “一次性消费” 的情况，</p>
+<p>为什么？笔者认为 “弹窗、页面跳转” 时，<strong>在当前 MVI-View 页面之外创建了新的 Window、或是在返回栈添加了新的页面</strong>，如此等于调用和影响了外界环境，所以这必是副作用，</p>
+<blockquote>
+<p>不过这是符合预期的副作用，对此官方 Guide 也有介绍 “将 UiEvents 整合到 UiStates” 的方式来改善该副作用：<a href="https://developer.android.google.cn/jetpack/guide/ui-layer/events#consuming-trigger-updates" target="_blank" rel="noopener">界面事件  | Android 开发者  | Android Developers</a></p>
+</blockquote>
+<p>与之相对的即 “不符预期的副作用” —— 例如控件实例被分散在观察者外的各个方法中，并在某个方法中被篡改和置空，其他方法并不知情，调用该实例即发生 NullPointException。</p>
+<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p>至此 MVI 的代码实现已呼之欲出：</p>
+<p>1.创建一个 UiStates，反映当前页面的所有状态。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UiStates</span> </span>&#123;<br>	<span class="hljs-keyword">val</span> weather : Weather,<br>  <span class="hljs-keyword">val</span> isLoading : <span class="hljs-built_in">Boolean</span>,<br>  <span class="hljs-keyword">val</span> error : List&lt;UiEvent&gt;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.创建一个 Intent，用于发送请求时携带参数，和指明当前想执行的业务。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">sealed</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPageIntent</span> </span>&#123;<br>	<span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetWeather</span></span>(<span class="hljs-keyword">val</span> cityCode) : MainPageIntent()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>3.执行业务的过程，总是先从数据层获取数据，然后根据情况分流和回推结果，例如请求成功，便执行 Success 来回推结果，请求失败，则 Error，对此业内普遍的做法是，增设一个 Actions，</p>
+<p>并且由于 UiStates 的字段不可变，且控件集中响应 UiStates，也即务必确保 UiStates 的延续，由此每个业务带来局部改变时（partialChange），需通过 copy 等方式，将上一次的 UiStates 拷贝一份，并为对应字段注入 partialChange。这个过程业内称为 reduce。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">sealed</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPageActions</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">reduce</span><span class="hljs-params">(oldStates : <span class="hljs-type">UiStates</span>)</span></span> : UiStates &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">when</span>(<span class="hljs-keyword">this</span>)&#123;<br>      Loading -&gt; oldStates.copy(isLoading = <span class="hljs-literal">true</span>)<br>      <span class="hljs-keyword">is</span> Success -&gt; oldStates.copy(isLoading = <span class="hljs-literal">false</span>, weather = <span class="hljs-keyword">this</span>.weather)<br>      <span class="hljs-keyword">is</span> Error -&gt; oldStates.copy(isLoading = <span class="hljs-literal">false</span>, error = listOf(UiEvent(msg)))<br>    &#125;<br>  &#125;<br>  <br>	<span class="hljs-keyword">object</span> Loading : MainPageActions()<br>	<span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Success</span></span>(<span class="hljs-keyword">val</span> weather : Weather) : MainPageActions()<br>	<span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Error</span></span>(<span class="hljs-keyword">val</span> msg : String) : MainPageActions()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>4.创建当前页面使用的 MVI-Model。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPageModel</span> : <span class="hljs-type">MVI_Model</span>&lt;<span class="hljs-type">UiStates</span>&gt;</span>() &#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> _stateFlow = MutableStateFlow(UiStates())<br>  <span class="hljs-keyword">val</span> stateFlow = _stateFlow.asStateFlow<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sendResult</span><span class="hljs-params">(uiStates: <span class="hljs-type">S</span>)</span></span> = _stateFlow.emit(uiStates)<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">input</span><span class="hljs-params">(intent: <span class="hljs-type">Intent</span>)</span></span> = viewModelScope.launch&#123; onHandle()	&#125;<br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">suspend</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onHandle</span><span class="hljs-params">(intent: <span class="hljs-type">Intent</span>)</span></span> &#123;<br>    <span class="hljs-keyword">when</span>(intent)&#123;<br>    	<span class="hljs-keyword">is</span> GetWeather -&gt; &#123;<br>        sendResult(MainPageActions.Loading.reduce(oldStates)<br>    		<span class="hljs-keyword">val</span> response = api.post()<br>    		<span class="hljs-keyword">if</span>(response.isSuccess) sendResult(<br>         MainPageActions.Success(response.<span class="hljs-keyword">data</span>).reduce(oldStates)<br>    		<span class="hljs-keyword">else</span> sendResult(<br>         MainPageActions.Error(response.message).reduce(oldStates)<br>    	&#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>5.创建 MVI-View，并在 stateFlow 中响应 MVI-Model 数据。</p>
+<p>控件集中响应，带来不必要的性能开销，需要做个 diff，只响应发生变化的字段。</p>
+<blockquote>
+<p>笔者通常是通过 DataBinding ObservableField 做防抖。后续如 Jetpack Compose 普及，建议是使用 Jetpack Compose，无需开发者手动 diff，其内部类似前端 DOM ，根据本次注入的声明树自行在内部差分合并渲染新内容。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPageActivity</span> : <span class="hljs-type">Android_Activity</span></span>()&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> model : MainPageModel<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> views : MainPageViews<br>	<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span></span>&#123;<br>    lifecycleScope.launch &#123;<br>    repeatOnLifecycle(Lifecycle.State.STARTED) &#123;<br>      model.stateFlow.collect &#123;uiStates -&gt;<br>			  views.progress.<span class="hljs-keyword">set</span>(uiStates.isLoading)<br>			  views.weatherInfo.<span class="hljs-keyword">set</span>(uiStates.weather.info)<br>        ...<br>      &#125;<br>    &#125;<br>    model.input(Intent.GetWeather(BEI_JING))<br>	&#125;<br>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPageViews</span> : <span class="hljs-type">Jetpack_ViewModel</span></span>() &#123;<br>		<span class="hljs-keyword">val</span> progress = ObservableBoolean(<span class="hljs-literal">false</span>)<br>    <span class="hljs-keyword">val</span> weatherInfo = ObservableField&lt;String&gt;(<span class="hljs-string">""</span>)<br>    ...<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>整个流程用一张图表示即：</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" 
+  class="img-loading" data-original="https://images.xiaozhuanlan.com/photo/2023/6fd0916d7e35be85ccce2251118d073a.jpg"" alt=""></p>
+<h2 id="当下开发现状的反思"><a href="#当下开发现状的反思" class="headerlink" title="当下开发现状的反思"></a>当下开发现状的反思</h2><p>上文我们追溯了 MVI 来龙去脉，不难发现，MVI 是给 “响应式编程” 填坑的存在，通过状态聚合来消除 “不符预期回推、观察者爆炸” 等问题，</p>
+<blockquote>
+<p>然而 MVI 也有其不便之处，由于它本就是要通过聚合 UiStates 来规避上述问题，故 UiStates 很容易爆炸，特别是字段极多情况下，每次回推都要做数十个 diff ，在高实时场景下，难免有性能影响，</p>
+</blockquote>
+<p>MVI 许多页面和业务都需手写定制，难通过自动生成代码等方式半自动开发，故我们我们不如退一步，反思下为什么要用响应式编程？是否非用不可？</p>
+<p>穷举所有可能，笔者觉得最合理的解释是，响应式编程十分便于单元测试 —— 由于控件只在观察者中响应，有输入必有回响，</p>
+<p>也是因为这原因，官方出于完备性考虑，以响应式编程作为架构示例。</p>
+<h3 id="从源头把问题消灭"><a href="#从源头把问题消灭" class="headerlink" title="从源头把问题消灭"></a>从源头把问题消灭</h3><p>现实情况往往复杂。</p>
+<p>Android 最初为了站稳脚跟，选择复用已有的 Java 生态和开发者，乃至使用 Java 作为官方语言，后来 Java 越来越难支持现代化移动开发，故而转向 Kotlin，</p>
+<p>Kotlin 开发者更容易跟着官方文档走，一开始就是接受 Flow 那一套，且 Kotlin 抹平了语法复杂度，天然适合 “响应式编程” 开发，如此便有机会踩坑，乃至有动力通过 MVI 来改善。</p>
+<blockquote>
+<p>然而 10 个 Android 7 个纯 Java ，其中 6 个从不用 RxJava ，剩下一个还是偶尔用用 RxJava 的线程调度切换，所以响应式编程在 Android Java 开发者中的推行不太理想，领导甚至可能为了照顾多数同事，而要求撤回响应式代码，如此便很难有机会踩坑，更谈不上使用 MVI，</p>
+</blockquote>
+<p>也因此，实际开发中更多考虑的是，如何从根源上避免各种不可预期问题。</p>
+<p>对此从软件工程角度出发，笔者在设计模式原则中找到答案 —— 任何框架，<strong>只要遵循单一职责原则，便能有效避免各种不可预期问题</strong>，反之过度设计则易引发不可预期问题。</p>
+<h3 id="什么是过度设计，如何避免"><a href="#什么是过度设计，如何避免" class="headerlink" title="什么是过度设计，如何避免"></a>什么是过度设计，如何避免</h3><p>上文提到的 “粘性观察者”，对应的是 BehaviorSubject 实现，强调 “总是有一个状态”，比如门要么是开着，要么是关着，门在订阅 BehaviorSubject 时，会被自动回推最后一次 State 来反映状态。</p>
+<p>常见 BehaviorSubject 实现有 ObservableField、LiveData、StateFlow 等。</p>
+<p>反之是 PublishSubject 实现，对应的是一次性事件，常见 PublishSubject 实现有 SharedFlow 等。</p>
+<blockquote>
+<p>笔者认为，LiveData/StateFlow 存在过度设计，因为它的观察者是开放式，一旦开了这口子，后续便不可控，一个良好的设计是，<strong>不暴露不该暴露的口子，不给用户犯错的机会</strong>。</p>
+</blockquote>
+<p>一个正面的案例是 DataBinding observableField，不向开发者暴露观察者，且一个控件只能在 xml 中绑定一个，从根源上杜绝该问题。</p>
+<h3 id="平替方案的探索"><a href="#平替方案的探索" class="headerlink" title="平替方案的探索"></a>平替方案的探索</h3><p>至此平替方案便也呼之欲出 —— 使用 ObservableField 来承担 BehaviorSubject，</p>
+<p>也即直接在 ViewModel 中调用 ObservableField 通知所绑定的控件响应，且每个 ObservableField 都携带原子数据类型（例如 String、Boolean 等类型），</p>
+<p>如此便无需声明 UiStates 数据类。由于无 UiStates、无聚合、也无线程安全问题，也就无需再 reduce 和 diff，简单做个 Actions 为结果分流即可。</p>
+<p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" 
+  class="img-loading" data-original="https://images.xiaozhuanlan.com/photo/2023/9951b6af28b0cdf0b46f58fe77c1420a.jpg"" alt=""></p>
+<p>此时仍属响应式编程，相较经典 MVI，繁琐度大幅缩减，性能有所提升。</p>
+<h2 id="综上"><a href="#综上" class="headerlink" title="综上"></a>综上</h2><p>响应式编程便于单元测试，但其自身存在漏洞，MVI 即是来消除漏洞，</p>
+<p>MVI 有一定门槛，实现较繁琐，且存在性能等问题，难免同事撂挑子不干，一夜回到解放前，</p>
+<p>综合来说，MVI 适合与 Jetpack Compose 搭配实现 “现代化的开发模式”，</p>
+<p>反之如追求 “低成本、复用、稳定”，可通过遵循 “单一职责原则” 从源头把问题消除。</p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>响应式编程：<a href="https://reactivex.io/" target="_blank" rel="noopener">ReactiveX</a></p>
+<p>函数式编程：<a href="https://zh.wikipedia.org/wiki/函数式编程" target="_blank" rel="noopener">函数式编程 - 百科</a></p>
+<p>MVI 纯函数图例：<a href="http://hannesdorfmann.com/android/mosby3-mvi-2/" target="_blank" rel="noopener">Reactive Apps with Model-View-Intent - Part 2: View and Intent</a></p>
+<p>通过 UiStates 管理 UiEvent：<a href="https://developer.android.google.cn/jetpack/guide/ui-layer/events#consuming-trigger-updates" target="_blank" rel="noopener">界面事件 | Android Developers</a></p>
+<p>平替方案探索：<a href="https://juejin.cn/post/7134594010642907149" target="_blank" rel="noopener">解决 MVI 架构实战痛点</a></p>
+<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
+<p>Copyright © 2019-present KunMinX 原创版权所有。</p>
+</blockquote>
+<p>如需 <strong>转载本文，或引用、借鉴</strong> 本文 “引言、思路、结论、配图” 进行二次创作发行，<strong>须注明链接出处</strong>，否则我们保留追责权利。</p>
+</div></article><div class="copyright-wrapper"><p>原文作者:<a href="https://www.kunminx.com/archives">KunMinX</a></p><p>原文链接:<a href="https://www.kunminx.com/archives/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/">MVI 的存在意义</a></p><p>发表日期: 2022-09-20 12:00:00</p><p>更新日期: 2023-07-25 15:14:39</p><p>版权声明: 本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p></div><div class="post-pager"><div class="prev"><a href="/archives/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" title="论提线木偶的自我修养">上一篇 论提线木偶的自我修养</a></div><div class="next"> <a href="/archives/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/" title="通俗易懂 Android 架构组件发展史">下一篇 通俗易懂 Android 架构组件发展史</a></div></div></section></section></main><footer class="footer-page"><div><span>Powered by</span><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a><span>| Theme</span><a href="https://github.com/techmovie/hexo-theme-instapaper" target="_blank" rel="noopener">instapaper</a></div></footer><script src="/archives/scripts/dark.js"></script><script src="/archives/scripts/post.js"></script></body></html>
