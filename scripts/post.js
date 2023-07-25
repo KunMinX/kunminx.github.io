@@ -1,0 +1,1 @@
+(()=>{var i={rootMargin:"0px",threshold:0},s=new IntersectionObserver(r=>{r.forEach(e=>{let t=e.target,o=t.getAttribute("data-original");o&&e.isIntersecting&&(t.setAttribute("src",o||""),t.classList.toggle("img-loading"),s.unobserve(t))})},i),n=document.querySelectorAll(".img-loading");Array.from(n).forEach(r=>{s.observe(r)});})();
