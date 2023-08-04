@@ -13,12 +13,17 @@
   
   <title>
     
+      声明式 UI 解析 
+      
+      
+      |
+    
      KunMinX 博客
   </title>
 
   
-    <link rel="apple-touch-icon" href="/images/favicon.png">
-    <link rel="icon" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/a.jpg">
+    <link rel="icon" href="/images/a.jpg">
   
 
   <!-- Raleway-Font -->
@@ -28,6 +33,10 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
   <!-- 代码块风格 -->
+  
+    
+<link rel="stylesheet" href="/css/figcaption/mac-block.css">
+
   
 
   <!-- jquery3.3.1 -->
@@ -65,10 +74,10 @@
     <a href="/">
       <!-- 头像取消懒加载，添加no-lazy -->
       
-        <img src="/images/avatar.png" alt="">
+        <img src="/images/a.jpg" alt="">
       
     </a>
-    <div class="nickname"><a href="/">Oranges</a></div>
+    <div class="nickname"><a href="/">KunMinX 博客</a></div>
   </div>
   <div class="navbar">
     <ul>
@@ -81,16 +90,8 @@
           <a href="/archives/">Archives</a>
         </li>
       
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
-        </li>
-      
-        <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
-        </li>
-      
-        <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+        <li class="nav-item" data-path="https://github.com/KunMinX">
+          <a target="_blank" rel="noopener" href="https://github.com/KunMinX">About</a>
         </li>
       
     </ul>
@@ -148,16 +149,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title"></div>
+      <div class="post-title">声明式 UI 解析</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-08-04 14:27:57
+          2023-08-04 19:29:52
         </span>
         
       </div>
       <div class="markdown-body">
         <blockquote>
+<p>注：本文节选自<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2356748910">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
+</blockquote>
+<blockquote>
 <p>Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，</p>
 </blockquote>
 <p>上一期<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2073915486">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p>
@@ -165,9 +169,6 @@
 
 
 
-<blockquote>
-<p>注：本文节选自<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2356748910">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
-</blockquote>
 <h2 id="声明式-UI-由来"><a href="#声明式-UI-由来" class="headerlink" title="声明式 UI 由来"></a>声明式 UI 由来</h2><p>事实上，React、Flutter、SwiftUI、Jetpack Compose，这些 UI 框架有个共同鼻祖，即一个名为 elm（不是 “饿了么”）的 UI 框架，是它最早确立并推行 “声明式 UI” 设计理念。</p>
 <blockquote>
 <p>注：“声明式 UI” 这个名称，最初谁定义，暂未找到来源，目前各大官网都称其为 “声明式 UI”，基于我个人理解，其更精确表达是，“响应式 UI 框架的声明式编程分支”，当然，最终我们还是简称为 “声明式 UI”。</p>
@@ -271,32 +272,6 @@
 
       </div>
       
-        <div class="prev-or-next">
-          <div class="post-foot-next">
-            
-              <a href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/" target="_self">
-                <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
-              </a>
-            
-          </div>
-          <div class="post-attach">
-            <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2023-08-04 14:27:57
-            </span>
-            
-          </div>
-          <div class="post-foot-prev">
-            
-              <a href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
-          </div>
-        </div>
-      
     </div>
     
   <div id="btn-catalog" class="btn-catalog">
@@ -338,7 +313,7 @@
     <ul>
       
         <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/KunMinX">
             <i class="iconfont icon-github"></i>
           </a>
         </li>
@@ -349,7 +324,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2023 Oranges</a>
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2023 KunMinX</a>
         
     </div>
   
@@ -585,29 +560,6 @@
 
 
         
-  
-    <div class="share-icon tools-bar-item">
-      <a href="javascript: void(0)" id="share-icon">
-        <i class="iconfont iconshare"></i>
-      </a>
-      <div class="share-content hidden">
-        
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' +  + '&url=' + https%3A%2F%2Fwww.kunminx.com%2F2020%2F03%2F06%2F%25E5%25A3%25B0%25E6%2598%258E%25E5%25BC%258F%2520UI%2520%25E8%25A7%25A3%25E6%259E%2590%2F + '" target="_blank" title="Twitter">
-            <i class="iconfont icon-twitter"></i>
-          </a>
-        
-        
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://www.kunminx.com/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/" target="_blank" title="Facebook">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        
-      </div>
-    </div>
-  
-  
-<script src="/js/shares.js"></script>
-
-
 
       </div>
     </div>
