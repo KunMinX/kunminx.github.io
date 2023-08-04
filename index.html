@@ -1,254 +1,484 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>KunMinX 博客 | 公元 3000 年</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<html lang="en" color-mode="light">
 
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <meta name="keywords" content="Jetpack,MVVM,Jetpack MVVM,Android">
+  
+  <meta name="author" content="KunMinX" />
+  <meta name="description" content="专注业务架构和深度思考分享" />
+  
+  
+  <title>
     
-<link rel="stylesheet" href="/css/style.css">
+     KunMinX 博客
+  </title>
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
 </head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="header">
-    <a class="logo" href="/">KunMinX 博客</a>
-    <ul class="nav">
-        
-        <li><a href="/">首页</a></li>
-        
-        <li><a href="/archives">归档</a></li>
-        
-        <li><a target="_blank" rel="noopener" href="https://github.com/kunminx">关于</a></li>
-        
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
     </ul>
+  </div>
 </div>
-                
-                <div class="post-list">
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
     
-    <div class="post">
-        <a class="post-title" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">Kotlin 感觉</a>
-        <div class="post-except">
-            给我感觉，这是一门最小完备的语言，功能实用，无以复减，
-语法上主要印象有 6 方面，
-
-
-
-
-声明方式和字面量的简化1.使用 val、var 来动态声明，编译时则会编译成静态类型，
-2.数字字面量可以写成 val num = 1_000_000.99_99 方便人类查阅，
-字符串字面量可以写成 
-1234567val num &#x3D; 1_000_000.99_99val s &#x3D; &quot;&quot;&quot;	this is a xxxx,	so tha
-            <a class="read-more" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/"> ... </a>
-        </div>
-        <div class="post-date">2023.08.03</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">协程，协程</a>
-        <div class="post-except">
-            水一篇，不保证能看懂，能看懂都是缘分，
-关于并发，涉及的关键概念即 “阻塞、多线程、异步、非阻塞、挂起、系统内核、分时复用”，
-
-
-
-
-阻塞如果只有单线程，那么代码执行到 IO 时，会干等着，直到 IO 结束，才再继续下一步，这种 “干等着” 的现象即阻塞，
-如果该线程主要用于 “客户端图形渲染” 或 “服务端接收请求响应”，在该线程中阻塞显然不合适，图形渲染和请求响应会被搁置，乃至给人 “无法响应” 的糟糕体验感受，
-多线程为此引入多线程技术，在需要 IO 时，新开一个工作
-            <a class="read-more" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/"> ... </a>
-        </div>
-        <div class="post-date">2023.05.20</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"></a>
-        <div class="post-except">
-            像看待新冠病毒一样，我们逐渐学会长期与 “来自他人的恶意” 共处。
-以下是截至目前，结合多领域视角所构建的理解：
-
-
-
-
-设定如此，故高频且普遍人是生物，生物是基因载体，基因的演化迭代机制，使其默认隐含对优越性的追求，因而人本就有优越感需求，
-超脱优越感毕竟难事，因而定力较弱的一部分人，出于生物节能本能，无一例外摸索出 “最低成本、最短路径” —— 通过 “语言霸凌、网络暴力、逞口舌之快” 等方式秀优越，
-常见套路即，动辄臆想和放大某杠点（例如 阴谋、愚蠢、不够、不公），然后
-            <a class="read-more" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"> ... </a>
-        </div>
-        <div class="post-date">2022.12.26</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
-        <div class="post-except">
-            学技术要学本质。对 MVI 的有效理解，源于对 “响应式编程 作用和漏洞” 等关键细节的挖掘，
-故这期专为 MVI 打磨一篇 “通俗易懂、看完便理解来龙去脉、并能活学活用”，相信阅读后你会耳目一新。
-
-
-
-
-文章目录一览
-前言
-
-响应式编程
-
-响应式编程的好处
-
-响应式编程的漏洞
-
-响应式编程的困境
-
-
-
-MVI 的存在意义
-
-MVI 的实现
-
-函数式编程思想
-MVI 怎样实现纯函数效果
-存在哪些副作用
-整体流程
-
-
-当下开发现状的反思
-
-从源头把问题消灭
-什么是过度设计，如
-            <a class="read-more" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a>
-        </div>
-        <div class="post-date">2022.09.20</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"></a>
-        <div class="post-except">
-            谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。
-由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。
-
-
-
-
-文章目录一览
-前言
-原生架构
-原始图形化架构
-高频痛点 1：Null 安全一致性问题
-
-
-原始工程架构 MVC
-高频痛点 2：成员变量爆炸
-高频痛点 3：状态管理一致性问题
-高频痛点 4：消息分发
-            <a class="read-more" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"> ... </a>
-        </div>
-        <div class="post-date">2022.09.20</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"></a>
-        <div class="post-except">
-            关于知识深度和广度，一直众口不一，
-例如总有这样的声音，认为客户端 App 开发就是没深度，Framework 开发就是有深度；关注业务逻辑就是没深度，琢磨底层原理才是有深度 …
-
-
-
-
-广度没懂造成这些观点的依据是什么，
-笔者认为，应用层和框架层，只是分属两个不同的领域，都是由各个知识点拼接而成，彼此之间并无谁深谁浅之分，
-如果开发者学习了应用层，又学习了框架层，本质上只是拓宽了广度，从研究 “茴” 有几种写法，到研究 “龍” 有几种写法；从研究 kotlin 语法有哪些，
-            <a class="read-more" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"> ... </a>
-        </div>
-        <div class="post-date">2021.02.05</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"></a>
-        <div class="post-except">
+      <div class="post-item" title="Kotlin 感觉">
+        <div class="time-m-d">2023-08-03</div>
+        <div class="title">
+          <a href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">
             
-Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，
-
-上一期《过目难忘 Android GUI 关系梳理》，我们循序渐进拆解了 “View 体系” 各工具的 存在意义 及 相互间关系，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。
-
-
-
-
-
-注：本文节选自《重学安卓：一通百通 “声明式 UI” 扫盲干货》，本文可免费阅读和全文转载，转载时须注明本文链接出处。
-
-声明式 UI 由来事实上，Rea
-            <a class="read-more" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"> ... </a>
-        </div>
-        <div class="post-date">2020.03.06</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
-        <div class="post-except">
-            工作多年，进阶 “细节定制”，难免高频接触 “自定义 View”、“GUI 性能优化” 等概念，
-
-诸如 Canvas、Paint、Path；View、Drawable；Layout、Inflater；include、merge、ViewStub；PhoneWindow、ViewRootImpl …
-
-关于 View 体系，开发者 普遍缺乏 “从 0 到 1 完整踩坑” 经历，且多数网文假设读者已有 前置知识 铺垫在先，因而 直奔 “What、How” 细枝末节，对 “Why
-            <a class="read-more" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a>
-        </div>
-        <div class="post-date">2020.01.29</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"></a>
-        <div class="post-except">
+              
+                <span>Kotlin 感觉</span>
+              
             
-
-
-
-
-前言最近后台时而收到读者留言，说能否出一期 Jetpack MVVM 精讲，以及配套一份简练案例，好把玩把玩、感受感受、加深 MVVM 印象。
-答案是肯定的。
-面向标准化开发已成现实金九银十，相信不少读者在抓紧机会面试。
-Android 市场已今非昔比。过去迫于招人压力，应试者只需了解四大组件、视图、网络请求，即可谋得一份满意工作。
-现如今，Jetpack 架构组件及 “标准化开发模式” 确立，预示 Android 开发已步入成熟阶段：
-
-许多 “样板代码” 不再需
-            <a class="read-more" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"> ... </a>
+          </a>
         </div>
-        <div class="post-date">2019.10.23</div>
-    </div>
+      </div>
     
-</div>
-
-                <div class="footer">
-    <span>Copyright © 2022 KunMinX 博客</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
-</div>
-
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
-            </div>
+      <div class="post-item" title="协程，协程">
+        <div class="time-m-d">2023-05-20</div>
+        <div class="title">
+          <a href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">
+            
+              
+                <span>协程，协程</span>
+              
+            
+          </a>
         </div>
-    </body>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2022-12-26</div>
+        <div class="title">
+          <a href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2022-09-20</div>
+        <div class="title">
+          <a href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2022-09-20</div>
+        <div class="title">
+          <a href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2021-02-05</div>
+        <div class="title">
+          <a href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2020-03-06</div>
+        <div class="title">
+          <a href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2020-01-29</div>
+        <div class="title">
+          <a href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+      <div class="post-item" title="">
+        <div class="time-m-d">2019-10-23</div>
+        <div class="title">
+          <a href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/">
+            
+              <span>untitled</span>
+            
+          </a>
+        </div>
+      </div>
+    
+  </div>
+  <nav class="post-navigation">
+    
+    <span class="page-num">1 / 1</span>
+    
+  </nav>
+</div>
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2023 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
 </html>
