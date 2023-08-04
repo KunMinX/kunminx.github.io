@@ -55,8 +55,7 @@
       document.documentElement.setAttribute('color-mode', colorMode)
     }
   </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
   <body>
@@ -191,7 +190,7 @@
 <li>综上</li>
 </ul>
 <h2 id="Canvas-是排版的根基"><a href="#Canvas-是排版的根基" class="headerlink" title="Canvas 是排版的根基"></a>Canvas 是排版的根基</h2><p>所谓排版，即是将一个个图形化内容，以符合预期的方式组合排列，包括并列展示和层叠展示，供用户更好的浏览，</p>
-<p>根据<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce651d4f265da1bb13f0a5b">《重学安卓：Activity 快乐你不懂》</a>一文的推理，在从零开始缔造的原始操作系统中，UI 排版的工作最初是由 Window 承担，Window 不堪重负，于是责任下发到 View，通过 View/ViewGroup 在 View 树中的递归，以便更快更好完成，</p>
+<p>根据<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce651d4f265da1bb13f0a5b">《重学安卓：Activity 快乐你不懂》</a>一文的推理，在从零开始缔造的原始操作系统中，UI 排版的工作最初是由 Window 承担，Window 不堪重负，于是责任下发到 View，通过 View&#x2F;ViewGroup 在 View 树中的递归，以便更快更好完成，</p>
 <p>那么是否意味着 View 即是排版的根基？答案是否定的，</p>
 <p>因为 View 只是起到 “承载内容、且限制内容展示范围” 的作用，例如做过 “添加水印” 的小伙伴应该都接触过 “贴图控件”，该控件的原理是，在同一个自定义 View 中绘制多个贴图元素，那么显而易见 View 并不是排版的最小单位，被绘制的元素才是，</p>
 <p><img src="https://images.xiaozhuanlan.com/photo/2023/5e7fc75e932c0ea94ce3a25e112d2f6e.jpeg" alt="img"></p>
@@ -201,7 +200,7 @@
 </blockquote>
 <p>Paint 和 Path 都是 Canvas 的助手，<strong>与 “排版输出” 存在直接关系的 “最源头 API”</strong>，即是 Canvas 本尊。</p>
 <h2 id="View-和-Drawable-是排版的模板"><a href="#View-和-Drawable-是排版的模板" class="headerlink" title="View 和 Drawable 是排版的模板"></a>View 和 Drawable 是排版的模板</h2><p>既然是 View 系统，那就不能只是原始、无序的 “绘制” 本身。</p>
-<p>因而在有了 “Window” 和 Canvas 基础上，还需确立 View / ViewGroup 这样规则的 <strong>排版标准</strong>，从而我们得以基于这套 “标准” 构建 <strong>具体可复用模板</strong>。</p>
+<p>因而在有了 “Window” 和 Canvas 基础上，还需确立 View &#x2F; ViewGroup 这样规则的 <strong>排版标准</strong>，从而我们得以基于这套 “标准” 构建 <strong>具体可复用模板</strong>。</p>
 <blockquote>
 <p>例如 Button、TextView、ImageView 都是 “可复用模板”，<strong>开发者日常只需与上层这些 View 打交道、无需接触底层 Canvas</strong>，无需做什么都得先手动基于 Canvas 写个数百行排版代码。</p>
 <p>且，如对 “现成模板” 不满意，也可自行封装新模板，也即人们所说 “自定义控件”。</p>

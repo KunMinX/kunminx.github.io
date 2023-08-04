@@ -55,8 +55,7 @@
       document.documentElement.setAttribute('color-mode', colorMode)
     }
   </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
   <body>
@@ -207,7 +206,7 @@
 <li>最佳实践 Jetpack MVVM<ul>
 <li>屏蔽回推 UnPeekLiveData</li>
 <li>消息分发 Dispatcher</li>
-<li>严格模式 DataBinding </li>
+<li>严格模式 DataBinding</li>
 </ul>
 </li>
 <li>另起炉灶 Compose</li>
@@ -223,7 +222,7 @@
 <p>这样误用 Canvas 问题看似解决，却引入 “高频痛点 1”：<strong>View 实例 Null 安全一致性问题</strong>。这是 Java 语言项目硬伤，客户端背景下尤明显。</p>
 </blockquote>
 <h4 id="高频痛点-1：Null-安全一致性问题"><a href="#高频痛点-1：Null-安全一致性问题" class="headerlink" title="高频痛点 1：Null 安全一致性问题"></a>高频痛点 1：Null 安全一致性问题</h4><p>例如某页面有横竖两布局，竖布局有 TextViewA，横布局无，那么横屏时，findViewbyId 拿到则是 Null 实例，后续 <code>mTextViewA.setText( )</code> 如未判空处理，即造成 Null 安全问题，</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/65d68f299de4f66762bac61910398cb0.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/65d68f299de4f66762bac61910398cb0.png"></p>
 <p>对此不能一味强调 “手动判空”，毕竟一个页面中，控件成员多达十数个，每个控件实例亦遍布数十方法中。疏忽难避免。</p>
 <blockquote>
 <p>那怎办？此时 2008 年，回顾历史，可总结为：“同志们，7 年暗夜已开始，7 年后会有个框架，驾着七彩祥云来救你”。</p>
@@ -242,9 +241,9 @@
 <p>显而易见，该架构实际仅两层：控制层和数据层，</p>
 <p>Activity 越界承担 “领域层” 业务逻辑职责，也因此滋生如下 3 个高频痛点：</p>
 <h4 id="高频痛点-2：成员变量爆炸"><a href="#高频痛点-2：成员变量爆炸" class="headerlink" title="高频痛点 2：成员变量爆炸"></a>高频痛点 2：成员变量爆炸</h4><p>成员声明，动辄数十行，令人眼花缭乱。接手老项目开发者，最有体会。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/1ad80e1ae477a02bc03958e5be1e3593.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/1ad80e1ae477a02bc03958e5be1e3593.png"></p>
 <h4 id="高频痛点-3：状态管理一致性问题"><a href="#高频痛点-3：状态管理一致性问题" class="headerlink" title="高频痛点 3：状态管理一致性问题"></a>高频痛点 3：状态管理一致性问题</h4><p>View 状态保存和恢复，使用原生 onInstanceStateSave &amp; Restore 机制，开发者容易因 “记得 restore、遗漏 save” 而产生不可预期错误。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/8f7e0cc9ec58209d80bdccb3e4217dcf.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/8f7e0cc9ec58209d80bdccb3e4217dcf.png"></p>
 <h4 id="高频痛点-4：消息分发一致性问题"><a href="#高频痛点-4：消息分发一致性问题" class="headerlink" title="高频痛点 4：消息分发一致性问题"></a>高频痛点 4：消息分发一致性问题</h4><p>由于 Activity 额外承担 “领域层” 职责，乃至消息收发工作也直接在 Activity 内进行，这使消息来源无法保证时效性、一致性，易 “被迫收到” 不可预期推送，滋生千奇百怪问题。</p>
 <p>EventBus 等 “缺乏鉴权结构” 框架，皆为该背景下 “消息分发不一致” 帮凶。</p>
 <blockquote>
@@ -254,7 +253,7 @@
 <h2 id="它山之石"><a href="#它山之石" class="headerlink" title="它山之石"></a>它山之石</h2><h3 id="矫枉过正-MVP"><a href="#矫枉过正-MVP" class="headerlink" title="矫枉过正 MVP"></a>矫枉过正 MVP</h3><p>这一版对 “现实状况” 判断有偏差。</p>
 <p>MVP 规定 Activity 应充当 View，而 Presenter 独吞 “表现层” 逻辑，通过 “契约接口” 与 View、Model 通信，</p>
 <p>这使 Activity 职能被严重剥夺，只剩末端通知 View 状态改变，无法全权自治 “表现逻辑”。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/45757847a65ae15afb4ecc9d79180f5e.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/45757847a65ae15afb4ecc9d79180f5e.png"></p>
 <h4 id="反客为主-Presenter"><a href="#反客为主-Presenter" class="headerlink" title="反客为主 Presenter"></a>反客为主 Presenter</h4><p>从 Presenter 角度看，似乎遵循 “依赖倒置原则” 和 “最小知道原则”，但从关系界限层面看，Presenter 属 “空降” 角色，一切都其自作主张、暗箱操作，不仅 “未能实质解决” 原 Activity 面临上述 4 大痛点，反因贪婪夺权引入更多烂事。</p>
 <p>这也是为何，开发过 MVP 项目，都知有多别扭。</p>
 <h4 id="简明易用-三方库"><a href="#简明易用-三方库" class="headerlink" title="简明易用 三方库"></a>简明易用 三方库</h4><p>基于其本质 “依赖倒置原则” 和 “最小知道原则”，更建议将其用于 “局部功能设计”，如 “三方库” 设计，使开发者 <strong>无需知道内部逻辑，简单配置即可使用</strong>。</p>
@@ -263,14 +262,14 @@
 <p>我们维护的 “饿了么二级联动列表” 库，即是基于该模式设计，感兴趣可自行查阅。</p>
 </blockquote>
 <h3 id="拨乱反正-MVVM"><a href="#拨乱反正-MVVM" class="headerlink" title="拨乱反正 MVVM"></a>拨乱反正 MVVM</h3><p>经历漫长黑夜，Android 开发引来曙光。</p>
-<p>2015 年 Google I/O 大会，DataBinding 框架面世。</p>
+<p>2015 年 Google I&#x2F;O 大会，DataBinding 框架面世。</p>
 <p>该框架可用于解决 “<strong>高频痛点1：View 实例 Null 安全一致性问题</strong>”，并跟随 MVVM 模式步入开发者视野。</p>
 <h4 id="曲高和寡-DataBinding"><a href="#曲高和寡-DataBinding" class="headerlink" title="曲高和寡 DataBinding"></a>曲高和寡 DataBinding</h4><blockquote>
 <p>MVVM 是种约定，双向绑定是 MVVM 特征，但非 DataBinding 本质，故长久以来，开发者对 DataBinding 存在误解，认为使用 DataBinding 即须双向绑定、且在 XML 中调试。</p>
 </blockquote>
 <p>事实并非如此。</p>
 <p>DataBinding 是通过 “可观察数据 ObservableField” 在编译时与 XML 中对应 View 实例绑定，这使上文所述 “竖布局有 TextViewA 而横布局无” 情况下，有 TextViewA 即被绑定，无即无绑定，于是无论何种情况，都不至于 findViewById 拿到 Null 实例从而诱发 Null 安全问题。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/3070a716be4b8f82c000802d33f8ba82.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/3070a716be4b8f82c000802d33f8ba82.png"></p>
 <p>也即，<strong>DataBinding 仅负责通知末端 View 状态改变，仅用于规避 Null 安全问题</strong>，不参与视图逻辑。而反向绑定是 “迁就” 这一结构的派生设计，非核心本质。</p>
 <blockquote>
 <p>碍于篇幅限制，如这么说无体会，可参见<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/9816742350">《从被误解到 “真香” Jeptack DataBinding》</a>解析，本文不再累述。</p>
@@ -285,16 +284,16 @@
 <blockquote>
 <p>至于为何说 mBinding 使用即 “未卜先知”，因为群众智慧多年后即被应验。</p>
 </blockquote>
-<h2 id="力挽狂澜"><a href="#力挽狂澜" class="headerlink" title="力挽狂澜"></a>力挽狂澜</h2><h3 id="官方牵头-Jetpack"><a href="#官方牵头-Jetpack" class="headerlink" title="官方牵头 Jetpack"></a>官方牵头 Jetpack</h3><p>时间回到 2017，这年 Google I/O 引入一系列 AAC（Android Architecture Components）</p>
+<h2 id="力挽狂澜"><a href="#力挽狂澜" class="headerlink" title="力挽狂澜"></a>力挽狂澜</h2><h3 id="官方牵头-Jetpack"><a href="#官方牵头-Jetpack" class="headerlink" title="官方牵头 Jetpack"></a>官方牵头 Jetpack</h3><p>时间回到 2017，这年 Google I&#x2F;O 引入一系列 AAC（Android Architecture Components）</p>
 <h4 id="一举多得-ViewModel"><a href="#一举多得-ViewModel" class="headerlink" title="一举多得 ViewModel"></a>一举多得 ViewModel</h4><p>其中 Jetpack ViewModel，通过支持 View 实例状态 “托管” 和 “保存恢复”，</p>
 <p>一举解决 “<strong>高频痛点2：成员变量爆炸</strong>” 和 “<strong>高频痛点 3：状态管理一致性问题</strong>”，</p>
 <p>Activity 成员变量表，一下简洁许多。Save &amp; Restore 样板代码亦烟消云散。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/9d2615c37a7c3ee6af756bb26318a004.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/9d2615c37a7c3ee6af756bb26318a004.png"></p>
 <h3 id="半路杀出-Kotlin"><a href="#半路杀出-Kotlin" class="headerlink" title="半路杀出 Kotlin"></a>半路杀出 Kotlin</h3><p>并且这时期，Kotlin 被扶持为官方语言，背景发生剧变。</p>
 <p>Kotlin 直接从语言层面支持 Null 安全，于是 DataBinding 在 Kotlin 项目式微。</p>
 <h4 id="喜闻乐见-ViewBinding"><a href="#喜闻乐见-ViewBinding" class="headerlink" title="喜闻乐见 ViewBinding"></a>喜闻乐见 ViewBinding</h4><p>千呼万唤，ViewBinding 问世 2019。</p>
 <p>如布局中 View 实例隐含 Null 安全隐患，则编译时 ViewBinding 中间代码为其生成 @Nullable 注解，使 Kotlin 开发过程中，Android Studio 自动提醒 “强制使用 Null 安全符”，由此确保 Null 安全一致。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/ac41859aafacf170d157f95ff7a34cae.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/ac41859aafacf170d157f95ff7a34cae.png"></p>
 <p>ViewBinding 于 Kotlin 项目可平替 DataBinding，开发者喜闻乐见 mBinding 使用。</p>
 <h2 id="百花齐放"><a href="#百花齐放" class="headerlink" title="百花齐放"></a>百花齐放</h2><h3 id="最佳实践-Jetpack-MVVM"><a href="#最佳实践-Jetpack-MVVM" class="headerlink" title="最佳实践 Jetpack MVVM"></a>最佳实践 Jetpack MVVM</h3><p>自 2017 年 AAC 问世，部分原生 Jetpack 架构组件至今仍存在设计隐患，</p>
 <p>基于 “架构组件本质即解决一致性问题” 理解，我们于 2019 陆续将 “隐患组件” 改造和开源。</p>
@@ -313,7 +312,7 @@
 <p><strong>Note 2023.4.25 加餐：</strong></p>
 <h4 id="消息分发-Dispatcher"><a href="#消息分发-Dispatcher" class="headerlink" title="消息分发 Dispatcher"></a>消息分发 Dispatcher</h4><p>由于 LiveData 存在的初衷并非是专业的 “一次性事件分发组件”，改造过的 UnPeekLiveData 也只适用于 “低频次数据分发（例如每秒推送 1 次）” 场景，</p>
 <p>因而若想满足 “高频次事件分发” 需求（例如每秒推送 5 次以上），请改用或参考专职 “领域层” 数据分发的 <a target="_blank" rel="noopener" href="https://github.com/KunMinX/MVI-Dispatcher">Github：MVI-Dispatcher</a> 组件，该组件内部通过消息队列设计，确保不漏掉每一次推送。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2023/16ca7da0028a3cd71a91817365149017.jpg" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2023/16ca7da0028a3cd71a91817365149017.jpg"></p>
 <blockquote>
 <p>Dispatcher 的存在解决了 “<strong>高频痛点 4：消息分发一致性问题</strong>”，</p>
 <p>也即通过在领域层设立 “专职业务处理和结果回推” 的 Dispatcher，来将业务处理过程中产生的 Event 或 State，以串流的方式统一从 output 出口回传，</p>

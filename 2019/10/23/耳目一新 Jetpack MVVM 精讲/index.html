@@ -55,8 +55,7 @@
       document.documentElement.setAttribute('color-mode', colorMode)
     }
   </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
   <body>
@@ -158,7 +157,7 @@
         
       </div>
       <div class="markdown-body">
-        <p><img src="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png" alt=""></p>
+        <p><img src="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png"></p>
 <span id="more"></span>
 
 
@@ -216,10 +215,10 @@
 <blockquote>
 <p>另一方面，分散的代码不利于修改，日后除了激活、叫停，若有其他操作补充，则每个宿主 Activity 都需额外书写一遍。</p>
 </blockquote>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/7391831ee0cde6dc7c13d4079c7cc6c8.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/7391831ee0cde6dc7c13d4079c7cc6c8.png"></p>
 <h3 id="Lifecycle-为何能解决上述这些问题？"><a href="#Lifecycle-为何能解决上述这些问题？" class="headerlink" title="Lifecycle 为何能解决上述这些问题？"></a>Lifecycle 为何能解决上述这些问题？</h3><p>Lifecycle 通过 “模板方法模式” 和 “观察者模式”，将生命周期管理的复杂操作，全在 LifecycleOwner（如 Activity、Fragment 等 “视图控制器” 基类）中封装好，默默在背后为开发者运筹帷幄，</p>
 <p>开发者因而得以在 “视图控制器” 子类中只需一句 <code>getLifecycle().addObserver(GpsManager.getInstance)</code> ，优雅完成 “第三方组件” 在自己内部对 LifecycleOwner 生命周期 “感知”。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/d81d42452cad95b8f30fd22beafc8cce.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/d81d42452cad95b8f30fd22beafc8cce.png"></p>
 <p>除解决一致性问题，这么做还 <strong>顺带提供其他 2 个好处</strong>：</p>
 <blockquote>
 <p><strong>1.规避为 “监听状态” 而注入 “视图控制器” 做法</strong></p>
@@ -242,10 +241,10 @@
 <blockquote>
 <p>如对上述状况无体会，可具体参考我们在 <a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/0168753249">《LiveData 鲜为人知 身世背景 和 独特使命》</a> 中提供的 “播放器状态全局通知” 案例。</p>
 </blockquote>
-<h3 id="LiveData-为何能解决上述这些问题？"><a href="#LiveData-为何能解决上述这些问题？" class="headerlink" title="LiveData 为何能解决上述这些问题？"></a>LiveData 为何能解决上述这些问题？</h3><p>首先，LiveData 是在 <strong>Google 希望确立 “标准化、规范化” 开发模式</strong> 背景下诞生，因而为达成该艰巨使命，LiveData 被十分克制设计为，<strong>仅支持状态输入和监听，且<mark>可基于 “访问权限控制” 来实现 “读写分离”</mark></strong>（protected + mutable）。</p>
+<h3 id="LiveData-为何能解决上述这些问题？"><a href="#LiveData-为何能解决上述这些问题？" class="headerlink" title="LiveData 为何能解决上述这些问题？"></a>LiveData 为何能解决上述这些问题？</h3><p>首先，LiveData 是在 <strong>Google 希望确立 “标准化、规范化” 开发模式</strong> 背景下诞生，因而为达成该艰巨使命，LiveData 被十分克制设计为，**仅支持状态输入和监听，且<mark>可基于 “访问权限控制” 来实现 “读写分离”</mark>**（protected + mutable）。</p>
 <p><strong>这使任何一次数据推送，都可被限制为 “只能单方面从唯一可信源推送而来”（也即所谓 “单向数据流”），从而避免消息同步不一致、不可靠、在事件追溯复杂度 n² 迷宫中白费时间，</strong></p>
 <p>也即，无论从哪个 “视图控制器” 发起消息请求，结果最终都由作为 “唯一可信源” 的单例或 SharedViewModel <strong>在其内部统一决策、一对多通知</strong>。</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2022/0397e32176ba9e94e38f58e7a00d0da5.png" alt=""></p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2022/0397e32176ba9e94e38f58e7a00d0da5.png"></p>
 <p>且，这种承上启下方式，使单向依赖成为可能：单例无需通过 Java Interface 回调通知视图控制器，从而规避 “视图控制器” 被 “生命周期更长的单例” 依赖而埋下内存泄漏隐患。</p>
 <h3 id="LiveData-有个坑需要注意"><a href="#LiveData-有个坑需要注意" class="headerlink" title="LiveData 有个坑需要注意"></a>LiveData 有个坑需要注意</h3><p>不过我个人认为，LiveData 的 Observer 设计缺乏边界感，</p>
 <p>作为表现层承担 BehaviorSubject 职能的组件，应避免开发者直接接触 Observer 回调，并确保 “与控件属性一对一绑定”，不然开发者容易将其误用作 “一次性事件分发组件”，造成 “订阅时被自动回推脏数据”；或是开发者误使同一控件实例出现在多个 Observer 回调中，造成<a target="_blank" rel="noopener" href="https://juejin.cn/post/7145317979708735496">《MVI 存在意义》篇</a> “响应式编程漏洞” 一节所说的 “数据一致性” 问题，</p>
@@ -285,7 +284,7 @@
 </blockquote>
 <h3 id="DataBinding-存在前的混沌世界"><a href="#DataBinding-存在前的混沌世界" class="headerlink" title="DataBinding 存在前的混沌世界"></a>DataBinding 存在前的混沌世界</h3><p>DataBinding 面市前，我们若要改变视图状态，唯有先调用该 View 实例，如 textView.setText( )，</p>
 <p>这造成什么问题？</p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ac4caf1cad24cc89b9918127fc8baa7~tplv-k3u1fbpfcp-watermark.image" alt=""></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ac4caf1cad24cc89b9918127fc8baa7~tplv-k3u1fbpfcp-watermark.image"></p>
 <blockquote>
 <p>当页面存在横、竖布局，且两种布局控件存在差异，例如横屏存在 textView 控件，而竖屏没有，那么我们便不得不在 “视图控制器” 中为 textView 做判空处理，这就造成一致性问题 —— <strong>容易疏忽而忘记判空</strong>，毕竟页面多达数十个、每个页面调用控件的地方也无数。</p>
 </blockquote>
@@ -296,7 +295,7 @@
 </blockquote>
 <p>换言之，使用 DataBinding 后，唯一的改变是，你无需 “手工调用 View 实例” 来 set 新状态，你只需 set 可观察数据本身。</p>
 <p>因而，<strong>DataBinding 并非许多人不假思索认为的，将 UI 逻辑搬到 XML 中写、从而难以调试 —— 事实并非如此：</strong></p>
-<p><strong>DataBinding 只负责绑定数据、<mark>负责 “作为 UI 逻辑末端状态” 的改变</mark></strong>（也即它是一个不可再分原子操作，本就不需调试），原本在视图控制器中 UI 逻辑怎么写，现还是怎么写，只不过不再需要 textView.setText(xxx)，而是直接 xxx.set( )。</p>
+<p>**DataBinding 只负责绑定数据、<mark>负责 “作为 UI 逻辑末端状态” 的改变</mark>**（也即它是一个不可再分原子操作，本就不需调试），原本在视图控制器中 UI 逻辑怎么写，现还是怎么写，只不过不再需要 textView.setText(xxx)，而是直接 xxx.set( )。</p>
 <p>所以在 DataBinding 帮助下，好处总共多少个？</p>
 <blockquote>
 <p>1.规避 View 实例 Null 安全一致性问题 —— 无需手工判空。</p>
@@ -321,11 +320,11 @@
 <blockquote>
 <p>全文完</p>
 </blockquote>
-<h2 id="本文配套项目"><a href="#本文配套项目" class="headerlink" title="本文配套项目"></a>本文配套项目</h2><p><img src="https://images.xiaozhuanlan.com/photo/2023/b10d6c52e0cdb4197725059399fad12f.jpg" alt=""></p>
+<h2 id="本文配套项目"><a href="#本文配套项目" class="headerlink" title="本文配套项目"></a>本文配套项目</h2><p><img src="https://images.xiaozhuanlan.com/photo/2023/b10d6c52e0cdb4197725059399fad12f.jpg"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice">GitHub : Jetpack-MVVM-Best-Practice</a></p>
 <h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><p>本文以 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">CC 署名-非商业性使用-禁止演绎 4.0 国际协议</a> 发行。</p>
 <p>Copyright © 2019-present KunMinX</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7418d1c58ad14ee0b942e992798d56b2~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7418d1c58ad14ee0b942e992798d56b2~tplv-k3u1fbpfcp-zoom-1.image"></p>
 <p>文中提到的 “xxx 架构组件的存在，是为了在 多人协作软件工程背景下 <strong>解决 xxx 一致性问题</strong>”，以及 “LiveData 在页面通信、事件回调场景下发生 <strong>数据倒灌</strong>” 等多处 <strong>对特定现象及其本质匹配和概括，均属于本人独立原创成果</strong>，本人对此享有所有权和最终解释权。</p>
 <p>当您借鉴或引用本文 引言、思路、结论进行二次创作，或全文转载时，须注明链接出处，否则我们保留追责权利。</p>
 <p>未经与作者本人当面沟通许可，不得将文章内容用于洗稿、广告包装等商业用途。</p>
