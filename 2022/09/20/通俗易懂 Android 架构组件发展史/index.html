@@ -1,51 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>KunMinX 博客 | 公元 3000 年</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>KunMinX 博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="KunMinX 博客"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="KunMinX 博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。 由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。"><meta property="og:type" content="article"><meta property="og:title" content="KunMinX 博客"><meta property="og:url" content="https://www.kunminx.com/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"><meta property="og:site_name" content="KunMinX 博客"><meta property="og:description" content="谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。 由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/65d68f299de4f66762bac61910398cb0.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/1ad80e1ae477a02bc03958e5be1e3593.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/8f7e0cc9ec58209d80bdccb3e4217dcf.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/45757847a65ae15afb4ecc9d79180f5e.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/3070a716be4b8f82c000802d33f8ba82.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/9d2615c37a7c3ee6af756bb26318a004.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2022/ac41859aafacf170d157f95ff7a34cae.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2023/16ca7da0028a3cd71a91817365149017.jpg"><meta property="article:published_time" content="2022-09-20T04:00:00.000Z"><meta property="article:modified_time" content="2023-08-04T06:29:15.038Z"><meta property="article:author" content="KunMinX"><meta property="article:tag" content="Jetpack,MVVM,Jetpack MVVM,Android"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://images.xiaozhuanlan.com/photo/2022/65d68f299de4f66762bac61910398cb0.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kunminx.com/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"},"headline":"KunMinX 博客","image":["https://images.xiaozhuanlan.com/photo/2022/65d68f299de4f66762bac61910398cb0.png","https://images.xiaozhuanlan.com/photo/2022/1ad80e1ae477a02bc03958e5be1e3593.png","https://images.xiaozhuanlan.com/photo/2022/8f7e0cc9ec58209d80bdccb3e4217dcf.png","https://images.xiaozhuanlan.com/photo/2022/45757847a65ae15afb4ecc9d79180f5e.png","https://images.xiaozhuanlan.com/photo/2022/3070a716be4b8f82c000802d33f8ba82.png","https://images.xiaozhuanlan.com/photo/2022/9d2615c37a7c3ee6af756bb26318a004.png","https://images.xiaozhuanlan.com/photo/2022/ac41859aafacf170d157f95ff7a34cae.png","https://images.xiaozhuanlan.com/photo/2023/16ca7da0028a3cd71a91817365149017.jpg"],"datePublished":"2022-09-20T04:00:00.000Z","dateModified":"2023-08-04T06:29:15.038Z","author":{"@type":"Person","name":"KunMinX"},"publisher":{"@type":"Organization","name":"KunMinX 博客","logo":{"@type":"ImageObject"}},"description":"谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。 由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。"}</script><link rel="canonical" href="https://www.kunminx.com/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="/css/style.css">
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
-
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">KunMinX 博客</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </a>
-</div>
-                
-                <div class="post-main">
-
-    
-    
-        <div class="post-main-title">
-            通俗易懂 Android 架构组件发展史
-        </div>
-        <div class="post-meta">
-            2022-09-20
-        </div>
-        <div class="post-md">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。</p>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
+</head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">KunMinX 博客</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-09-20T04:00:00.000Z" title="2022/9/20 12:00:00">2022-09-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:29:15.038Z" title="2023/8/4 14:29:15">2023-08-04</time></span></div></div><div class="content"><p>谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。</p>
 <p>由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 
 
@@ -102,7 +89,7 @@
 </ul>
 <h2 id="原生架构"><a href="#原生架构" class="headerlink" title="原生架构"></a>原生架构</h2><h3 id="原始图形化架构"><a href="#原始图形化架构" class="headerlink" title="原始图形化架构"></a>原始图形化架构</h3><p>完整软件服务，通常包含客户端和服务端。</p>
 <p>Linux 服务端，开发者通过命令行操作；Android 客户端，面向普通用户，须提供图形化操作。为此，Android 将图形系统设计为，通过客户端 Canvas 绘制图形，并交由 Surface Flinger 渲染。</p>
-<p>但正如<a href="https://www.yuque.com/kunminx/fpmbc5/tpn54e" target="_blank" rel="noopener">《过目难忘 Android GUI 关系梳理》</a>所述，复杂图形绘制离不开排版过程，而开发者良莠不齐，如直接暴露 Canvas，易导致开发者误用和产生不可预期错误，</p>
+<p>但正如<a target="_blank" rel="noopener" href="https://www.yuque.com/kunminx/fpmbc5/tpn54e">《过目难忘 Android GUI 关系梳理》</a>所述，复杂图形绘制离不开排版过程，而开发者良莠不齐，如直接暴露 Canvas，易导致开发者误用和产生不可预期错误，</p>
 <p>为此 Android 索性基于 “模板方法模式” 设计 View、Drawable 等排版模板，让 UI 开发者可继承标准化模板，配置出诸如 TextView、ImageView、ShapeDrawable 等自定义模板，供业务开发者用。</p>
 <blockquote>
 <p>这样误用 Canvas 问题看似解决，却引入 “高频痛点 1”：<strong>View 实例 Null 安全一致性问题</strong>。这是 Java 语言项目硬伤，客户端背景下尤明显。</p>
@@ -144,7 +131,7 @@
 <p>这也是为何，开发过 MVP 项目，都知有多别扭。</p>
 <h4 id="简明易用-三方库"><a href="#简明易用-三方库" class="headerlink" title="简明易用 三方库"></a>简明易用 三方库</h4><p>基于其本质 “依赖倒置原则” 和 “最小知道原则”，更建议将其用于 “局部功能设计”，如 “三方库” 设计，使开发者 <strong>无需知道内部逻辑，简单配置即可使用</strong>。</p>
 <blockquote>
-<p><a href="https://github.com/KunMinX/Linkage-RecyclerView" target="_blank" rel="noopener">Github：Linkage-RecyclerView</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/KunMinX/Linkage-RecyclerView">Github：Linkage-RecyclerView</a></p>
 <p>我们维护的 “饿了么二级联动列表” 库，即是基于该模式设计，感兴趣可自行查阅。</p>
 </blockquote>
 <h3 id="拨乱反正-MVVM"><a href="#拨乱反正-MVVM" class="headerlink" title="拨乱反正 MVVM"></a>拨乱反正 MVVM</h3><p>经历漫长黑夜，Android 开发引来曙光。</p>
@@ -158,12 +145,12 @@
 <p><img src="https://images.xiaozhuanlan.com/photo/2022/3070a716be4b8f82c000802d33f8ba82.png" alt=""></p>
 <p>也即，<strong>DataBinding 仅负责通知末端 View 状态改变，仅用于规避 Null 安全问题</strong>，不参与视图逻辑。而反向绑定是 “迁就” 这一结构的派生设计，非核心本质。</p>
 <blockquote>
-<p>碍于篇幅限制，如这么说无体会，可参见<a href="https://xiaozhuanlan.com/topic/9816742350" target="_blank" rel="noopener">《从被误解到 “真香” Jeptack DataBinding》</a>解析，本文不再累述。</p>
+<p>碍于篇幅限制，如这么说无体会，可参见<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/9816742350">《从被误解到 “真香” Jeptack DataBinding》</a>解析，本文不再累述。</p>
 </blockquote>
 <h4 id="未卜先知-mBinding"><a href="#未卜先知-mBinding" class="headerlink" title="未卜先知 mBinding"></a>未卜先知 mBinding</h4><p>除了本质难理解，DataBinding 也有硬伤，由于隔着一层 BindingAdapter，难获取 View 体系坐标等 getter 属性，乃至 “属性动画” 等框架难兼容。</p>
 <blockquote>
 <p>有说 MotionLayout 可破此局，于多数场景轻松完成动画。</p>
-<p>但它也非省油灯，不同时支持 Drag &amp; Click，难实现我们 <a href="https://juejin.cn/post/6844903986475040782#heading-0" target="_blank" rel="noopener">示例项目</a> “展开面板” 场景。</p>
+<p>但它也非省油灯，不同时支持 Drag &amp; Click，难实现我们 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903986475040782#heading-0">示例项目</a> “展开面板” 场景。</p>
 </blockquote>
 <p>于是，DataBinding 做出 “违背祖宗” 决定 —— <strong>允许开发者在 Java 代码中拿到 mBinding 乃至 View 实例</strong> …  如此上一节提到的 “改用 ObservableField 的绑定来消除 Null 安全问题” 的努力前功尽弃。</p>
 <p>—— 鉴于 App 页面并非总是 “横竖布局皆有”，于是开发者索性通过 “强制竖屏” 扼杀 View 实例 Null 安全隐患，而调用 mBinding 实例仅用于规避 findViewById 样板代码。</p>
@@ -188,32 +175,32 @@
 <p>1.Jetpack 架构示例通常只包含 “表现层” 和 “数据层” 两层，缺乏在 “领域层” 分发数据的工具，</p>
 <p>2.LiveData Observer 的设计缺乏边界感，</p>
 <p>容易让开发者误当做 “一次性事件分发组件” 来使用，造成订阅时 “自动回推脏数据”；</p>
-<p>容易让开发者误将同一控件实例放在多个 Observer 回调中 造成恢复状态时 “数据不一致” 等问题（具体可参见<a href="https://xiaozhuanlan.com/topic/4689175032" target="_blank" rel="noopener">《响应式编程和 MVI》篇</a> 关于 “响应式编程漏洞” 的描述）</p>
+<p>容易让开发者误将同一控件实例放在多个 Observer 回调中 造成恢复状态时 “数据不一致” 等问题（具体可参见<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/4689175032">《响应式编程和 MVI》篇</a> 关于 “响应式编程漏洞” 的描述）</p>
 <p>3.DataBinding ObservableField 组件的 Observer 能限定为 “与控件一对一绑定”，更适合承担表现层 BehaviorSubject 工作，</p>
 <p>4.LiveData 具备生命周期安全等优势，</p>
 <p>因此决定将 LiveData 往领域层 PublishSubject 方向改造，去除其 “自动推送最后一次状态” 的能力，使其专职生命周期安全的数据分发。</p>
 <blockquote>
-<p>具体可参见 <a href="https://github.com/KunMinX/UnPeek-LiveData" target="_blank" rel="noopener">Github：UnPeek-LiveData</a> 使用。</p>
+<p>具体可参见 <a target="_blank" rel="noopener" href="https://github.com/KunMinX/UnPeek-LiveData">Github：UnPeek-LiveData</a> 使用。</p>
 </blockquote>
 <p><strong>Note 2023.4.25 加餐：</strong></p>
 <h4 id="消息分发-Dispatcher"><a href="#消息分发-Dispatcher" class="headerlink" title="消息分发 Dispatcher"></a>消息分发 Dispatcher</h4><p>由于 LiveData 存在的初衷并非是专业的 “一次性事件分发组件”，改造过的 UnPeekLiveData 也只适用于 “低频次数据分发（例如每秒推送 1 次）” 场景，</p>
-<p>因而若想满足 “高频次事件分发” 需求（例如每秒推送 5 次以上），请改用或参考专职 “领域层” 数据分发的 <a href="https://github.com/KunMinX/MVI-Dispatcher" target="_blank" rel="noopener">Github：MVI-Dispatcher</a> 组件，该组件内部通过消息队列设计，确保不漏掉每一次推送。</p>
+<p>因而若想满足 “高频次事件分发” 需求（例如每秒推送 5 次以上），请改用或参考专职 “领域层” 数据分发的 <a target="_blank" rel="noopener" href="https://github.com/KunMinX/MVI-Dispatcher">Github：MVI-Dispatcher</a> 组件，该组件内部通过消息队列设计，确保不漏掉每一次推送。</p>
 <p><img src="https://images.xiaozhuanlan.com/photo/2023/16ca7da0028a3cd71a91817365149017.jpg" alt=""></p>
 <blockquote>
 <p>Dispatcher 的存在解决了 “<strong>高频痛点 4：消息分发一致性问题</strong>”，</p>
 <p>也即通过在领域层设立 “专职业务处理和结果回推” 的 Dispatcher，来将业务处理过程中产生的 Event 或 State，以串流的方式统一从 output 出口回传，</p>
 <p>由此表现层页面可根据消息的性质，采取 “一致性执行” 或 “交由 BehaviorSubject 托管状态”。</p>
-<p>对此具体可参见<a href="https://xiaozhuanlan.com/topic/6741932805" target="_blank" rel="noopener">《Jetpack MVVM 分层设计解析》篇</a> 解析。</p>
+<p>对此具体可参见<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/6741932805">《Jetpack MVVM 分层设计解析》篇</a> 解析。</p>
 </blockquote>
 <h4 id="严格模式-DataBinding"><a href="#严格模式-DataBinding" class="headerlink" title="严格模式 DataBinding"></a>严格模式 DataBinding</h4><p>此外我们明确约定 Java 下 DataBinding 使用原则，确保 100% Null 安全。如违背原则，便 Debug 模式下警告，方便开发者留意。</p>
 <blockquote>
-<p>具体可参见 <a href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice/blob/master/app/src/main/java/com/kunminx/puremusic/ui/page/SearchFragment.java" target="_blank" rel="noopener">Github：KunMinX-MVVM</a> 使用。</p>
+<p>具体可参见 <a target="_blank" rel="noopener" href="https://github.com/KunMinX/Jetpack-MVVM-Best-Practice/blob/master/app/src/main/java/com/kunminx/puremusic/ui/page/SearchFragment.java">Github：KunMinX-MVVM</a> 使用。</p>
 </blockquote>
 <h3 id="另起炉灶-Compose"><a href="#另起炉灶-Compose" class="headerlink" title="另起炉灶 Compose"></a>另起炉灶 Compose</h3><p>回到文章开头 Canvas，为实现 View 实例 Null 安全，先是 DataBinding 框架，但它作为一框架，并不体系自洽，与 “属性动画” 等框架难兼容。</p>
 <p>于是出现声明式 UI，通过函数式编程 “<strong>纯函数原子性</strong>” 解决 Null 安全一致。且体系自洽，动画无兼容问题，学习成本也低于 View 体系。</p>
 <p>后续如性能全面跟上、120Hz 无压力，建议直接上手 Compose 开发。</p>
 <blockquote>
-<p>注：关于声明式 UI 函数式编程本质，及纯函数原子性为何能实现 Null 安全一致，详见<a href="https://www.yuque.com/kunminx/fpmbc5/nrvuk0" target="_blank" rel="noopener">《一通百通 “声明式 UI” 扫盲干货》</a>，本文不作累述。</p>
+<p>注：关于声明式 UI 函数式编程本质，及纯函数原子性为何能实现 Null 安全一致，详见<a target="_blank" rel="noopener" href="https://www.yuque.com/kunminx/fpmbc5/nrvuk0">《一通百通 “声明式 UI” 扫盲干货》</a>，本文不作累述。</p>
 </blockquote>
 <h2 id="综上"><a href="#综上" class="headerlink" title="综上"></a>综上</h2><p><strong>高频痛点1：Null 安全一致性问题</strong></p>
 <p>客户端，图形化，需 Canvas，</p>
@@ -227,42 +214,20 @@
 <p><strong>高频痛点4：消息分发一致性问题</strong></p>
 <p>引入 Dispatcher 承担 PublishSubject，实现统一的消息推送。</p>
 <p>最后，天下无完美架构，唯有高频痛点熟稔于心，不断死磕精进，集思广益，迭代特定场景最优解。</p>
-<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>Canvas，View，Drawable，排版模板：<a href="https://www.yuque.com/kunminx/fpmbc5/tpn54e" target="_blank" rel="noopener">《过目难忘 Android GUI 关系梳理》</a></p>
-<p>DataBinding，Null 安全一致，ViewBinding：<a href="https://xiaozhuanlan.com/topic/9816742350" target="_blank" rel="noopener">《从被误解到 “真香” Jetpack DataBinding》</a></p>
-<p>Dispatcher，消息分发，State，Event：<a href="https://xiaozhuanlan.com/topic/6741932805" target="_blank" rel="noopener">《Jetpack MVVM 分层设计解析》</a> </p>
-<p>架构组件解决一致性问题：<a href="https://juejin.cn/post/6844903976240939021" target="_blank" rel="noopener">《耳目一新 Jetpack MVVM 精讲》</a></p>
-<p>Compose，纯函数原子特性，Null 安全一致：<a href="https://www.yuque.com/kunminx/fpmbc5/nrvuk0" target="_blank" rel="noopener">《一通百通 “声明式 UI” 扫盲干货》</a></p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>Canvas，View，Drawable，排版模板：<a target="_blank" rel="noopener" href="https://www.yuque.com/kunminx/fpmbc5/tpn54e">《过目难忘 Android GUI 关系梳理》</a></p>
+<p>DataBinding，Null 安全一致，ViewBinding：<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/9816742350">《从被误解到 “真香” Jetpack DataBinding》</a></p>
+<p>Dispatcher，消息分发，State，Event：<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/6741932805">《Jetpack MVVM 分层设计解析》</a> </p>
+<p>架构组件解决一致性问题：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903976240939021">《耳目一新 Jetpack MVVM 精讲》</a></p>
+<p>Compose，纯函数原子特性，Null 安全一致：<a target="_blank" rel="noopener" href="https://www.yuque.com/kunminx/fpmbc5/nrvuk0">《一通百通 “声明式 UI” 扫盲干货》</a></p>
 <h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
 <p>Copyright © 2019-present KunMinX 原创版权所有。</p>
 </blockquote>
 <p>如需 <strong>转载本文，或引用、借鉴</strong> 本文 “引言、思路、结论、配图” 进行二次创作发行，<strong>须注明链接出处</strong>，否则我们保留追责权利。</p>
-
-        </div>
-
-    
-
-</div>
-                <div class="footer">
-    <span>Copyright © 2022 KunMinX 博客</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
-</div>
-
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
-            </div>
-        </div>
-    </body>
-</html>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">KunMinX 博客</a><p class="is-size-7"><span>&copy; 2023 KunMinX</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>

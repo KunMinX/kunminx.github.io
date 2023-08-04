@@ -1,59 +1,46 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>KunMinX 博客 | 公元 3000 年</title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>KunMinX 博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="KunMinX 博客"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="KunMinX 博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，  上一期《过目难忘 Android GUI 关系梳理》，我们循序渐进拆解了 “View 体系” 各工具的 存在意义 及 相互间关系，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。"><meta property="og:type" content="article"><meta property="og:title" content="KunMinX 博客"><meta property="og:url" content="https://www.kunminx.com/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"><meta property="og:site_name" content="KunMinX 博客"><meta property="og:description" content="Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，  上一期《过目难忘 Android GUI 关系梳理》，我们循序渐进拆解了 “View 体系” 各工具的 存在意义 及 相互间关系，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2021/1889f3a3310af0351ba8fe2d1ed83a97.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2021/5bdf1436e1d8bc1f7a8957aa509d774a.png"><meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2021/4c203f52aa7310aaea86b9782fb926f2.png"><meta property="article:published_time" content="2020-03-06T12:00:00.000Z"><meta property="article:modified_time" content="2023-08-04T06:27:57.051Z"><meta property="article:author" content="KunMinX"><meta property="article:tag" content="Jetpack,MVVM,Jetpack MVVM,Android"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://images.xiaozhuanlan.com/photo/2021/1889f3a3310af0351ba8fe2d1ed83a97.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kunminx.com/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"},"headline":"KunMinX 博客","image":["https://images.xiaozhuanlan.com/photo/2021/1889f3a3310af0351ba8fe2d1ed83a97.png","https://images.xiaozhuanlan.com/photo/2021/5bdf1436e1d8bc1f7a8957aa509d774a.png","https://images.xiaozhuanlan.com/photo/2021/4c203f52aa7310aaea86b9782fb926f2.png"],"datePublished":"2020-03-06T12:00:00.000Z","dateModified":"2023-08-04T06:27:57.051Z","author":{"@type":"Person","name":"KunMinX"},"publisher":{"@type":"Organization","name":"KunMinX 博客","logo":{"@type":"ImageObject"}},"description":"Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，  上一期《过目难忘 Android GUI 关系梳理》，我们循序渐进拆解了 “View 体系” 各工具的 存在意义 及 相互间关系，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。"}</script><link rel="canonical" href="https://www.kunminx.com/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="/css/style.css">
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
-
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="post-header">
-    <a class="logo" href="/">KunMinX 博客</a>
-    <a class="go-home" href="/">
-        <svg width="8" height="14" viewBox="0 0 8 14">
-            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </a>
-</div>
-                
-                <div class="post-main">
-
-    
-    
-        <div class="post-main-title">
-            声明式 UI 解析
-        </div>
-        <div class="post-meta">
-            2020-03-06
-        </div>
-        <div class="post-md">
-            <blockquote>
-<p>注：本文节选自<a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
-</blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
+</head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">KunMinX 博客</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-06T12:00:00.000Z" title="2020/3/6 20:00:00">2020-03-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:27:57.051Z" title="2023/8/4 14:27:57">2023-08-04</time></span></div></div><div class="content"><blockquote>
 <p>Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，</p>
 </blockquote>
-<p>上一期<a href="https://xiaozhuanlan.com/topic/2073915486" target="_blank" rel="noopener">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p>
-<a id="more"></a>
+<p>上一期<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2073915486">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p>
+<span id="more"></span>
 
 
 
+<blockquote>
+<p>注：本文节选自<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2356748910">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
+</blockquote>
 <h2 id="声明式-UI-由来"><a href="#声明式-UI-由来" class="headerlink" title="声明式 UI 由来"></a>声明式 UI 由来</h2><p>事实上，React、Flutter、SwiftUI、Jetpack Compose，这些 UI 框架有个共同鼻祖，即一个名为 elm（不是 “饿了么”）的 UI 框架，是它最早确立并推行 “声明式 UI” 设计理念。</p>
 <blockquote>
 <p>注：“声明式 UI” 这个名称，最初谁定义，暂未找到来源，目前各大官网都称其为 “声明式 UI”，基于我个人理解，其更精确表达是，“响应式 UI 框架的声明式编程分支”，当然，最终我们还是简称为 “声明式 UI”。</p>
@@ -146,41 +133,19 @@
 <p>正是由于这锐意进取 <strong>“死磕精神”</strong>，使软件开发得以不断优化和改进。</p>
 </blockquote>
 <p>通过 “混沌世界” 一节分析，我们已确知，在 “自由散漫” 环境下，<strong>实例分散可使不可预期风险被大幅扩散</strong>，</p>
-<p>加上 <a href="https://xiaozhuanlan.com/topic/9816742350" target="_blank" rel="noopener">《从被误解到 “真香” Jetpack DataBinding》</a>“横竖屏布局控件存在差异” 这一经典案例，如采用 “自由散漫” 方式，同会埋下视图实例 Null 安全一致性问题，</p>
+<p>加上 <a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/9816742350">《从被误解到 “真香” Jetpack DataBinding》</a>“横竖屏布局控件存在差异” 这一经典案例，如采用 “自由散漫” 方式，同会埋下视图实例 Null 安全一致性问题，</p>
 <p>而如今，函数式、响应式，意味着多种一致性问题被简化为 “数据的一致性” 这一种，开发者只需确保数据的来源是唯一且可靠的，即可通过这唯一来源的数据去驱动声明式 UI，从而得到始终一致、符合预期的结果。</p>
 <h3 id="声明式-UI-运作流程是怎样"><a href="#声明式-UI-运作流程是怎样" class="headerlink" title="声明式 UI 运作流程是怎样"></a>声明式 UI 运作流程是怎样</h3><p>试读内容完。</p>
-<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a></p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2356748910">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a></p>
 <h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><blockquote>
 <p>Copyright © 2019-present KunMinX 原创版权所有。</p>
 </blockquote>
 <p>如需 <strong>转载本文，或引用、借鉴</strong> 本文 “引言、思路、结论、配图” 进行二次创作发行，<strong>须注明链接出处</strong>，否则我们保留追责权利。</p>
-
-        </div>
-
-    
-
-</div>
-                <div class="footer">
-    <span>Copyright © 2022 KunMinX 博客</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
-</div>
-
-
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
-
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
-            </div>
-        </div>
-    </body>
-</html>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">KunMinX 博客</a><p class="is-size-7"><span>&copy; 2023 KunMinX</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>
