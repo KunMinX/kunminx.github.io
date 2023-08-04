@@ -1,5 +1,49 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Kotlin 感觉 · KunMinX 博客</title><meta name="description" content="Kotlin 感觉 - KunMinX"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.kunminx.com/atom.xml" title="KunMinX 博客"><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/kunminx" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Kotlin 感觉</h1><div class="post-info">Aug 3, 2023</div><div class="post-content"><p>给我感觉，这是一门最小完备的语言，功能实用，无以复减，</p>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>KunMinX 博客 | 公元 3000 年</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/markdown.css">
+
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
+</head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">KunMinX 博客</a>
+    <a class="go-home" href="/">
+        <svg width="8" height="14" viewBox="0 0 8 14">
+            <path d="M7 1L1 7l6 6" stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+</div>
+                
+                <div class="post-main">
+
+    
+    
+        <div class="post-main-title">
+            Kotlin 感觉
+        </div>
+        <div class="post-meta">
+            2023-08-03
+        </div>
+        <div class="post-md">
+            <p>给我感觉，这是一门最小完备的语言，功能实用，无以复减，</p>
 <p>语法上主要印象有 6 方面，</p>
 <a id="more"></a>
 
@@ -8,20 +52,20 @@
 <h3 id="声明方式和字面量的简化"><a href="#声明方式和字面量的简化" class="headerlink" title="声明方式和字面量的简化"></a>声明方式和字面量的简化</h3><p>1.使用 val、var 来动态声明，编译时则会编译成静态类型，</p>
 <p>2.数字字面量可以写成 val num = 1_000_000.99_99 方便人类查阅，</p>
 <p>字符串字面量可以写成 </p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> num = <span class="hljs-number">1_000_000.99_99</span><br><span class="hljs-keyword">val</span> s = <span class="hljs-string">"""</span><br><span class="hljs-string">	this is a xxxx,</span><br><span class="hljs-string">	so that this is a xx,</span><br><span class="hljs-string">	so that this is not a xx,</span><br><span class="hljs-string">	so the number is <span class="hljs-variable">$num</span></span><br><span class="hljs-string">"""</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plain">val num &#x3D; 1_000_000.99_99<br>val s &#x3D; &quot;&quot;&quot;<br>	this is a xxxx,<br>	so that this is a xx,<br>	so that this is not a xx,<br>	so the number is $num<br>&quot;&quot;&quot;<br></code></pre></td></tr></table></figure>
 
 <p>无需 + 拼接，无需 \n 换行，</p>
 <h3 id="控制流与中缀表达式"><a href="#控制流与中缀表达式" class="headerlink" title="控制流与中缀表达式"></a>控制流与中缀表达式</h3><p>1.控制流可以直接作为表达式来返回结果，例如</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>: String &#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span>(xxx) <span class="hljs-string">"a"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"b"</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun test(): String &#123;<br>	return if(xxx) &quot;a&quot; else &quot;b&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>2.函数也可直接以表达式方式书写，例如</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span> = <span class="hljs-keyword">if</span>(xxx) <span class="hljs-string">"a"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"b"</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun test() &#x3D; if(xxx) &quot;a&quot; else &quot;b&quot;<br></code></pre></td></tr></table></figure>
 
 <p>3.区间可以更直观简便，例如循环的步进可以这样写</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">10</span>) &#123; ... &#125;<br><span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..&lt;<span class="hljs-number">10</span>) &#123; ... &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">for(i in 0..10) &#123; ... &#125;<br>for(i in 0..&lt;10) &#123; ... &#125;<br></code></pre></td></tr></table></figure>
 
 <p>4.<code>in</code>、 <code>..</code>、 <code>..&lt;</code>，都是中缀表达式，开发者也可通过 infix 修饰的函数自定义中缀，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">infix</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> Any.<span class="hljs-title">to</span><span class="hljs-params">(other: <span class="hljs-type">Any</span>)</span></span> &#123; ... &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span> &#123;<br>	print(<span class="hljs-number">1</span> to <span class="hljs-string">"s"</span>)<br>  <span class="hljs-comment">//等同于 print(1.to("s"))</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plain">infix fun Any.to(other: Any) &#123; ... &#125;<br><br>fun test() &#123;<br>	print(1 to &quot;s&quot;)<br>  &#x2F;&#x2F;等同于 print(1.to(&quot;s&quot;))<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -29,42 +73,42 @@
 <p>如此一来，蝴蝶效应，引发诸多连锁改善，</p>
 <p>1.由于函数可以不是类成员，kotlin 的语法索性统一为，不得在参数中为类成员赋值，如此便为赋值运算符用作 “参数默认值” 预留了空间，</p>
 <p>反观 java，由于方法总是类成员，延伸出可在方法实参中为类成员赋值的写法，而这种鸡肋用法对后来 “参数默认值” 语法的出现造成阻碍，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//java</span><br>void setAdapter(Adapter adpt)&#123; ... &#125;<br>Adapter adpt;<br>setAdapter(adpt = new Adapter());<br><br><span class="hljs-comment">//kotlin</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">setAdapter</span><span class="hljs-params">(count: <span class="hljs-type">Int</span>, adpt: <span class="hljs-type">Adapter</span> = Adapter()</span></span>)&#123; ... &#125;<br>setAdapter() <span class="hljs-comment">//参数都沿用默认值</span><br>setAdapter(adpt = MyAdapter()) <span class="hljs-comment">//指定某参数使用自定义值</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plain">&#x2F;&#x2F;java<br>void setAdapter(Adapter adpt)&#123; ... &#125;<br>Adapter adpt;<br>setAdapter(adpt &#x3D; new Adapter());<br><br>&#x2F;&#x2F;kotlin<br>fun setAdapter(count: Int, adpt: Adapter &#x3D; Adapter())&#123; ... &#125;<br>setAdapter() &#x2F;&#x2F;参数都沿用默认值<br>setAdapter(adpt &#x3D; MyAdapter()) &#x2F;&#x2F;指定某参数使用自定义值<br></code></pre></td></tr></table></figure>
 
 
 
 <p>2.由于函数和变量可以和类一样直接在文件中声明（作为 “头等公民”），故此延伸出拓展、闭包、内联、委托等，</p>
 <p>这拓展即是以顶层函数/变量的形式，对类成员进行拓展。在拓展函数中，可以像在类中一样，通过 this 访问到当前类对象，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> String.<span class="hljs-title">haha</span><span class="hljs-params">(s: <span class="hljs-type">String</span>)</span></span>&#123;<br>	<span class="hljs-keyword">this</span>.add(s)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun String.haha(s: String)&#123;<br>	this.add(s)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这闭包（也即 lambda，个人习惯称之为闭包），可直接用在函数参数中，实现回调，</p>
 <p>并且如果闭包是函数唯一的参数，那么调用该函数时，可以省略 ( )，直接写闭包 { }，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(action: (<span class="hljs-type">String</span>)-&gt;<span class="hljs-type">Unit</span>)</span></span> &#123;<br>	action(<span class="hljs-string">"haha"</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>	doSomething &#123;<br>		print(it)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun doSomething(action: (String)-&gt;Unit) &#123;<br>	action(&quot;haha&quot;)<br>&#125;<br><br>fun test()&#123;<br>	doSomething &#123;<br>		print(it)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>3.由于闭包在编译时是生成一个匿名对象，如果闭包被用在循环中，会不断生成匿名对象，影响性能，故此参数有闭包的函数，一般会通过 inline 内联来修饰，</p>
 <p>如此编译时，不会为闭包生成匿名对象和方法来与目标连接，而是直接将闭包中的内容粘贴到目标位置，即便是循环，性能也和代码是直接写在循环中并无二致，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">inline</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(action: (<span class="hljs-type">String</span>)-&gt;<span class="hljs-type">Unit</span>)</span></span> &#123;<br>	action(<span class="hljs-string">"haha"</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plain">inline fun doSomething(action: (String)-&gt;Unit) &#123;<br>	action(&quot;haha&quot;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>4.既然有拓展，那么除了拓展函数，也可定义拓展属性，</p>
 <p>拓展属性除了简化 getter setter 的调用，某种程度上也简化了委托，也即可在 getter setter 中植入想要的委托代码，如此在访问该属性时，能顺带执行这些代码，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">var</span> TextView.text: CharSequence<br>  <span class="hljs-keyword">get</span>() = &#123;<br>    print(<span class="hljs-string">"get <span class="hljs-variable">$getText</span>()"</span>)<br>    <span class="hljs-keyword">return</span> getText()<br>  &#125;<br>  <span class="hljs-keyword">set</span>(value) &#123;<br>    setText(value)<br>    print(<span class="hljs-string">"set <span class="hljs-variable">$value</span>"</span>)<br>  &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plain">var TextView.text: CharSequence<br>  get() &#x3D; &#123;<br>    print(&quot;get $getText()&quot;)<br>    return getText()<br>  &#125;<br>  set(value) &#123;<br>    setText(value)<br>    print(&quot;set $value&quot;)<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>5.那么拓展、闭包、内联一组合，便能形成一些实用的 “作用域函数”，例如 apply 函数，</p>
 <p>可见不仅是 T.apply 用到拓展，T.( ) 也用到，这使目标对象例如 Paint( ) 在使用 apply 函数时，得以在闭包 { } 中通过隐式 this 来访问 paint 的属性，例如 color、style 等，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">inline</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-type">&lt;T&gt;</span> T.<span class="hljs-title">apply</span><span class="hljs-params">(action: <span class="hljs-type">T</span>.()-&gt;<span class="hljs-type">Unit</span>)</span></span>: T &#123;<br>	action()<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">val</span> paint = Paint().apply &#123;<br>    color = <span class="hljs-string">"#aaaaaaa"</span><br>    style = Stroke<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plain">inline fun &lt;T&gt; T.apply(action: T.()-&gt;Unit): T &#123;<br>	action()<br>  return this<br>&#125;<br><br>fun test()&#123;<br>  val paint &#x3D; Paint().apply &#123;<br>    color &#x3D; &quot;#aaaaaaa&quot;<br>    style &#x3D; Stroke<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="空安全与可空类型"><a href="#空安全与可空类型" class="headerlink" title="空安全与可空类型"></a>空安全与可空类型</h3><p>1.kotlin 通过 ? 操作符彻底解决 java 的 null 安全问题（以下简称 NPE），开发者无需再写 <code>if ( null != x )</code>，也无需使用特定框架来规避特定领域的 NPE，</p>
 <p>2.例如从前在 java 下通过 DataBinding ObservableField 的间接通知来规避 “横竖屏布局的 View NPE”，而这涉及 BindingAdapter、xml 属性绑定等一系列前置工作，</p>
 <p>如今 kotlin 下可以直接通过使用 ViewBinding，书写便捷，性能还更高些，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">binding?.tv.setText(xxx)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">binding?.tv.setText(xxx)<br></code></pre></td></tr></table></figure>
 
 <p>3.除了 <code>?.</code> 跳过空对象调用，还有 <code>?:</code> 操作符来提供非空默认值，</p>
 <p>例如 val b = a <code>?:</code> “xxx”，如 a 为 null，则表达式返回 <code>?:</code> 后面值，</p>
@@ -80,12 +124,12 @@
 <p>期间在子线程中分别打印了任务 1、任务 2，</p>
 <p>待到任务 1 任务 2 都完成，这个协程又被恢复，在步骤 4 中，拿着任务 1、任务 2 各自返回的异步结果，来打印结束信息，</p>
 <p>整个运行过程就如同书写的那样，符合人类预期，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>&#123;<br>	MainScope().launch &#123;<br>		println(<span class="hljs-string">"start"</span>)   <span class="hljs-comment">//步骤1</span><br>		<span class="hljs-keyword">val</span> job1 = async(Dispatcher.Default)&#123;  <span class="hljs-comment">//步骤2</span><br>			delay(<span class="hljs-number">1000</span>) <br>			println(<span class="hljs-string">"job1 done"</span>) <br>      <span class="hljs-string">"job1_hhhh"</span><br>		&#125;<br>		<span class="hljs-keyword">val</span> job2 = async(Dispatcher.Default)&#123;  <span class="hljs-comment">//步骤3</span><br>			delay(<span class="hljs-number">1000</span>) <br>			println(<span class="hljs-string">"job1 done"</span>) <br>      <span class="hljs-string">"job2_hhhh"</span><br>		&#125;<br>		printlin(<span class="hljs-string">"end <span class="hljs-subst">$&#123;job1.await()&#125;</span> and <span class="hljs-subst">$&#123;job2.await()&#125;</span>"</span>) <span class="hljs-comment">//步骤4</span><br>	&#125;<br>&#125;<br><br><span class="hljs-comment">//打印结果：</span><br><span class="hljs-comment">//start</span><br><span class="hljs-comment">//job1 done</span><br><span class="hljs-comment">//job2 done</span><br><span class="hljs-comment">//end job1_hhhh and job2_hhhh</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun test()&#123;<br>	MainScope().launch &#123;<br>		println(&quot;start&quot;)   &#x2F;&#x2F;步骤1<br>		val job1 &#x3D; async(Dispatcher.Default)&#123;  &#x2F;&#x2F;步骤2<br>			delay(1000) <br>			println(&quot;job1 done&quot;) <br>      &quot;job1_hhhh&quot;<br>		&#125;<br>		val job2 &#x3D; async(Dispatcher.Default)&#123;  &#x2F;&#x2F;步骤3<br>			delay(1000) <br>			println(&quot;job1 done&quot;) <br>      &quot;job2_hhhh&quot;<br>		&#125;<br>		printlin(&quot;end $&#123;job1.await()&#125; and $&#123;job2.await()&#125;&quot;) &#x2F;&#x2F;步骤4<br>	&#125;<br>&#125;<br><br>&#x2F;&#x2F;打印结果：<br>&#x2F;&#x2F;start<br>&#x2F;&#x2F;job1 done<br>&#x2F;&#x2F;job2 done<br>&#x2F;&#x2F;end job1_hhhh and job2_hhhh<br></code></pre></td></tr></table></figure>
 
 <p>3.对于 IO 密集型任务，可在子任务中安排 Dispatcher.IO 调度器，其底层是使用 “动态线程池”，使尽可能多的处理 IO 请求（阻塞的线程不再主动抢时间片，无需担心占用计算型线程的时间片），</p>
 <p>而对于计算密集型任务，可在子任务中安排 Dispatcher.Default 调度器，其底层是使用 “并行线程池”，根据 CPU 核心数，安排固定数目的线程到不同核心，最大限度减少任务完成时间，</p>
 <h3 id="响应式流开发模式"><a href="#响应式流开发模式" class="headerlink" title="响应式流开发模式"></a>响应式流开发模式</h3><p>如果只能用一张图来形容 “对 kotlin 的感觉”，笔者认为 flow 可担此任，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span> = flow &#123;<br>	emit(Sealed)<br>&#125;.flowOn(IO)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plain">fun test() &#x3D; flow &#123;<br>	emit(Sealed)<br>&#125;.flowOn(IO)<br></code></pre></td></tr></table></figure>
 
 <p>如上，伪代码中涵盖了 flow、sealed class、协程调度器等元素，示意 “在子线程中处理任务，并在过程中发射 ‘密封类结果’ 到主线程观察者” 的响应式开发模式，</p>
 <p>软件形形色色，无非 “数据来，数据去”，语言则是实现这一切的工具，</p>
@@ -94,4 +138,33 @@
 <p>有人说 kotlin 是 java pro max，笔者认为 kotlin 是语法最小完备的现代化语言，功能实用，无以复减，</p>
 <p>目前唯一觉得不适的是 jvm 内存占用，在 jetbrain IDE 眼里，内存跟不要钱似的；在苹果眼里，内存比黄金还贵，而运行在 jvm 上的 kotlin，也是 400MB 起步，在 8GB 丐版 mac 下也就能跑 10 来个，</p>
 <p>期待 jetbrain 对 kotlin/native 的持续发力，使让 macOS 等桌面操作系统也能用上内存只占 60-70MB 的软件，</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2023 <a href="https://www.kunminx.com">KunMinX</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+
+        </div>
+
+    
+
+</div>
+                <div class="footer">
+    <span>Copyright © 2022 KunMinX 博客</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>
