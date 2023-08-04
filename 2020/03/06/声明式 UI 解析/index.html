@@ -1,15 +1,15 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 声明式 UI 解析 · KunMinX 博客</title><meta name="description" content="声明式 UI 解析 - KunMinX"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.kunminx.com/atom.xml" title="KunMinX 博客"><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/kunminx" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">声明式 UI 解析</h1><div class="post-info">Mar 6, 2020</div><div class="post-content"><a id="more"></a>
-
-
-
-<blockquote>
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/kunminx" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">声明式 UI 解析</h1><div class="post-info">Mar 6, 2020</div><div class="post-content"><blockquote>
 <p>注：本文节选自<a href="https://xiaozhuanlan.com/topic/2356748910" target="_blank" rel="noopener">《重学安卓：一通百通 “声明式 UI” 扫盲干货》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，</p>
 </blockquote>
 <p>上一期<a href="https://xiaozhuanlan.com/topic/2073915486" target="_blank" rel="noopener">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p>
+<a id="more"></a>
+
+
+
 <h2 id="声明式-UI-由来"><a href="#声明式-UI-由来" class="headerlink" title="声明式 UI 由来"></a>声明式 UI 由来</h2><p>事实上，React、Flutter、SwiftUI、Jetpack Compose，这些 UI 框架有个共同鼻祖，即一个名为 elm（不是 “饿了么”）的 UI 框架，是它最早确立并推行 “声明式 UI” 设计理念。</p>
 <blockquote>
 <p>注：“声明式 UI” 这个名称，最初谁定义，暂未找到来源，目前各大官网都称其为 “声明式 UI”，基于我个人理解，其更精确表达是，“响应式 UI 框架的声明式编程分支”，当然，最终我们还是简称为 “声明式 UI”。</p>

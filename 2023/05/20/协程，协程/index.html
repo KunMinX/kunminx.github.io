@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 协程，协程 · KunMinX 博客</title><meta name="description" content="协程，协程 - KunMinX"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.kunminx.com/atom.xml" title="KunMinX 博客"><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/kunminx" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">协程，协程</h1><div class="post-info">May 20, 2023</div><div class="post-content"><a id="more"></a>
-
-
-
-<p>水一篇，不保证能看懂，能看懂都是缘分，</p>
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/kunminx" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">协程，协程</h1><div class="post-info">May 20, 2023</div><div class="post-content"><p>水一篇，不保证能看懂，能看懂都是缘分，</p>
 <p>关于并发，涉及的关键概念即 “阻塞、多线程、异步、非阻塞、挂起、系统内核、分时复用”，</p>
+<a id="more"></a>
+
+
+
 <h2 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h2><p>如果只有单线程，那么代码执行到 IO 时，会干等着，直到 IO 结束，才再继续下一步，这种 “干等着” 的现象即阻塞，</p>
 <p>如果该线程主要用于 “客户端图形渲染” 或 “服务端接收请求响应”，在该线程中阻塞显然不合适，图形渲染和请求响应会被搁置，乃至给人 “无法响应” 的糟糕体验感受，</p>
 <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>为此引入多线程技术，在需要 IO 时，新开一个工作线程，并在工作线程中阻塞，如此根据 “分时复用”，主线程的任务很快便能再度被分到 “时间片” 运行，乃至不再卡住，</p>
