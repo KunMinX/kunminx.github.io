@@ -1,55 +1,254 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>KunMinX 博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="KunMinX 博客"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="KunMinX 博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="专注业务架构和深度思考分享"><meta property="og:type" content="website"><meta property="og:title" content="KunMinX 博客"><meta property="og:url" content="https://www.kunminx.com/"><meta property="og:site_name" content="KunMinX 博客"><meta property="og:description" content="专注业务架构和深度思考分享"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.kunminx.com/img/og_image.png"><meta property="article:author" content="KunMinX"><meta property="article:tag" content="Jetpack,MVVM,Jetpack MVVM,Android"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.kunminx.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kunminx.com"},"headline":"KunMinX 博客","image":["https://www.kunminx.com/img/og_image.png"],"author":{"@type":"Person","name":"KunMinX"},"publisher":{"@type":"Organization","name":"KunMinX 博客","logo":{"@type":"ImageObject"}},"description":"专注业务架构和深度思考分享"}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>KunMinX 博客 | 公元 3000 年</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+    
+<link rel="stylesheet" href="/css/style.css">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+    
+<link rel="stylesheet" href="/css/markdown.css">
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">KunMinX 博客</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-08-03T08:00:00.000Z" title="2023/8/3 16:00:00">2023-08-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:00:25.650Z" title="2023/8/4 14:00:25">2023-08-04</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">Kotlin 感觉</a></p><div class="content"><p>给我感觉，这是一门最小完备的语言，功能实用，无以复减，</p>
-<p>语法上主要印象有 6 方面，</p></div><a class="article-more button is-small is-size-7" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-05-20T06:00:00.000Z" title="2023/5/20 14:00:00">2023-05-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T05:53:08.351Z" title="2023/8/4 13:53:08">2023-08-04</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">协程，协程</a></p><div class="content"><p>水一篇，不保证能看懂，能看懂都是缘分，</p>
-<p>关于并发，涉及的关键概念即 “阻塞、多线程、异步、非阻塞、挂起、系统内核、分时复用”，</p></div><a class="article-more button is-small is-size-7" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-12-26T07:00:00.000Z" title="2022/12/26 15:00:00">2022-12-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T05:51:23.981Z" title="2023/8/4 13:51:23">2023-08-04</time></span></div></div><div class="content"><p>像看待新冠病毒一样，我们逐渐学会长期与 “来自他人的恶意” 共处。</p>
-<p>以下是截至目前，结合多领域视角所构建的理解：</p></div><a class="article-more button is-small is-size-7" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-09-20T04:00:00.000Z" title="2022/9/20 12:00:00">2022-09-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:29:22.370Z" title="2023/8/4 14:29:22">2023-08-04</time></span></div></div><div class="content"><p>学技术要学本质。对 MVI 的有效理解，源于对 “响应式编程 作用和漏洞” 等关键细节的挖掘，</p>
-<p>故这期专为 MVI 打磨一篇 “通俗易懂、看完便理解来龙去脉、并能活学活用”，相信阅读后你会耳目一新。</p></div><a class="article-more button is-small is-size-7" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-09-20T04:00:00.000Z" title="2022/9/20 12:00:00">2022-09-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:29:15.038Z" title="2023/8/4 14:29:15">2023-08-04</time></span></div></div><div class="content"><p>谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。</p>
-<p>由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。</p></div><a class="article-more button is-small is-size-7" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-02-05T02:00:00.000Z" title="2021/2/5 10:00:00">2021-02-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:29:04.383Z" title="2023/8/4 14:29:04">2023-08-04</time></span></div></div><div class="content"><p>关于知识深度和广度，一直众口不一，</p>
-<p>例如总有这样的声音，认为客户端 App 开发就是没深度，Framework 开发就是有深度；关注业务逻辑就是没深度，琢磨底层原理才是有深度 …</p></div><a class="article-more button is-small is-size-7" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-03-06T12:00:00.000Z" title="2020/3/6 20:00:00">2020-03-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:27:57.051Z" title="2023/8/4 14:27:57">2023-08-04</time></span></div></div><div class="content"><blockquote>
-<p>Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，</p>
-</blockquote>
-<p>上一期<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2073915486">《过目难忘 Android GUI 关系梳理》</a>，我们循序渐进拆解了 “View 体系” 各工具的 <strong>存在意义 及 相互间关系</strong>，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。</p></div><a class="article-more button is-small is-size-7" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-01-29T13:00:00.000Z" title="2020/1/29 21:00:00">2020-01-29</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-08-04T06:30:15.006Z" title="2023/8/4 14:30:15">2023-08-04</time></span></div></div><div class="content"><p>工作多年，进阶 “细节定制”，难免高频接触 “自定义 View”、“GUI 性能优化” 等概念，</p>
-<blockquote>
-<p>诸如 Canvas、Paint、Path；View、Drawable；Layout、Inflater；include、merge、ViewStub；PhoneWindow、ViewRootImpl …</p>
-</blockquote>
-<p>关于 View 体系，开发者 <strong>普遍缺乏 “从 0 到 1 完整踩坑” 经历</strong>，且多数网文假设读者已有 <strong>前置知识</strong> 铺垫在先，因而 <strong>直奔 “What、How” 细枝末节，对 “Why” 绝口不提</strong>，</p>
-<p>这使文章读起来 “没头没尾”，让人知难而退。</p>
-<p>故这期我们继续 “追根溯源”，铺垫 Android GUI 系统的来龙去脉，相信阅读后，你会对 “为何要学这些技术点、每个技术的「<strong>作用边界</strong>」到底从哪到哪、技术之间的「关系和顺序」又该如何串起来” 形成清晰理解。</p></div><a class="article-more button is-small is-size-7" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-10-23T06:00:00.000Z" title="2019/10/23 14:00:00">2019-10-23</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-07-25T06:38:46.636Z" title="2023/7/25 14:38:46">2023-07-25</time></span></div></div><div class="content"><p><img src="https://images.xiaozhuanlan.com/photo/2019/859bf0dd76e76e4f0581004499064030.png" alt=""></p></div><a class="article-more button is-small is-size-7" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/#more">Read more</a></article></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">KunMinX 博客</a><p class="is-size-7"><span>&copy; 2023 KunMinX</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
+</head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">KunMinX 博客</a>
+    <ul class="nav">
+        
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/archives">归档</a></li>
+        
+        <li><a target="_blank" rel="noopener" href="https://github.com/kunminx">关于</a></li>
+        
+    </ul>
+</div>
+                
+                <div class="post-list">
+    
+    <div class="post">
+        <a class="post-title" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">Kotlin 感觉</a>
+        <div class="post-except">
+            给我感觉，这是一门最小完备的语言，功能实用，无以复减，
+语法上主要印象有 6 方面，
+
+
+
+
+声明方式和字面量的简化1.使用 val、var 来动态声明，编译时则会编译成静态类型，
+2.数字字面量可以写成 val num = 1_000_000.99_99 方便人类查阅，
+字符串字面量可以写成 
+1234567val num &#x3D; 1_000_000.99_99val s &#x3D; &quot;&quot;&quot;	this is a xxxx,	so tha
+            <a class="read-more" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/"> ... </a>
+        </div>
+        <div class="post-date">2023.08.03</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">协程，协程</a>
+        <div class="post-except">
+            水一篇，不保证能看懂，能看懂都是缘分，
+关于并发，涉及的关键概念即 “阻塞、多线程、异步、非阻塞、挂起、系统内核、分时复用”，
+
+
+
+
+阻塞如果只有单线程，那么代码执行到 IO 时，会干等着，直到 IO 结束，才再继续下一步，这种 “干等着” 的现象即阻塞，
+如果该线程主要用于 “客户端图形渲染” 或 “服务端接收请求响应”，在该线程中阻塞显然不合适，图形渲染和请求响应会被搁置，乃至给人 “无法响应” 的糟糕体验感受，
+多线程为此引入多线程技术，在需要 IO 时，新开一个工作
+            <a class="read-more" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/"> ... </a>
+        </div>
+        <div class="post-date">2023.05.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"></a>
+        <div class="post-except">
+            像看待新冠病毒一样，我们逐渐学会长期与 “来自他人的恶意” 共处。
+以下是截至目前，结合多领域视角所构建的理解：
+
+
+
+
+设定如此，故高频且普遍人是生物，生物是基因载体，基因的演化迭代机制，使其默认隐含对优越性的追求，因而人本就有优越感需求，
+超脱优越感毕竟难事，因而定力较弱的一部分人，出于生物节能本能，无一例外摸索出 “最低成本、最短路径” —— 通过 “语言霸凌、网络暴力、逞口舌之快” 等方式秀优越，
+常见套路即，动辄臆想和放大某杠点（例如 阴谋、愚蠢、不够、不公），然后
+            <a class="read-more" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"> ... </a>
+        </div>
+        <div class="post-date">2022.12.26</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
+        <div class="post-except">
+            学技术要学本质。对 MVI 的有效理解，源于对 “响应式编程 作用和漏洞” 等关键细节的挖掘，
+故这期专为 MVI 打磨一篇 “通俗易懂、看完便理解来龙去脉、并能活学活用”，相信阅读后你会耳目一新。
+
+
+
+
+文章目录一览
+前言
+
+响应式编程
+
+响应式编程的好处
+
+响应式编程的漏洞
+
+响应式编程的困境
+
+
+
+MVI 的存在意义
+
+MVI 的实现
+
+函数式编程思想
+MVI 怎样实现纯函数效果
+存在哪些副作用
+整体流程
+
+
+当下开发现状的反思
+
+从源头把问题消灭
+什么是过度设计，如
+            <a class="read-more" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a>
+        </div>
+        <div class="post-date">2022.09.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"></a>
+        <div class="post-except">
+            谈到 Android 架构，相信谁都能说上两句。从 MVC，MVP，MVVM，再到时下兴起 MVI，架构设计层出不穷。如何为项目选择合适架构，也成常备课题。
+由于架构并非空穴来风，每一种设计都有其存在依据。故今天我们一起探寻 “架构演化” 来龙去脉，相信阅读后你会豁然开朗。
+
+
+
+
+文章目录一览
+前言
+原生架构
+原始图形化架构
+高频痛点 1：Null 安全一致性问题
+
+
+原始工程架构 MVC
+高频痛点 2：成员变量爆炸
+高频痛点 3：状态管理一致性问题
+高频痛点 4：消息分发
+            <a class="read-more" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"> ... </a>
+        </div>
+        <div class="post-date">2022.09.20</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"></a>
+        <div class="post-except">
+            关于知识深度和广度，一直众口不一，
+例如总有这样的声音，认为客户端 App 开发就是没深度，Framework 开发就是有深度；关注业务逻辑就是没深度，琢磨底层原理才是有深度 …
+
+
+
+
+广度没懂造成这些观点的依据是什么，
+笔者认为，应用层和框架层，只是分属两个不同的领域，都是由各个知识点拼接而成，彼此之间并无谁深谁浅之分，
+如果开发者学习了应用层，又学习了框架层，本质上只是拓宽了广度，从研究 “茴” 有几种写法，到研究 “龍” 有几种写法；从研究 kotlin 语法有哪些，
+            <a class="read-more" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"> ... </a>
+        </div>
+        <div class="post-date">2021.02.05</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"></a>
+        <div class="post-except">
+            
+Canvas 总共生两胎，一胎 View 体系，二胎 Compose 体系，
+
+上一期《过目难忘 Android GUI 关系梳理》，我们循序渐进拆解了 “View 体系” 各工具的 存在意义 及 相互间关系，鉴于 Compose 离 “普及” 还有很长距离，这一期我们先来介绍 Compose 框架背后的本质。
+
+
+
+
+
+注：本文节选自《重学安卓：一通百通 “声明式 UI” 扫盲干货》，本文可免费阅读和全文转载，转载时须注明本文链接出处。
+
+声明式 UI 由来事实上，Rea
+            <a class="read-more" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-date">2020.03.06</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
+        <div class="post-except">
+            工作多年，进阶 “细节定制”，难免高频接触 “自定义 View”、“GUI 性能优化” 等概念，
+
+诸如 Canvas、Paint、Path；View、Drawable；Layout、Inflater；include、merge、ViewStub；PhoneWindow、ViewRootImpl …
+
+关于 View 体系，开发者 普遍缺乏 “从 0 到 1 完整踩坑” 经历，且多数网文假设读者已有 前置知识 铺垫在先，因而 直奔 “What、How” 细枝末节，对 “Why
+            <a class="read-more" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a>
+        </div>
+        <div class="post-date">2020.01.29</div>
+    </div>
+    
+    <div class="post">
+        <a class="post-title" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"></a>
+        <div class="post-except">
+            
+
+
+
+
+前言最近后台时而收到读者留言，说能否出一期 Jetpack MVVM 精讲，以及配套一份简练案例，好把玩把玩、感受感受、加深 MVVM 印象。
+答案是肯定的。
+面向标准化开发已成现实金九银十，相信不少读者在抓紧机会面试。
+Android 市场已今非昔比。过去迫于招人压力，应试者只需了解四大组件、视图、网络请求，即可谋得一份满意工作。
+现如今，Jetpack 架构组件及 “标准化开发模式” 确立，预示 Android 开发已步入成熟阶段：
+
+许多 “样板代码” 不再需
+            <a class="read-more" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"> ... </a>
+        </div>
+        <div class="post-date">2019.10.23</div>
+    </div>
+    
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2022 KunMinX 博客</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

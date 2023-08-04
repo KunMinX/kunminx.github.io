@@ -1,40 +1,140 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><title>Archives - KunMinX 博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="KunMinX 博客"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="KunMinX 博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="专注业务架构和深度思考分享"><meta property="og:type" content="website"><meta property="og:title" content="KunMinX 博客"><meta property="og:url" content="https://www.kunminx.com/"><meta property="og:site_name" content="KunMinX 博客"><meta property="og:description" content="专注业务架构和深度思考分享"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.kunminx.com/img/og_image.png"><meta property="article:author" content="KunMinX"><meta property="article:tag" content="Jetpack,MVVM,Jetpack MVVM,Android"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.kunminx.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.kunminx.com"},"headline":"KunMinX 博客","image":["https://www.kunminx.com/img/og_image.png"],"author":{"@type":"Person","name":"KunMinX"},"publisher":{"@type":"Organization","name":"KunMinX 博客","logo":{"@type":"ImageObject"}},"description":"专注业务架构和深度思考分享"}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
+    <title>KunMinX 博客 | 公元 3000 年</title>
+    
+<link rel="stylesheet" href="/css/reset.css">
 
-          const id = '#' + CSS.escape(location.hash.substring(1));
-          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
-          if (!$tabMenu) {
-            return;
-          }
+    
+<link rel="stylesheet" href="/css/style.css">
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+    
+<link rel="stylesheet" href="/css/markdown.css">
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(id);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
-      }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
-</head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">KunMinX 博客</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><div class="card-content"><h3 class="tag is-primary">2023</h3><div class="timeline"><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-08-03T08:00:00.000Z">2023-08-03</time></p><p class="title"><a href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">Kotlin 感觉</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-20T06:00:00.000Z">2023-05-20</time></p><p class="title"><a href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">协程，协程</a></p></div></article></div></div></div><div class="card"><div class="card-content"><h3 class="tag is-primary">2022</h3><div class="timeline"><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-12-26T07:00:00.000Z">2022-12-26</time></p><p class="title"><a href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-20T04:00:00.000Z">2022-09-20</time></p><p class="title"><a href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-20T04:00:00.000Z">2022-09-20</time></p><p class="title"><a href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"> </a></p></div></article></div></div></div><div class="card"><div class="card-content"><h3 class="tag is-primary">2021</h3><div class="timeline"><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-02-05T02:00:00.000Z">2021-02-05</time></p><p class="title"><a href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"> </a></p></div></article></div></div></div><div class="card"><div class="card-content"><h3 class="tag is-primary">2020</h3><div class="timeline"><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-03-06T12:00:00.000Z">2020-03-06</time></p><p class="title"><a href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-01-29T13:00:00.000Z">2020-01-29</time></p><p class="title"><a href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> </a></p></div></article></div></div></div><div class="card"><div class="card-content"><h3 class="tag is-primary">2019</h3><div class="timeline"><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-10-23T06:00:00.000Z">2019-10-23</time></p><p class="title"><a href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"> </a></p></div></article></div></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">KunMinX 博客</a><p class="is-size-7"><span>&copy; 2023 KunMinX</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>
+    
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="KunMinX 博客" type="application/atom+xml">
+</head>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="header">
+    <a class="logo" href="/">KunMinX 博客</a>
+    <ul class="nav">
+        
+        <li><a href="/">首页</a></li>
+        
+        <li><a href="/archives">归档</a></li>
+        
+        <li><a target="_blank" rel="noopener" href="https://github.com/kunminx">关于</a></li>
+        
+    </ul>
+</div>
+                
+                <div class="archive-list">
+    <ul class="archive">
+        
+        <li>
+            <span class="archive-date">2023.08.03</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/">Kotlin 感觉</a>
+                <!-- <a class="read-more" href="/2023/08/03/Kotlin%20%E6%84%9F%E8%A7%89/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2023.05.20</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/">协程，协程</a>
+                <!-- <a class="read-more" href="/2023/05/20/%E5%8D%8F%E7%A8%8B%EF%BC%8C%E5%8D%8F%E7%A8%8B/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2022.12.26</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"></a>
+                <!-- <a class="read-more" href="/2022/12/26/%E8%AE%BA%E6%8F%90%E7%BA%BF%E6%9C%A8%E5%81%B6%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2022.09.20</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
+                <!-- <a class="read-more" href="/2022/09/20/MVI%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2022.09.20</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"></a>
+                <!-- <a class="read-more" href="/2022/09/20/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%20Android%20%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E5%8F%91%E5%B1%95%E5%8F%B2/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2021.02.05</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"></a>
+                <!-- <a class="read-more" href="/2021/02/05/%E5%85%B3%E4%BA%8E%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2020.03.06</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"></a>
+                <!-- <a class="read-more" href="/2020/03/06/%E5%A3%B0%E6%98%8E%E5%BC%8F%20UI%20%E8%A7%A3%E6%9E%90/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2020.01.29</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"></a>
+                <!-- <a class="read-more" href="/2020/01/29/View%20%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89/"> ... </a> -->
+            </div>
+        </li>
+        
+        <li>
+            <span class="archive-date">2019.10.23</span>
+            <div class="archive-main">
+                <a class="archive-title" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"></a>
+                <!-- <a class="read-more" href="/2019/10/23/%E8%80%B3%E7%9B%AE%E4%B8%80%E6%96%B0%20Jetpack%20MVVM%20%E7%B2%BE%E8%AE%B2/"> ... </a> -->
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+                <div class="footer">
+    <span>Copyright © 2022 KunMinX 博客</span>
+    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這李設計</a></span>
+</div>
+
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>
