@@ -153,7 +153,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-08-04 19:29:33
+          2023-08-05 16:04:26
         </span>
         
       </div>
@@ -161,13 +161,8 @@
         <blockquote>
 <p>注：本文节选自<a target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/2073915486">《重学安卓：过目难忘 Android GUI 关系梳理》</a>，本文可免费阅读和全文转载，转载时须注明本文链接出处。</p>
 </blockquote>
-<p>工作多年，进阶 “细节定制”，难免高频接触 “自定义 View”、“GUI 性能优化” 等概念，</p>
-<blockquote>
-<p>诸如 Canvas、Paint、Path；View、Drawable；Layout、Inflater；include、merge、ViewStub；PhoneWindow、ViewRootImpl …</p>
-</blockquote>
-<p>关于 View 体系，开发者 <strong>普遍缺乏 “从 0 到 1 完整踩坑” 经历</strong>，且多数网文假设读者已有 <strong>前置知识</strong> 铺垫在先，因而 <strong>直奔 “What、How” 细枝末节，对 “Why” 绝口不提</strong>，</p>
-<p>这使文章读起来 “没头没尾”，让人知难而退。</p>
-<p>故这期我们继续 “追根溯源”，铺垫 Android GUI 系统的来龙去脉，相信阅读后，你会对 “为何要学这些技术点、每个技术的「<strong>作用边界</strong>」到底从哪到哪、技术之间的「关系和顺序」又该如何串起来” 形成清晰理解。</p>
+<p>关于 View 体系，若假设读者已有 <strong>前置知识</strong> 铺垫在先，而 <strong>直奔 “What、How” 细枝末节，对 “Why” 绝口不提</strong>，这会使文章读起来 “没头没尾”，让人知难而退。</p>
+<p>故这期我们 “追根溯源”，铺垫 Android View 系统来龙去脉，相信阅读后，你会对 “为何要学这些技术点、每个技术的「<strong>作用边界</strong>」到底从哪到哪、技术之间的「关系和顺序」又该如何串起来” 形成清晰理解。</p>
 <span id="more"></span>
 
 
@@ -192,26 +187,27 @@
 </li>
 <li>综上</li>
 </ul>
-<h2 id="Canvas-是排版的根基"><a href="#Canvas-是排版的根基" class="headerlink" title="Canvas 是排版的根基"></a>Canvas 是排版的根基</h2><p>所谓排版，即是将一个个图形化内容，以符合预期的方式组合排列，包括并列展示和层叠展示，供用户更好的浏览，</p>
-<p>根据<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce651d4f265da1bb13f0a5b">《重学安卓：Activity 快乐你不懂》</a>一文的推理，在从零开始缔造的原始操作系统中，UI 排版的工作最初是由 Window 承担，Window 不堪重负，于是责任下发到 View，通过 View&#x2F;ViewGroup 在 View 树中的递归，以便更快更好完成，</p>
-<p>那么是否意味着 View 即是排版的根基？答案是否定的，</p>
-<p>因为 View 只是起到 “承载内容、且限制内容展示范围” 的作用，例如做过 “添加水印” 的小伙伴应该都接触过 “贴图控件”，该控件的原理是，在同一个自定义 View 中绘制多个贴图元素，那么显而易见 View 并不是排版的最小单位，被绘制的元素才是，</p>
-<p><img src="https://images.xiaozhuanlan.com/photo/2023/5e7fc75e932c0ea94ce3a25e112d2f6e.jpeg" alt="img"></p>
+<h2 id="Canvas-是排版的根基"><a href="#Canvas-是排版的根基" class="headerlink" title="Canvas 是排版的根基"></a>Canvas 是排版的根基</h2><p>所谓排版，即是将一个个图形化内容，以符合预期的方式组合排列，方便用户浏览，</p>
+<p>根据<a target="_blank" rel="noopener" href="https://juejin.im/post/5ce651d4f265da1bb13f0a5b">《重学安卓：Activity 快乐你不懂》</a>一文的推理，在从零设计的视图系统中，人们最开始可能会将排版工作交由 “Window” 承担，“Window” 不堪重负，于是演变为通过粒度更细的 View&#x2F;ViewGroup 在视图树中 “递归” 来完成排版，</p>
+<p>不过这并不意味着 View 即是排版的基石，</p>
+<p>View 只是起到 “承载内容、且限制内容展示范围” 的作用，</p>
+<p>例如做过 “添加水印” 的小伙伴应该都接触过 “贴图控件”，该控件是在同一个自定义 View 中绘制多个贴图元素，显而易见，View 并不是排版的最小单位，被绘制的元素才是，</p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2023/cf7925efcc316d15092e70f14f3a9d8d.jpg"></p>
 <p>故而背后的画师 Canvas，才是排版的根基：</p>
 <blockquote>
 <p><strong>排版依赖于绘制</strong> —— 在排版这件事上，Canvas 可以没有 View，但 View 不能没有 Canvas。</p>
 </blockquote>
-<p>Paint 和 Path 都是 Canvas 的助手，<strong>与 “排版输出” 存在直接关系的 “最源头 API”</strong>，即是 Canvas 本尊。</p>
-<h2 id="View-和-Drawable-是排版的模板"><a href="#View-和-Drawable-是排版的模板" class="headerlink" title="View 和 Drawable 是排版的模板"></a>View 和 Drawable 是排版的模板</h2><p>既然是 View 系统，那就不能只是原始、无序的 “绘制” 本身。</p>
-<p>因而在有了 “Window” 和 Canvas 基础上，还需确立 View &#x2F; ViewGroup 这样规则的 <strong>排版标准</strong>，从而我们得以基于这套 “标准” 构建 <strong>具体可复用模板</strong>。</p>
+<p>Paint 和 Path 都是 Canvas 的助手，<strong>与 “排版输出” 存在直接关系的 “源头 API”</strong>，即 Canvas 自身。</p>
+<h2 id="View-和-Drawable-是排版的模板"><a href="#View-和-Drawable-是排版的模板" class="headerlink" title="View 和 Drawable 是排版的模板"></a>View 和 Drawable 是排版的模板</h2><p>作为 View 系统，需要提供一套标准化的 “控件开发和运行规则”，</p>
+<p>因而在有了 “Window” 和 Canvas 基础上，还需确立 View &#x2F; ViewGroup 这样规则的 <strong>排版标准</strong>，使开发者得以基于这套 “标准” 构建 <strong>具体的可复用模板</strong>（也即人们常说的 “自定义控件”）。</p>
 <blockquote>
 <p>例如 Button、TextView、ImageView 都是 “可复用模板”，<strong>开发者日常只需与上层这些 View 打交道、无需接触底层 Canvas</strong>，无需做什么都得先手动基于 Canvas 写个数百行排版代码。</p>
-<p>且，如对 “现成模板” 不满意，也可自行封装新模板，也即人们所说 “自定义控件”。</p>
+<p>且，如对 “现成模板” 不满意，也可自行封装新模板。</p>
 </blockquote>
-<p>与此同时，View 只是模板，如需更改可视化细节，岂不是又要接触 Canvas，</p>
-<p>因此，同出于 <strong>灵活性和复用</strong> 考虑，衍生出 Drawable 模板设计，它的存在是用于负责更具体可视化细节：</p>
-<p>例如通过 ShapeDrawable 来描述 <strong>View 轮廓和背景</strong>、通过 StateListDrawable 来描述 <strong>View 点击效果</strong> 等等，</p>
-<p>使得多数情况下，我们都能直接使用 “Drawable 模板” 描述排版细节，避免良莠不齐开发者 “直接与 Canvas 打交道导致不可预知隐患”。</p>
+<p>与此同时，View 只是模板，如需更改可视化细节，还是得接触 Canvas，</p>
+<p>为了尽可能避免接触 Canvas，衍生出 Drawable 模板设计，用于负责更具体图形化细节：</p>
+<p>例如通过 ShapeDrawable 来描述 <strong>View 轮廓和背景</strong>、通过 StateListDrawable 来描述 <strong>View 点击效果</strong> 等，</p>
+<p>由此多数情况下，我们都能直接使用 “Drawable 模板” 描述排版细节，避免良莠不齐开发者 “直接与 Canvas 打交道导致不可预知隐患”。</p>
 <blockquote>
 <p>划重点 👆 👆 👆</p>
 </blockquote>
@@ -232,23 +228,23 @@
 <blockquote>
 <p>图片截自 “小米天气” 客户端：无处不在、各种规格圆角。</p>
 </blockquote>
-<h2 id="Layout-和-Inflater-不过是后来者"><a href="#Layout-和-Inflater-不过是后来者" class="headerlink" title="Layout 和 Inflater 不过是后来者"></a>Layout 和 Inflater 不过是后来者</h2><p>所以 Layout 和 LayoutInflater 是在有 View 和 Drawable 基础上，才有的后来者。</p>
+<h2 id="Layout-和-Inflater-是后来者"><a href="#Layout-和-Inflater-是后来者" class="headerlink" title="Layout 和 Inflater 是后来者"></a>Layout 和 Inflater 是后来者</h2><p>故此 Layout 和 LayoutInflater 是在有 View 和 Drawable 基础上，才有的后来者。</p>
 <p>iOS 开发者常抱怨，在 iOS 上写布局，无预览，全靠想象，</p>
-<p>为此，Google 模仿微软 WPF 设计，通过 XML 方式实现 <strong>一目了然 “声明式编程”</strong>，<strong>可实时预览 Layout、shape、selector</strong> 乃至极大方便 Android 开发者创建和修改可视化内容。</p>
+<p>为此，Google 模仿微软 WPF 设计，通过 XML 方式实现 <strong>一目了然 “声明式编程”</strong>，<strong>可实时预览 Layout、shape、selector</strong> 乃至极大方便 Android 开发者创建和修改图形化内容。</p>
 <blockquote>
-<p>注：Layout 对应 View 树；shape、selector 对应 Drawable。</p>
+<p>注：Layout 对应视图树；shape、selector 对应 Drawable。</p>
 </blockquote>
 <p>然而，XML 声明式编程 解决上述问题的同时，引入新问题：</p>
 <p>1.<strong>XML 排版资源复用率极低</strong>。例如，为不同场景 Button 改圆角样式，无法像动态代码那样，直接代码中定义参数。哪怕不同样式间仅是 “圆角 dp” 存在细微差异，也得重建一个新 shape Drawable XML 描述文件。</p>
-<p>2.XML 解析由 LayoutInflater 负责，LayoutInflater 通过 <strong>深度优先遍历</strong> 算法解析 XML <strong>构建 View 树</strong>，从而当 “布局嵌套层次加深” 等原因导致 View 个数过多时，XML 解析会愈加耗时。</p>
-<h2 id="include，merge，ViewStub-是解药的解药"><a href="#include，merge，ViewStub-是解药的解药" class="headerlink" title="include，merge，ViewStub 是解药的解药"></a>include，merge，ViewStub 是解药的解药</h2><p>所以 XML 布局 其实只是一种 <strong>充分非必要</strong> 构建 View 树方式。</p>
-<p>我们看到许多 “东拼西凑” 性能优化网文，不分场合兜售 include，merge，ViewStub，事实上它们仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
+<p>2.XML 解析由 LayoutInflater 负责，LayoutInflater 通过 <strong>深度优先遍历</strong> 算法解析 XML <strong>构建视图树</strong>，从而当 “布局嵌套层次加深” 等原因导致 View 个数过多时，XML 解析会愈加耗时。</p>
+<h2 id="include，merge，ViewStub-是解药的解药"><a href="#include，merge，ViewStub-是解药的解药" class="headerlink" title="include，merge，ViewStub 是解药的解药"></a>include，merge，ViewStub 是解药的解药</h2><p>故而 XML 布局 其实只是一种 <strong>充分非必要</strong> 的视图树构建方式。</p>
+<p>许多 “东拼西凑” 性能优化教程，不分场合兜售 include，merge，ViewStub，事实上它们仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
 <p>像 <a target="_blank" rel="noopener" href="https://github.com/DrKLO/Telegram">Telegram 源码</a> 中，这种 “全动态编码” 布局构建方式，就完全用不上从 LayoutInflater 到 ViewStub 技术点。</p>
 <blockquote>
 <p>划重点 👆 👆 👆</p>
 </blockquote>
-<h2 id="作为承上启下的小结"><a href="#作为承上启下的小结" class="headerlink" title="作为承上启下的小结"></a>作为承上启下的小结</h2><p>综上可见，无论 Button、TextView、ImageView，还是 MaterialButton、TextInputLayout 等，无论其表面如何千变万化，都不过是 <strong>为在特定场景下 “符合用户直觉” 而衍生出的排版模板</strong>，本质上都是 <strong>基于 Canvas 去绘制 “特定样式” 可视化内容</strong>。</p>
-<p>而 Inflate 也不过是发生在当开发者选择通过 “声明式编程” 而非 “动态编码” 方式去构建 View 树。所以若非使用 LayoutInflater，开发者甚至无须知道 include，merge，ViewStub 的存在。</p>
+<h2 id="作为承上启下的小结"><a href="#作为承上启下的小结" class="headerlink" title="作为承上启下的小结"></a>作为承上启下的小结</h2><p>综上可见，无论 Button、TextView、ImageView，还是 MaterialButton、TextInputLayout 等，无论其表面如何千变万化，都只是 <strong>为在特定场景下 “符合用户直觉” 而衍生出的排版模板</strong>，本质上都是 <strong>基于 Canvas 去绘制 “特定样式” 图形化内容</strong>。</p>
+<p>而 Inflate 也不过是发生在当开发者选择通过 “声明式编程” 而非 “动态编码” 方式去构建视图树。所以若非使用 LayoutInflater，开发者甚至无须知道 include，merge，ViewStub 的存在。</p>
 <p>至此，”Window” &amp; Canvas；View &amp; Drawable；Layout &amp; Inflater；merge &amp; ViewStub，来龙去脉一目了然。</p>
 <p><img src="https://images.xiaozhuanlan.com/photo/2021/123c9ba004c9e9e83eac64db1619c6ff.png" alt="img"></p>
 <p>试读内容完。</p>
@@ -269,7 +265,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95%E4%B8%80%E8%A7%88"><span class="toc-text">文章目录一览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-%E6%98%AF%E6%8E%92%E7%89%88%E7%9A%84%E6%A0%B9%E5%9F%BA"><span class="toc-text">Canvas 是排版的根基</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-%E5%92%8C-Drawable-%E6%98%AF%E6%8E%92%E7%89%88%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="toc-text">View 和 Drawable 是排版的模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layout-%E5%92%8C-Inflater-%E4%B8%8D%E8%BF%87%E6%98%AF%E5%90%8E%E6%9D%A5%E8%80%85"><span class="toc-text">Layout 和 Inflater 不过是后来者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#include%EF%BC%8Cmerge%EF%BC%8CViewStub-%E6%98%AF%E8%A7%A3%E8%8D%AF%E7%9A%84%E8%A7%A3%E8%8D%AF"><span class="toc-text">include，merge，ViewStub 是解药的解药</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E6%89%BF%E4%B8%8A%E5%90%AF%E4%B8%8B%E7%9A%84%E5%B0%8F%E7%BB%93"><span class="toc-text">作为承上启下的小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="toc-text">相关资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-text">版权声明</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95%E4%B8%80%E8%A7%88"><span class="toc-text">文章目录一览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas-%E6%98%AF%E6%8E%92%E7%89%88%E7%9A%84%E6%A0%B9%E5%9F%BA"><span class="toc-text">Canvas 是排版的根基</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-%E5%92%8C-Drawable-%E6%98%AF%E6%8E%92%E7%89%88%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="toc-text">View 和 Drawable 是排版的模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layout-%E5%92%8C-Inflater-%E6%98%AF%E5%90%8E%E6%9D%A5%E8%80%85"><span class="toc-text">Layout 和 Inflater 是后来者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#include%EF%BC%8Cmerge%EF%BC%8CViewStub-%E6%98%AF%E8%A7%A3%E8%8D%AF%E7%9A%84%E8%A7%A3%E8%8D%AF"><span class="toc-text">include，merge，ViewStub 是解药的解药</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E6%89%BF%E4%B8%8A%E5%90%AF%E4%B8%8B%E7%9A%84%E5%B0%8F%E7%BB%93"><span class="toc-text">作为承上启下的小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="toc-text">相关资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-text">版权声明</span></a></li></ol>
       
     </div>
   </div>
