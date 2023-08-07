@@ -153,7 +153,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-08-07 09:47:50
+          2023-08-07 09:55:03
         </span>
         
       </div>
@@ -163,6 +163,7 @@
 </blockquote>
 <p>关于 View 体系，若假设读者已有 <strong>前置知识</strong> 铺垫在先，而 <strong>直奔 “What、How” 细枝末节，对 “Why” 绝口不提</strong>，这会使文章读起来 “没头没尾”，让人知难而退。</p>
 <p>故这期我们 “追根溯源”，铺垫 Android View 系统来龙去脉，相信阅读后，你会对 “为何要学这些技术点、每个技术的「<strong>作用边界</strong>」到底从哪到哪、技术之间的「关系和顺序」又该如何串起来” 形成清晰理解。</p>
+<p><img src="https://images.xiaozhuanlan.com/photo/2021/123c9ba004c9e9e83eac64db1619c6ff.png"></p>
 <span id="more"></span>
 
 
@@ -229,16 +230,15 @@
 <p>图片截自 “小米天气” 客户端：无处不在、各种规格圆角。</p>
 </blockquote>
 <h2 id="Layout-和-Inflater-是后来者"><a href="#Layout-和-Inflater-是后来者" class="headerlink" title="Layout 和 Inflater 是后来者"></a>Layout 和 Inflater 是后来者</h2><p>故此 Layout 和 LayoutInflater 是在有 View 和 Drawable 基础上，才有的后来者。</p>
-<p>iOS 开发者常抱怨，在 iOS 上写布局，无预览，全靠想象，</p>
-<p>为此，Google 模仿微软 WPF 设计，通过 XML 方式实现 <strong>一目了然 “声明式编程”</strong>，<strong>可实时预览 Layout、shape、selector</strong> 乃至极大方便 Android 开发者创建和修改图形化内容。</p>
+<p>Google 模仿微软 WPF 设计，通过 XML 方式实现 <strong>一目了然 “声明式编程”</strong>，<strong>可实时预览 Layout、shape、selector</strong> 乃至极大方便 Android 开发者创建和修改图形化内容。</p>
 <blockquote>
 <p>注：Layout 对应视图树；shape、selector 对应 Drawable。</p>
 </blockquote>
 <p>然而，XML 声明式编程 解决上述问题的同时，引入新问题：</p>
 <p>1.<strong>XML 排版资源复用率极低</strong>。例如，为不同场景 Button 改圆角样式，无法像动态代码那样，直接代码中定义参数。哪怕不同样式间仅是 “圆角 dp” 存在细微差异，也得重建一个新 shape Drawable XML 描述文件。</p>
 <p>2.XML 解析由 LayoutInflater 负责，LayoutInflater 通过 <strong>深度优先遍历</strong> 算法解析 XML <strong>构建视图树</strong>，从而当 “布局嵌套层次加深” 等原因导致 View 个数过多时，XML 解析会愈加耗时。</p>
-<h2 id="include，merge，ViewStub-是解药的解药"><a href="#include，merge，ViewStub-是解药的解药" class="headerlink" title="include，merge，ViewStub 是解药的解药"></a>include，merge，ViewStub 是解药的解药</h2><p>故而 XML 布局 其实只是一种 <strong>充分非必要</strong> 的视图树构建方式。</p>
-<p>UI 性能优化教程经常提到 include，merge，ViewStub，事实上它们仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
+<h2 id="include，merge，ViewStub-是解药的解药"><a href="#include，merge，ViewStub-是解药的解药" class="headerlink" title="include，merge，ViewStub 是解药的解药"></a>include，merge，ViewStub 是解药的解药</h2><p>故而 XML 布局只是一种 <strong>充分非必要</strong> 的视图树构建方式。</p>
+<p>UI 性能优化教程经常提到 include，merge，ViewStub，其实仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
 <p>像 <a target="_blank" rel="noopener" href="https://github.com/DrKLO/Telegram">Telegram 源码</a> 中 “全 Java 代码” 的布局构建方式，便完全用不上这些个。</p>
 <blockquote>
 <p>划重点 👆 👆 👆</p>
