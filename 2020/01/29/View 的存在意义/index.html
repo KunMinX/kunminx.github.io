@@ -153,7 +153,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-08-07 09:55:03
+          2023-08-14 20:13:20
         </span>
         
       </div>
@@ -238,7 +238,7 @@
 <p>1.<strong>XML 排版资源复用率极低</strong>。例如，为不同场景 Button 改圆角样式，无法像动态代码那样，直接代码中定义参数。哪怕不同样式间仅是 “圆角 dp” 存在细微差异，也得重建一个新 shape Drawable XML 描述文件。</p>
 <p>2.XML 解析由 LayoutInflater 负责，LayoutInflater 通过 <strong>深度优先遍历</strong> 算法解析 XML <strong>构建视图树</strong>，从而当 “布局嵌套层次加深” 等原因导致 View 个数过多时，XML 解析会愈加耗时。</p>
 <h2 id="include，merge，ViewStub-是解药的解药"><a href="#include，merge，ViewStub-是解药的解药" class="headerlink" title="include，merge，ViewStub 是解药的解药"></a>include，merge，ViewStub 是解药的解药</h2><p>故而 XML 布局只是一种 <strong>充分非必要</strong> 的视图树构建方式。</p>
-<p>UI 性能优化教程经常提到 include，merge，ViewStub，其实仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
+<p>UI 性能优化涉及的 include，merge，ViewStub 等工具，其实仅用于 XML 布局情况 —— <strong>通过减少层级解决 inflate 耗时问题</strong>。</p>
 <p>像 <a target="_blank" rel="noopener" href="https://github.com/DrKLO/Telegram">Telegram 源码</a> 中 “全 Java 代码” 的布局构建方式，便完全用不上这些个。</p>
 <blockquote>
 <p>划重点 👆 👆 👆</p>
