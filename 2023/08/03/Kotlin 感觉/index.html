@@ -153,7 +153,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2023-10-09 09:50:19
+          2023-10-09 16:05:49
         </span>
         
       </div>
@@ -186,8 +186,8 @@
 <h3 id="头等公民及其延伸"><a href="#头等公民及其延伸" class="headerlink" title="头等公民及其延伸"></a>头等公民及其延伸</h3><p>kotlin 允许函数和变量可以不是类成员，直接定义在文件中，作为顶层函数&#x2F;变量供全局访问，</p>
 <p>如此一来，蝴蝶效应，引发诸多连锁改善，</p>
 <p>1.由于函数可以不是类成员，kotlin 的语法索性统一为，不得在参数中为类成员赋值，如此便为赋值运算符用作 “参数默认值” 预留了空间，</p>
-<p>反观 java，由于方法总是类成员，延伸出可在方法实参中为 “类成员字段” 赋值的写法，而这种鸡肋用法对后来 “参数默认值” 语法的出现造成阻碍，</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java</span></span><br><span class="line">void setAdapter(Adapter adpt)&#123; ... &#125;</span><br><span class="line">Adapter adpt;</span><br><span class="line">setAdapter(adpt = new Adapter()); <span class="comment">//为类成员字段 adpt 赋值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//kotlin</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setAdapter</span><span class="params">(count: <span class="type">Int</span>, adpt: <span class="type">Adapter</span> = Adapter()</span></span>)&#123; ... &#125;</span><br><span class="line">setAdapter() <span class="comment">//参数都沿用默认值</span></span><br><span class="line">setAdapter(adpt = MyAdapter()) <span class="comment">//指定某参数使用自定义值</span></span><br></pre></td></tr></table></figure>
+<p>反观 java，由于方法总是类成员，延伸出可在方法实参中为 “类字段成员字段” 赋值的写法，而这种鸡肋用法对后来 “参数默认值” 语法的出现造成阻碍，</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java</span></span><br><span class="line">void setAdapter(Adapter adpt)&#123; ... &#125;</span><br><span class="line">Adapter adpt;</span><br><span class="line">setAdapter(adpt = new Adapter()); <span class="comment">//为类字段成员 adpt 赋值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//kotlin</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setAdapter</span><span class="params">(count: <span class="type">Int</span>, adpt: <span class="type">Adapter</span> = Adapter()</span></span>)&#123; ... &#125;</span><br><span class="line">setAdapter() <span class="comment">//参数都沿用默认值</span></span><br><span class="line">setAdapter(adpt = MyAdapter()) <span class="comment">//指定某参数使用自定义值</span></span><br></pre></td></tr></table></figure>
 
 
 
